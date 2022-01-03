@@ -1,4 +1,4 @@
-package com.workplenty.artisan.artisan
+package com.workplenty.artisan
 
 import io.flutter.embedding.android.FlutterActivity
 
