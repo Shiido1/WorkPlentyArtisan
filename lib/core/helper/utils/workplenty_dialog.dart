@@ -1,3 +1,5 @@
+import 'package:artisan/views/widgets/buttons.dart';
+import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +8,7 @@ import 'package:overlay_support/overlay_support.dart';
 
 import 'pallets.dart';
 
-class Tracker {
+class WorkPlenty {
   static void showLoading(BuildContext context, GlobalKey key,
       [String message = 'Loading...']) async {
     final dialog = Dialog(
@@ -51,6 +53,8 @@ class Tracker {
   static void showSuccessDialog(
     BuildContext context,
     GlobalKey key, {
+    String? image,
+    required String btnText,
     required String title,
     required String message,
     void Function()? onClose,
@@ -67,35 +71,49 @@ class Tracker {
       backgroundColor: Colors.transparent,
       elevation: 0,
       scrollable: true,
-      content: GestureDetector(
-        onTap: () {
-          Navigator.of(key.currentContext!, rootNavigator: true).pop();
-          subscription.cancel();
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-          width: double.maxFinite,
-          constraints: const BoxConstraints(maxWidth: 340),
-          decoration: BoxDecoration(
-            color: Pallets.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircleAvatar(
-                radius: 32,
-                backgroundColor: Pallets.blue.withOpacity(0.4),
-                child: Icon(Icons.check, size: 40, color: Pallets.blue),
-              ),
-              SizedBox(height: 22.h),
-              TextView(text: title, textAlign: TextAlign.center),
-              SizedBox(height: 12.h),
-              TextView(text: message, textAlign: TextAlign.center),
-            ],
-          ),
+      content: Container(
+        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+        width: double.maxFinite,
+        constraints: const BoxConstraints(maxWidth: 340),
+        decoration: BoxDecoration(
+          color: Pallets.white,
+          borderRadius: BorderRadius.circular(5.r),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            image != null
+                ? ImageLoader(height: 180.h, width: 180.w, path: image)
+                : CircleAvatar(
+                    radius: 32,
+                    backgroundColor: Pallets.blue.withOpacity(0.4),
+                    child: Icon(Icons.check, size: 40, color: Pallets.blue),
+                  ),
+            SizedBox(height: 30.h),
+            TextView(
+              text: title,
+              textAlign: TextAlign.center,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+            SizedBox(height: 4.h),
+            TextView(
+              text: message,
+              textAlign: TextAlign.center,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+            SizedBox(height: 30.h),
+            ButtonWidget(
+                width: 246.w,
+                buttonText: btnText,
+                onPressed: () {
+                  Navigator.of(key.currentContext!, rootNavigator: true).pop();
+                  subscription.cancel();
+                }),
+          ],
         ),
       ),
     );

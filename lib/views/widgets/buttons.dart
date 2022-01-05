@@ -1,5 +1,6 @@
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'image_loader.dart';
 import 'text_views.dart';
@@ -20,6 +21,7 @@ class ButtonWidget extends StatelessWidget {
   final double? radius;
   final String? icon;
   final double? elevation;
+  final bool? buttonStyle;
 
   const ButtonWidget(
       {Key? key,
@@ -30,30 +32,27 @@ class ButtonWidget extends StatelessWidget {
       this.color,
       this.icon,
       this.borderColor,
-      this.height = 48.0,
-      this.width = 100.0,
+      this.height = 50.0,
+      this.width,
       this.fontSize = 14.0,
       this.fontWeight = FontWeight.normal,
       this.radius = 5.0,
       this.elevation = .0,
       this.fontStyle = FontStyle.normal,
-      this.primary})
+      this.primary,
+      this.buttonStyle = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height: height,
+      width: width?.w,
+      height: height?.h,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            elevation: elevation,
-            primary: primary ?? Pallets.blue,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius!)),
-            side: BorderSide(
-                color: borderColor != null ? borderColor! : Pallets.blue)),
         onPressed: onPressed,
+        style: buttonStyle!
+            ? _getCustomStyle()
+            : Theme.of(context).elevatedButtonTheme.style,
         child: icon == null
             ? TextView(
                 text: buttonText,
@@ -62,20 +61,38 @@ class ButtonWidget extends StatelessWidget {
                 color: color,
                 textAlign: textAlign,
               )
-            : Row(
-                mainAxisSize: MainAxisSize.min,
+            : Stack(
                 children: [
-                  ImageLoader(path: icon),
-                  TextView(
-                    text: buttonText,
-                    fontWeight: fontWeight,
-                    fontSize: fontSize,
-                    color: color,
-                    textAlign: textAlign,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: ImageLoader(
+                      path: icon,
+                      width: 24.w,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: TextView(
+                      text: buttonText,
+                      fontWeight: fontWeight,
+                      fontSize: fontSize,
+                      color: color,
+                      textAlign: textAlign,
+                    ),
                   )
                 ],
               ),
       ),
     );
+  }
+
+  ButtonStyle _getCustomStyle() {
+    return ElevatedButton.styleFrom(
+        elevation: elevation,
+        primary: primary ?? Pallets.blue,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius!)),
+        side: BorderSide(
+            color: borderColor != null ? borderColor! : Pallets.blue));
   }
 }

@@ -1,5 +1,8 @@
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'text_views.dart';
 
@@ -9,8 +12,8 @@ AppBar defaultAppBar(BuildContext context,
     bool showLeading = true,
     bool showMoreMenu = false,
     bool centerTitle = false,
-    double? elevation = .0,
-    double? leadingWidth = .0,
+    double? elevation = 0,
+    double? leadingWidth = 90,
     Widget? leadingWidget,
     Color? backgroundColor,
     List<Widget>? actions,
@@ -23,7 +26,32 @@ AppBar defaultAppBar(BuildContext context,
     elevation: elevation,
     centerTitle: centerTitle,
     bottom: bottom,
-    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    leadingWidth: leadingWidth?.w,
+    leading: Builder(
+      builder: (BuildContext context) {
+        return Container(
+          width: 60.w,
+          child: GestureDetector(
+            onTap: () => PageRouter.goBack(context),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 16.w),
+                  child: SvgPicture.asset(
+                    'assets/svgs/backbtn.svg',
+                    width: 24.w,
+                    height: 24.h,
+                  ),
+                ),
+                SizedBox(width: 10.w),
+                TextView(text: 'Back', color: Pallets.primary150, fontSize: 16)
+              ],
+            ),
+          ),
+        );
+      },
+    ),
+    backgroundColor: Pallets.white,
     iconTheme: IconThemeData(color: Pallets.grey900),
     title: titleWidgte ??
         TextView(

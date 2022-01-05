@@ -1,3 +1,4 @@
+import 'package:artisan/views/onboarding/intro/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +7,8 @@ import 'package:overlay_support/overlay_support.dart';
 import 'core/di/injector.dart';
 import 'core/helper/routes/routes.dart';
 import 'core/network/app_config.dart';
-import 'views/onboarding/intro/intro_screen.dart';
+import 'core/theme/theme.dart';
+import 'views/onboarding/authentication/email_verification.dart';
 
 void main() async {
   await initializeCore(environment: Environment.staging);
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Artisan',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(primaryColor: Color(0xff10375C)),
+          theme: lightThemeData(context),
+          darkTheme: darkThemeData(context),
+          themeMode: ThemeMode.light,
           routes: Routes.getRoutes,
           home: IntroOneScreen(),
         ),

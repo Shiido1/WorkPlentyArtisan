@@ -27,7 +27,7 @@ Future<void> dialog(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(AppImages.featured),
+            SvgPicture.asset(AppImages.logo),
             SizedBox(height: 20.h),
             TextView(
               text: title ?? '',

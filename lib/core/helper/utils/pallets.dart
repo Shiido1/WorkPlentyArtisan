@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 class Pallets {
   Pallets._();
 
+  static Color primary50 = const Color(0xffE6EFFF);
+  static Color primaryText = const Color(0xff363535);
+  static Color primary100 = const Color(0xff10375C);
+  static Color primary150 = const Color(0xff4F4F4F);
+  static Color skyBlue = const Color(0xffCDE6FE);
+  static Color lightGrey = const Color(0xffC4C4C4);
+
   static Color warning = const Color(0xffFFFAEB);
   static Color warning700 = const Color(0xffB54708);
-  static Color primary50 = const Color(0xffE6EFFF);
   static Color black = const Color(0xff000000);
   static Color amber50 = const Color(0xffFFFBEB);
   static Color green400 = const Color(0xff8CC63F);
@@ -42,7 +48,6 @@ class Pallets {
   static Color grey50 = const Color(0xffF9FAFB);
   static Color greyPvc = const Color(0xffC6C6C8);
   static Color grey70 = const Color(0xff79797E);
-  static Color grey100 = const Color(0xffF2F4F7);
   static Color grey200 = const Color(0xffE4E4E7);
   static Color grey600 = const Color(0xff52525B);
   static Color greyLight = const Color(0xff79797E);

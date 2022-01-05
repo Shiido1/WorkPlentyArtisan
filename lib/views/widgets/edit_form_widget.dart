@@ -116,29 +116,17 @@ class EditFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TextView(
-          text: floatingLabel!,
-          fontWeight: FontWeight.w500,
-          fontSize: 12.sp,
-          color: Pallets.grey700,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 8.h),
-        height == null ? _editFormWithNoHeight() : _editFormWithHeight()
-      ],
-    );
+    return height == null
+        ? _editFormWithNoHeight(context)
+        : _editFormWithHeight(context);
   }
 
-  _editFormWithNoHeight() {
+  _editFormWithNoHeight(BuildContext context) {
     return TextFormField(
       readOnly: readOnly!,
       onTap: onTapped,
       key: formKey,
-      cursorColor: Pallets.blue,
+      cursorColor: Pallets.primary100,
       keyboardType: keyboardType,
       enabled: enabled,
       focusNode: focusNode,
@@ -148,9 +136,9 @@ class EditFormField extends StatelessWidget {
       onSaved: onSaved,
       onChanged: onChange,
       maxLines: maxLines,
+
       // autovalidate: autoValidate,
-      style: GoogleFonts.inter(
-          color: Pallets.grey500,
+      style: GoogleFonts.dmSans(
           fontWeight: FontWeight.w400,
           fontSize: 14.sp,
           fontStyle: FontStyle.normal),
@@ -170,51 +158,24 @@ class EditFormField extends StatelessWidget {
                       style: const TextStyle(color: Colors.green),
                     )
                   : null,
-              fillColor: Pallets.white,
+              fillColor: Colors.transparent,
               filled: fillColor,
               floatingLabelBehavior: floatingLabelBehavior,
               alignLabelWithHint: alignLabelWithHint,
               errorStyle: const TextStyle(color: Colors.red),
               contentPadding: edgeInsetsGeometry ??
-                  const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: focusedColorBorder != null
-                        ? focusedColorBorder!
-                        : Pallets.borderStroke),
-                borderRadius: BorderRadius.circular(radius),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: focusedColorBorder != null
-                        ? focusedColorBorder!
-                        : Pallets.blue),
-                borderRadius: BorderRadius.circular(radius),
-              ),
-              border: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: focusedColorBorder != null
-                        ? focusedColorBorder!
-                        : Pallets.borderStroke),
-                borderRadius: BorderRadius.circular(radius),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.red),
-                borderRadius: BorderRadius.circular(radius),
-              ),
+                  EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
               hintText: hint,
               hintStyle: hintStyle ??
-                  GoogleFonts.montserrat(
-                      color: Pallets.grey500,
+                  GoogleFonts.dmSans(
                       fontWeight: FontWeight.w400,
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
                       fontStyle: FontStyle.normal),
               labelText: label,
               labelStyle: labelStyle ??
-                  GoogleFonts.inter(
-                      color: Pallets.grey500,
+                  GoogleFonts.dmSans(
                       fontWeight: FontWeight.w400,
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
                       fontStyle: FontStyle.normal),
               prefixIcon: prefixWidget != null
                   ? prefixWidget
@@ -233,13 +194,14 @@ class EditFormField extends StatelessWidget {
                           onPressed: onPasswordToggle,
                           icon: Icon(
                             suffixIcon,
-                            color: suffixIconColor,
+                            color: suffixIconColor ??
+                                Theme.of(context).iconTheme.color,
                           ))
                       : null),
     );
   }
 
-  _editFormWithHeight() {
+  _editFormWithHeight(BuildContext context) {
     return Container(
       height: height!.h,
       decoration: BoxDecoration(
@@ -322,7 +284,7 @@ class EditFormField extends StatelessWidget {
                             onPressed: onPasswordToggle,
                             icon: Icon(
                               suffixIcon,
-                              color: suffixIconColor,
+                              color: Colors.red,
                             ))
                         : null),
       ),

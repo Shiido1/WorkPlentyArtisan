@@ -1,7 +1,13 @@
+import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/onboarding/authentication/get_started_screen.dart';
+import 'package:artisan/views/onboarding/authentication/welcom_back.dart';
+import 'package:artisan/views/onboarding/intro/data/data_model.dart';
 import 'package:artisan/views/widgets/animated_container.dart';
+import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
+import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,29 +25,11 @@ class _IntroOneScreenState extends State<IntroOneScreen> {
   static const _kDuration = Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
 
-  final List<Widget> introWidgetsList = const <Widget>[
-    IntroImageWidget(
-      image: 'assets/images/intro_one.png',
-      title: 'Welcome to GeoTracka',
-      subTitle:
-          '''Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.''',
-    ),
-    IntroImageWidget(
-      image: 'assets/images/intro_two.png',
-      title: '''Morbi non sem at metus ultrices posuere.''',
-      subTitle:
-          '''Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.''',
-    ),
-    IntroImageWidget(
-      image: 'assets/images/intro_three.png',
-      title: '''Morbi non sem at metus ultrices posuere.''',
-      subTitle:
-          '''Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.''',
-    ),
-  ];
+  List<DataModel> _dataModel = DataModel.getDataModel();
 
   int currentPageValue = 0;
   PageController? controller = PageController();
+
   @override
   void initState() {
     super.initState();
@@ -50,69 +38,98 @@ class _IntroOneScreenState extends State<IntroOneScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: defaultAppBar(context, actions: [
-        Container(
-          margin: EdgeInsets.only(right: 16.w),
-          alignment: Alignment.center,
-          child: TextView(
-            onTap: () => null,
-            text: 'Skip',
-            fontSize: 18,
-            color: Pallets.blue,
-            fontWeight: FontWeight.w500,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ]),
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Stack(
           children: [
-            Expanded(
-              child: PageView.builder(
-                physics: const ClampingScrollPhysics(),
-                itemCount: introWidgetsList.length,
-                onPageChanged: (int page) {
-                  getChangedPageAndMoveBar(page);
-                },
-                controller: controller,
-                itemBuilder: (context, index) {
-                  return introWidgetsList[index];
-                },
-              ),
-            ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for (int i = 0; i < introWidgetsList.length; i++)
-                        if (i == currentPageValue) ...[circleBar(true)] else
-                          circleBar(false),
-                    ],
+                Expanded(
+                  child: PageView(
+                    pageSnapping: true,
+                    controller: controller,
+                    onPageChanged: (int page) {
+                      getChangedPageAndMoveBar(page);
+                    },
+                    children: _dataModel
+                        .map((data) => ImageLoader(
+                              path: data.image,
+                              width: Utils.getDeviceWidth(context),
+                              fit: BoxFit.cover,
+                            ))
+                        .toList(),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 16.h),
-                  child: FloatingActionButton(
-                      backgroundColor: Pallets.blue,
-                      child: Icon(Icons.arrow_forward, color: Pallets.white),
-                      onPressed: () {
-                        if (currentPageValue == 2) {
-                          // PageRouter.gotoNamed(Routes.selection, context);
-                        } else {
-                          controller!.nextPage(
-                            duration: _kDuration,
-                            curve: _kCurve,
-                          );
-                        }
-                      }),
-                ),
+                Expanded(
+                    child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 23.w, vertical: 16.h),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 30.h),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            for (int i = 0; i < _dataModel.length; i++)
+                              if (i == currentPageValue) ...[
+                                Container(
+                                    width: 50.w,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.r),
+                                        color: Pallets.primary100),
+                                    child: circleBar(true))
+                              ] else
+                                circleBar(false),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 35.h),
+                      TextView(
+                        text: _dataModel[currentPageValue].title ?? '',
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w700,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 5.h),
+                      TextView(
+                        text: _dataModel[currentPageValue].body ?? '',
+                        textAlign: TextAlign.center,
+                        fontSize: 16.sp,
+                        color: Pallets.grey500,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      SizedBox(height: 43.h),
+                      ButtonWidget(
+                          buttonText: 'Get Started',
+                          width: Utils.getDeviceWidth(context),
+                          onPressed: () => PageRouter.gotoWidget(
+                              GetStartedScreen(), context)),
+                    ],
+                  ),
+                ))
               ],
+            ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.symmetric(vertical: 23.h),
+              child: Wrap(alignment: WrapAlignment.center, children: [
+                TextView(
+                    text: 'Already on WorkPlenty? ',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400),
+                TextView(
+                  text: 'Sign in',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  onTap: () =>
+                      PageRouter.gotoWidget(WelcomeBackScreen(), context),
+                ),
+              ]),
             )
           ],
         ),
@@ -123,9 +140,9 @@ class _IntroOneScreenState extends State<IntroOneScreen> {
   Widget circleBar(bool isActive) {
     return Center(
       child: DotsIndicator(
-        color: isActive ? Pallets.blue : Pallets.blue100,
+        color: isActive ? Pallets.primary100 : Pallets.lightGrey,
         controller: controller,
-        itemCount: introWidgetsList.length,
+        itemCount: _dataModel.length,
         onPageSelected: (int page) {},
       ),
     );
@@ -134,42 +151,5 @@ class _IntroOneScreenState extends State<IntroOneScreen> {
   void getChangedPageAndMoveBar(int page) {
     currentPageValue = page;
     setState(() {});
-  }
-}
-
-class CustomeImage extends StatelessWidget {
-  final String? image;
-  final String? title;
-  final String? subTitle;
-
-  const CustomeImage({
-    Key? key,
-    this.image,
-    this.title,
-    this.subTitle,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Image.asset(image!),
-          TextView(
-            text: title!,
-            fontSize: 24,
-            fontWeight: FontWeight.w700,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-          TextView(
-            text: subTitle!,
-            textAlign: TextAlign.center,
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-          )
-        ],
-      ),
-    );
   }
 }

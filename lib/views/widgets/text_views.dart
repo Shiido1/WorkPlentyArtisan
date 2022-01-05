@@ -36,8 +36,8 @@ class TextView extends StatelessWidget {
       onTap: onTap,
       child: Text(
         text,
-        style: GoogleFonts.inter(
-            color: color ?? Pallets.grey800,
+        style: GoogleFonts.dmSans(
+            color: color,
             fontWeight: fontWeight,
             fontSize: fontSize.sp,
             fontStyle: fontStyle,
