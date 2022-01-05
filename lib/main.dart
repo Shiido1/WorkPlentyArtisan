@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkThemeData(context),
           themeMode: ThemeMode.light,
           routes: Routes.getRoutes,
-          home: SetUpProfile(),
+          home: IntroOneScreen(),
         ),
       ),
     );
