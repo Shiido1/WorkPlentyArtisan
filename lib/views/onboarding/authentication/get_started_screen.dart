@@ -2,6 +2,7 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/onboarding/authentication/welcom_back.dart';
+import 'package:artisan/views/onboarding/profile/profile_setup.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
@@ -92,7 +93,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                 primary: Pallets.skyBlue,
                 borderColor: Pallets.skyBlue,
                 icon: AppImages.google,
-                onPressed: () {}),
+                onPressed: () =>
+                    PageRouter.gotoWidget(SetUpProfile(), context)),
             SizedBox(height: 18.h),
             ButtonWidget(
                 buttonText: 'Continue with Meta',

@@ -63,3 +63,38 @@ AppBar defaultAppBar(BuildContext context,
     actions: actions,
   );
 }
+
+AppBar defaultAppBar2(BuildContext context,
+    {String title = '',
+    VoidCallback? onTap,
+    bool showLeading = true,
+    bool showMoreMenu = false,
+    bool centerTitle = false,
+    double? elevation = 0,
+    double? leadingWidth = 90,
+    Widget? leadingWidget,
+    Color? backgroundColor,
+    List<Widget>? actions,
+    PreferredSizeWidget? bottom,
+    Widget? titleWidgte,
+    bool? showClearButton = true,
+    String image = ''}) {
+  return AppBar(
+    automaticallyImplyLeading: showLeading,
+    elevation: elevation,
+    centerTitle: centerTitle,
+    bottom: bottom,
+    leadingWidth: leadingWidth?.w,
+    leading: leadingWidget,
+    backgroundColor: backgroundColor,
+    iconTheme: IconThemeData(color: Pallets.grey900),
+    title: titleWidgte ??
+        TextView(
+            text: title,
+            fontWeight: FontWeight.w700,
+            fontSize: 22,
+            color: Theme.of(context).colorScheme.primary,
+            textAlign: TextAlign.center),
+    actions: actions,
+  );
+}

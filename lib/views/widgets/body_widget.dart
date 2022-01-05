@@ -4,7 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyWidget extends StatelessWidget {
   final Widget? child;
-  const BodyWidget({required this.child, Key? key}) : super(key: key);
+  final double width;
+  final double height;
+  const BodyWidget(
+      {required this.child, this.height = 16, this.width = 16, Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,7 +19,8 @@ class BodyWidget extends StatelessWidget {
         child: Material(
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                padding: EdgeInsets.symmetric(
+                    vertical: height.h, horizontal: width.w),
                 child: child)),
       ),
     );

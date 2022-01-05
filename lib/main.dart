@@ -9,6 +9,7 @@ import 'core/helper/routes/routes.dart';
 import 'core/network/app_config.dart';
 import 'core/theme/theme.dart';
 import 'views/onboarding/authentication/email_verification.dart';
+import 'views/onboarding/profile/profile_setup.dart';
 
 void main() async {
   await initializeCore(environment: Environment.staging);
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkThemeData(context),
           themeMode: ThemeMode.light,
           routes: Routes.getRoutes,
-          home: IntroOneScreen(),
+          home: SetUpProfile(),
         ),
       ),
     );

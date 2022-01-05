@@ -208,7 +208,7 @@ class EditFormField extends StatelessWidget {
         border: Border.all(
             color: focusedColorBorder != null
                 ? focusedColorBorder!
-                : Pallets.borderStroke),
+                : Pallets.primary100),
         borderRadius: BorderRadius.circular(radius),
       ),
       child: TextFormField(
@@ -240,53 +240,58 @@ class EditFormField extends StatelessWidget {
         controller: controller,
         decoration: decoration ??
             InputDecoration(
-                counterText: '',
-                counter: showMaxLengthCounter
-                    ? Text(
-                        '$counterLength/$maxLength characters',
-                        style: const TextStyle(color: Colors.green),
-                      )
-                    : null,
-                floatingLabelBehavior: floatingLabelBehavior,
-                alignLabelWithHint: alignLabelWithHint,
-                errorStyle: const TextStyle(color: Colors.red),
-                contentPadding: edgeInsetsGeometry ??
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                border: InputBorder.none,
-                hintText: hint,
-                hintStyle: hintStyle ??
-                    GoogleFonts.montserrat(
-                        color: Pallets.grey500,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
-                        fontStyle: FontStyle.normal),
-                labelText: label,
-                labelStyle: labelStyle ??
-                    GoogleFonts.inter(
-                        color: Pallets.grey500,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
-                        fontStyle: FontStyle.normal),
-                prefixIcon: prefixWidget != null
-                    ? prefixWidget
-                    : prefixIcon != null
-                        ? IconButton(
-                            onPressed: onPasswordToggle,
-                            icon: Icon(
-                              prefixIcon,
-                              color: prefixIconColor,
-                            ))
-                        : null,
-                suffixIcon: suffixWidget != null
-                    ? suffixWidget
-                    : suffixIcon != null
-                        ? IconButton(
-                            onPressed: onPasswordToggle,
-                            icon: Icon(
-                              suffixIcon,
-                              color: Colors.red,
-                            ))
-                        : null),
+              counterText: '',
+              counter: showMaxLengthCounter
+                  ? Text(
+                      '$counterLength/$maxLength characters',
+                      style: const TextStyle(color: Colors.green),
+                    )
+                  : null,
+              floatingLabelBehavior: floatingLabelBehavior,
+              alignLabelWithHint: alignLabelWithHint,
+              errorStyle: const TextStyle(color: Colors.red),
+              contentPadding: edgeInsetsGeometry ??
+                  const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              hintText: hint,
+              hintStyle: hintStyle ??
+                  GoogleFonts.montserrat(
+                      color: Pallets.grey500,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.sp,
+                      fontStyle: FontStyle.normal),
+              labelText: label,
+              labelStyle: labelStyle ??
+                  GoogleFonts.inter(
+                      color: Pallets.grey500,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.sp,
+                      fontStyle: FontStyle.normal),
+              prefixIcon: prefixWidget != null
+                  ? prefixWidget
+                  : prefixIcon != null
+                      ? IconButton(
+                          onPressed: onPasswordToggle,
+                          icon: Icon(
+                            prefixIcon,
+                            color: prefixIconColor,
+                          ))
+                      : null,
+              suffixIcon: suffixWidget != null
+                  ? suffixWidget
+                  : suffixIcon != null
+                      ? IconButton(
+                          onPressed: onPasswordToggle,
+                          icon: Icon(
+                            suffixIcon,
+                            color: Colors.red,
+                          ))
+                      : null,
+            ),
       ),
     );
   }

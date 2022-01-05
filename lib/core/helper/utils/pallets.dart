@@ -9,6 +9,10 @@ class Pallets {
   static Color primary150 = const Color(0xff4F4F4F);
   static Color skyBlue = const Color(0xffCDE6FE);
   static Color lightGrey = const Color(0xffC4C4C4);
+  static Color shade = const Color(0xff7FA3C5);
+  static Color shade100 = const Color(0xff035584);
+  static Color shade200 = const Color(0xff035584);
+  static Color chipBackground = const Color(0xffC4E2FE);
 
   static Color warning = const Color(0xffFFFAEB);
   static Color warning700 = const Color(0xffB54708);

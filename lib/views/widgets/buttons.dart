@@ -89,10 +89,10 @@ class ButtonWidget extends StatelessWidget {
   ButtonStyle _getCustomStyle() {
     return ElevatedButton.styleFrom(
         elevation: elevation,
-        primary: primary ?? Pallets.blue,
+        primary: primary ?? Pallets.primary100,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius!)),
         side: BorderSide(
-            color: borderColor != null ? borderColor! : Pallets.blue));
+            color: borderColor != null ? borderColor! : Pallets.primary100));
   }
 }
