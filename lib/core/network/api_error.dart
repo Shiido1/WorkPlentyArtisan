@@ -1,4 +1,3 @@
-import 'package:artisan/core/bus/event_bus.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:dio/dio.dart';
 import 'laravel_error_model.dart';

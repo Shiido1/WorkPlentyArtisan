@@ -6,13 +6,10 @@ import 'package:artisan/views/onboarding/authentication/welcom_back.dart';
 import 'package:artisan/views/onboarding/intro/data/data_model.dart';
 import 'package:artisan/views/widgets/animated_container.dart';
 import 'package:artisan/views/widgets/buttons.dart';
-import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'widget/intro_image_widget.dart';
 
 class IntroOneScreen extends StatefulWidget {
   const IntroOneScreen({Key? key}) : super(key: key);
@@ -22,9 +19,6 @@ class IntroOneScreen extends StatefulWidget {
 }
 
 class _IntroOneScreenState extends State<IntroOneScreen> {
-  static const _kDuration = Duration(milliseconds: 300);
-  static const _kCurve = Curves.ease;
-
   List<DataModel> _dataModel = DataModel.getDataModel();
 
   int currentPageValue = 0;
