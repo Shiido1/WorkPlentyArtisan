@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/text_views.dart';
@@ -12,7 +13,10 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       appBar: defaultAppBar2(context,
           leadingWidget: IconButton(
-              color: Pallets.white, onPressed: () {}, icon: Icon(Icons.clear)),
+              padding: EdgeInsets.zero,
+              color: Pallets.white,
+              onPressed: () => PageRouter.goBack(context),
+              icon: Icon(Icons.clear)),
           centerTitle: true,
           title: 'Notification',
           textColor: Pallets.white),

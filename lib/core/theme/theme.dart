@@ -24,17 +24,28 @@ ThemeData lightThemeData(BuildContext context) {
       textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
           .apply(bodyColor: Pallets.primaryText),
       colorScheme: ColorScheme.light(
-        primary: Pallets.primaryText,
-        secondary: kSecondaryColor,
-        error: kErrorColor,
-      ),
+          primary: Pallets.primaryText,
+          secondary: kSecondaryColor,
+          error: kErrorColor),
+      cardTheme: CardTheme(
+          elevation: 2,
+          shadowColor: Pallets.grey.withOpacity(.4),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
+          color: Colors.white),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
-        selectedItemColor: Pallets.primaryText.withOpacity(0.7),
-        unselectedItemColor: Pallets.primaryText.withOpacity(0.32),
-        selectedIconTheme: IconThemeData(color: kPrimaryColor),
-        showUnselectedLabels: true,
-      ),
+          type: BottomNavigationBarType.fixed,
+          elevation: 10,
+          backgroundColor: Colors.white,
+          selectedItemColor: Pallets.primary100,
+          selectedLabelStyle:
+              TextStyle(color: Pallets.primary100, fontSize: 14),
+          unselectedLabelStyle:
+              TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+          unselectedItemColor: Pallets.primary100,
+          selectedIconTheme: IconThemeData(color: kPrimaryColor),
+          showUnselectedLabels: false,
+          showSelectedLabels: false),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Pallets.primary100),

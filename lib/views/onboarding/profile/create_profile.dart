@@ -54,12 +54,8 @@ class _CreateProfileState extends State<CreateProfile> {
             onTap: () => PageRouter.goBack(context),
           ),
           centerTitle: true,
-          titleWidgte: TextView(
-              text: 'Create Profile',
-              fontWeight: FontWeight.w700,
-              fontSize: 22,
-              color: Pallets.white,
-              textAlign: TextAlign.center)),
+          title: 'Create Profile',
+          textColor: Pallets.white),
       body: BodyWidget(
         height: 0,
         width: 0,

@@ -7,6 +7,7 @@ import 'core/di/injector.dart';
 import 'core/helper/routes/routes.dart';
 import 'core/network/app_config.dart';
 import 'core/theme/theme.dart';
+import 'views/board/board.dart';
 import 'views/notification/notification_screen.dart';
 
 void main() async {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkThemeData(context),
           themeMode: ThemeMode.light,
           routes: Routes.getRoutes,
-          home: NotificationScreen(),
+          home: MainBoard(),
         ),
       ),
     );
