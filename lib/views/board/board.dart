@@ -1,13 +1,19 @@
 import 'dart:async';
 
 import 'package:artisan/core/bus/event_bus.dart';
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/notification/notification_screen.dart';
+import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'dashboard/dashboard.dart';
+import 'saved/saved.dart';
+import 'widget/custom_appbar.dart';
 
 // ignore: must_be_immutable
 class MainBoard extends StatefulWidget {
@@ -23,6 +29,7 @@ class _MainBoardState extends State<MainBoard> {
   ValueNotifier<int> indexChangedNotifier = ValueNotifier(0);
   int? index = 0;
   List<Widget> _body = [];
+  List<String> _bodyTitle = [];
 
   @override
   void initState() {
@@ -57,8 +64,10 @@ class _MainBoardState extends State<MainBoard> {
 
   @override
   Widget build(BuildContext context) {
-    _body = [Dashboard(), Container(), Container(), Container(), Container()];
+    _body = [Dashboard(), Saved(), Container(), Container(), Container()];
+    _bodyTitle = ["Dashboard", "Saved", "Explore", "Profile", "Mail"];
     return Scaffold(
+      appBar: index == 1 ? null : getCustomAppBar(context, _bodyTitle[index!]),
       body: ValueListenableBuilder(
           valueListenable: indexChangedNotifier,
           builder: (context, value, child) => Stack(

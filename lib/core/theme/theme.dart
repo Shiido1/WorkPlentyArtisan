@@ -1,4 +1,5 @@
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/widgets/tab_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,6 +47,20 @@ ThemeData lightThemeData(BuildContext context) {
           selectedIconTheme: IconThemeData(color: kPrimaryColor),
           showUnselectedLabels: false,
           showSelectedLabels: false),
+      tabBarTheme: TabBarTheme(
+        labelStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w700,
+        ),
+        unselectedLabelStyle:
+            TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+        unselectedLabelColor: Pallets.lightShade,
+        labelColor: Pallets.white,
+        indicator: IndicatorDecoration(
+            indicatorColor: Pallets.lightShade,
+            indicatorHeight: 8,
+            indicatorSize: IndicatorSize.normal),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Pallets.primary100),
@@ -99,5 +114,5 @@ ThemeData darkThemeData(BuildContext context) {
   );
 }
 
-final appBarTheme =
-    AppBarTheme(centerTitle: false, backgroundColor: Pallets.primary100);
+final appBarTheme = AppBarTheme(
+    centerTitle: false, backgroundColor: Pallets.primary100, elevation: 100);

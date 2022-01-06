@@ -15,23 +15,6 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: defaultAppBar2(context,
-          backgroundColor: Pallets.primary100,
-          leadingWidth: 70,
-          leadingWidget:
-              ImageLoader(path: AppImages.whiteLogo, height: 24.h, width: 24.w),
-          centerTitle: true,
-          title: 'Dashboard',
-          textColor: Pallets.white,
-          actions: [
-            Container(
-                margin: EdgeInsets.only(right: 16.w),
-                child: ImageLoader(
-                  path: AppImages.bell,
-                  onTap: () =>
-                      PageRouter.gotoWidget(NotificationScreen(), context),
-                ))
-          ]),
       body: Padding(
         padding: EdgeInsets.all(16.w),
         child: ListView(
