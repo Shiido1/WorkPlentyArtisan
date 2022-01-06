@@ -1,4 +1,3 @@
-import 'package:artisan/views/onboarding/intro/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +7,7 @@ import 'core/di/injector.dart';
 import 'core/helper/routes/routes.dart';
 import 'core/network/app_config.dart';
 import 'core/theme/theme.dart';
+import 'views/notification/notification_screen.dart';
 
 void main() async {
   await initializeCore(environment: Environment.staging);
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkThemeData(context),
           themeMode: ThemeMode.light,
           routes: Routes.getRoutes,
-          home: IntroOneScreen(),
+          home: NotificationScreen(),
         ),
       ),
     );

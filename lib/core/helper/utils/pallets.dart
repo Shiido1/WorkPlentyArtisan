@@ -13,6 +13,7 @@ class Pallets {
   static Color shade100 = const Color(0xff035584);
   static Color shade200 = const Color(0xff035584);
   static Color chipBackground = const Color(0xffC4E2FE);
+  static Color grey = const Color(0xff9E9C9C);
 
   static Color warning = const Color(0xffFFFAEB);
   static Color warning700 = const Color(0xffB54708);

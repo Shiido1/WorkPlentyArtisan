@@ -88,4 +88,5 @@ ThemeData darkThemeData(BuildContext context) {
   );
 }
 
-final appBarTheme = AppBarTheme(centerTitle: false, elevation: 0);
+final appBarTheme =
+    AppBarTheme(centerTitle: false, backgroundColor: Pallets.primary100);
