@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'tabs/freelance.dart';
+import 'tabs/service.dart';
 
 class Saved extends StatelessWidget {
   final Widget? widget;
@@ -38,7 +39,7 @@ class Saved extends StatelessWidget {
         body: TabBarView(
           children: [
             FreelanceTab(),
-            Icon(Icons.directions_transit),
+            ServiceTab(),
             Icon(Icons.directions_bike),
           ],
         ),

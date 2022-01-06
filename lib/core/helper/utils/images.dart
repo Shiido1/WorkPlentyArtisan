@@ -33,4 +33,7 @@ class AppImages {
   static String bids = 'assets/svgs/bid.svg';
   static String hour_glass = 'assets/svgs/hour_glass.svg';
   static String star = 'assets/svgs/star.svg';
+  static String empty = 'assets/svgs/empty.svg';
+  static String filter = 'assets/svgs/filter.svg';
+  static String emoji = 'assets/svgs/emoji.svg';
 }

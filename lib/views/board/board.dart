@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import 'dashboard/dashboard.dart';
 import 'saved/saved.dart';
+import 'saved/tabs/search.dart';
 import 'widget/custom_appbar.dart';
 
 // ignore: must_be_immutable
@@ -64,7 +65,7 @@ class _MainBoardState extends State<MainBoard> {
 
   @override
   Widget build(BuildContext context) {
-    _body = [Dashboard(), Saved(), Container(), Container(), Container()];
+    _body = [Dashboard(), Saved(), SearchTab(), Container(), Container()];
     _bodyTitle = ["Dashboard", "Saved", "Explore", "Profile", "Mail"];
     return Scaffold(
       appBar: index == 1 ? null : getCustomAppBar(context, _bodyTitle[index!]),
