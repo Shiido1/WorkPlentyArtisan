@@ -2,8 +2,12 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
+import 'package:artisan/views/onboarding/profile/awaiting_approval.dart';
 import 'package:artisan/views/onboarding/profile/widget/button_widget.dart';
+import 'package:artisan/views/onboarding/profile/widget/employment.dart';
+import 'package:artisan/views/onboarding/profile/widget/status.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
+import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/edit_form_widget.dart';
@@ -11,6 +15,8 @@ import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'widget/subcategory.dart';
 
 class CreateProfile extends StatefulWidget {
   const CreateProfile({Key? key}) : super(key: key);
@@ -20,16 +26,17 @@ class CreateProfile extends StatefulWidget {
 }
 
 class _CreateProfileState extends State<CreateProfile> {
-  double _progress = 70;
+  double _progress = 10;
   int _index = 0;
   final _loadingKey = GlobalKey<FormState>();
 
   List<String> _fields = [
-    "UI/UX Development",
-    "Marketing",
-    "Writing",
-    "Mobile",
-    "Customer Support"
+    "HTML",
+    "Vue JS",
+    "JavaScript",
+    "React",
+    "AngularJS",
+    "AngularJS"
   ];
 
   List<String> _selectedFields = [];
@@ -78,7 +85,6 @@ class _CreateProfileState extends State<CreateProfile> {
               btnText: 'Next',
               callback: () => _increamentIndex(),
               goBack: () => _decreamentIndex(),
-              skip: () {},
             )
           ],
         ),
@@ -87,12 +93,15 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   void _increamentIndex() {
-    if (_index == 3) {
+    if (_index == 9) {
       WorkPlenty.showSuccessDialog(context, _loadingKey,
           image: AppImages.blowWhistle,
           title: 'Profile looking good',
           message: 'Guess who just completed setting up is profile? You!',
-          btnText: 'Continue');
+          btnText: 'Continue', next: () {
+        PageRouter.goBack(context);
+        PageRouter.gotoWidget(AwaitingApproval(), context);
+      });
       return;
     }
     _index++;
@@ -115,10 +124,363 @@ class _CreateProfileState extends State<CreateProfile> {
     if (_index == 0) return _formOne();
     if (_index == 1) return _formTwo();
     if (_index == 2) return _formThree();
-    return _formFour();
+    if (_index == 3) return _formFour();
+    if (_index == 4) return _formFive();
+    if (_index == 5) return _formSix();
+    if (_index == 6) return _formSeven();
+    if (_index == 7) return _formEight();
+    if (_index == 8) return _formNine();
+    if (_index == 9) return _formTen();
+    return Container();
   }
 
   Widget _formOne() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Categorize the work the you do',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        TextView(
+          text: 'Industry?',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'Technology',
+          suffixIcon: Icons.keyboard_arrow_down,
+        ),
+        SizedBox(height: 26.h),
+        TextView(
+          text: 'Service you offer?',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'Select Category',
+          suffixIcon: Icons.keyboard_arrow_down,
+        ),
+        SizedBox(height: 18.h),
+        EditFormField(
+          label: 'Select Subcategory',
+          suffixIcon: Icons.keyboard_arrow_down,
+          readOnly: true,
+          onTapped: () {
+            BottomSheets.showSheet(context, child: SubCategorySheet());
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _formTwo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Select your skill(s)',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text: 'Choose as many as you want',
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        Wrap(
+          spacing: 18.w,
+          children: List<Widget>.generate(
+            _fields.length,
+            (int index) {
+              final _field = _fields[index];
+              return ChoiceChip(
+                label: TextView(
+                  text: _field,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: _selectedFields.contains(_field)
+                      ? Pallets.white
+                      : Pallets.shade100,
+                ),
+                selected: _selectedFields.contains(_field),
+                selectedColor: _selectedFields.contains(_field)
+                    ? Pallets.primary100
+                    : Pallets.chipBackground,
+                onSelected: (bool selected) {
+                  setState(() {
+                    _selectedFields.contains(_field)
+                        ? _selectedFields.remove(_field)
+                        : _selectedFields.add(_field);
+                  });
+                },
+              );
+            },
+          ).toList(),
+        ),
+        SizedBox(height: 114.h),
+        TextView(
+          text: 'Not what you’re looking for?',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Add'),
+      ],
+    );
+  }
+
+  Widget _formThree() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Level of Experience in selected fields?',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text:
+              'Select your overall experience regarding skills selected ealier',
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        Row(
+          children: [
+            SkillStatus(
+              image: AppImages.entry,
+              text: 'Entry',
+              color: Color(0xffFAC1B4),
+              onTap: () {},
+            ),
+            SizedBox(width: 40.w),
+            SkillStatus(
+              image: AppImages.intermediate,
+              text: 'Intermediate',
+              color: Color(0xffFFE5B8),
+              onTap: () {},
+            )
+          ],
+        ),
+        SizedBox(height: 31.h),
+        Row(
+          children: [
+            SkillStatus(
+              image: AppImages.midLevel,
+              text: 'Mid-Level',
+              color: Color(0xffB8AEF4),
+              onTap: () {},
+            ),
+            SizedBox(width: 40.w),
+            SkillStatus(
+              image: AppImages.senior,
+              text: 'Senior',
+              color: Color(0xffB4FCE5),
+              onTap: () {},
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _formFour() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Level of Education?',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text:
+              'Add schools, courses you attended, areas of study, and degrees you attained',
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        TextView(
+          text: 'School',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'Ex: University of Ibadan',
+        ),
+        SizedBox(height: 18.h),
+        TextView(
+          text: 'Field of Study',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Ex: Computer Engineering'),
+        SizedBox(height: 18.h),
+        TextView(
+          text: 'Degree',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Ex. Bachelor\'s'),
+        SizedBox(height: 18.h),
+        TextView(
+          text: 'Dates Attended',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'From',
+          suffixIcon: Icons.keyboard_arrow_down_sharp,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'To(expected graduation year)',
+          suffixIcon: Icons.keyboard_arrow_down_sharp,
+        ),
+      ],
+    );
+  }
+
+  Widget _formFive() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Work Experence?',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text:
+              'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        Divider(),
+        ...[1, 2].map((_) => _experience()).toList(),
+        SizedBox(height: 43.h),
+        ButtonWidget(
+            buttonText: 'Add Experience',
+            buttonStyle: true,
+            primary: Colors.transparent,
+            color: Pallets.primary100,
+            onPressed: () =>
+                BottomSheets.showSheet(context, child: EmploymentSheet())),
+      ],
+    );
+  }
+
+  Widget _formSix() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Preferred Language',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text:
+              'Language you are proefficient with, meaning can have conversation with',
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        Divider(),
+        EditFormField(label: 'English - Fluent'),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'Add Language',
+          suffixIcon: Icons.keyboard_arrow_down,
+        ),
+      ],
+    );
+  }
+
+  Widget _formSeven() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Availability & Rate',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        TextView(
+          text: 'Choose available hour range and rate',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        TextView(
+          text: 'Weekly Hour',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+            label: '20-30 hours/week', suffixIcon: Icons.keyboard_arrow_down),
+        SizedBox(height: 26.h),
+        TextView(
+          text: 'Rate Per Hour - Home Service',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Ex. NGN1000 / hour'),
+        SizedBox(height: 18.h),
+        TextView(
+          text: 'Rate - Live Consultancy',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Ex. NGN1000 / 15 minutes'),
+      ],
+    );
+  }
+
+  Widget _formEight() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -173,60 +535,7 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 
-  Widget _formTwo() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextView(
-          text: 'Select talents category?',
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 5.h),
-        TextView(
-          text:
-              'Select 4 categories , we’ll build a custom homefeed tailored to talents',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 43.h),
-        Wrap(
-          spacing: 18.w,
-          children: List<Widget>.generate(
-            _fields.length,
-            (int index) {
-              final _field = _fields[index];
-              return ChoiceChip(
-                label: TextView(
-                  text: _field,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                  color: _selectedFields.contains(_field)
-                      ? Pallets.white
-                      : Pallets.shade100,
-                ),
-                selected: _selectedFields.contains(_field),
-                selectedColor: _selectedFields.contains(_field)
-                    ? Pallets.primary100
-                    : Pallets.chipBackground,
-                onSelected: (bool selected) {
-                  setState(() {
-                    _selectedFields.contains(_field)
-                        ? _selectedFields.remove(_field)
-                        : _selectedFields.add(_field);
-                  });
-                },
-              );
-            },
-          ).toList(),
-        )
-      ],
-    );
-  }
-
-  Widget _formThree() {
+  Widget _formNine() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -260,7 +569,7 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 
-  Widget _formFour() {
+  Widget _formTen() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -316,6 +625,42 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(label: 'Ex: 00000')
+      ],
+    );
+  }
+
+  Column _experience() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 18.h),
+                TextView(
+                  text: 'Software Engineer | Eduwiki',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(height: 8.h),
+                TextView(
+                  text: 'May 2020 - Present',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ),
+          ImageLoader(path: AppImages.edit),
+          ImageLoader(path: AppImages.close),
+        ]),
+        SizedBox(height: 18.h),
+        Divider(),
       ],
     );
   }

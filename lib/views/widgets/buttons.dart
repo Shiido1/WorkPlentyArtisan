@@ -58,7 +58,7 @@ class ButtonWidget extends StatelessWidget {
                 text: buttonText,
                 fontWeight: fontWeight,
                 fontSize: fontSize,
-                color: color,
+                color: color ?? Pallets.white,
                 textAlign: textAlign,
               )
             : Stack(
@@ -76,7 +76,7 @@ class ButtonWidget extends StatelessWidget {
                       text: buttonText,
                       fontWeight: fontWeight,
                       fontSize: fontSize,
-                      color: color,
+                      color: color ?? Pallets.white,
                       textAlign: textAlign,
                     ),
                   )

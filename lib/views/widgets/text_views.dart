@@ -36,7 +36,7 @@ class TextView extends StatelessWidget {
       child: Text(
         text,
         style: GoogleFonts.dmSans(
-            color: color,
+            color: color ?? Theme.of(context).colorScheme.primary,
             fontWeight: fontWeight,
             fontSize: fontSize.sp,
             fontStyle: fontStyle,

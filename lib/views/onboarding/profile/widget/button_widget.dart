@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/widgets/buttons.dart';
@@ -16,47 +17,53 @@ class BtnWidget extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-        alignment: Alignment.center,
-        color: Theme.of(context).scaffoldBackgroundColor,
-        margin: EdgeInsets.only(top: Utils.getDeviceHeight(context) * .7),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Align(
-              alignment: Alignment.bottomRight,
-              child: TextView(
-                text: 'Skip',
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-                textAlign: TextAlign.right,
-                onTap: skip,
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Row(
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+          padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+          color: Theme.of(context).scaffoldBackgroundColor,
+          height: 140.h,
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: goBack,
-                    child: Container(
-                      padding: EdgeInsets.all(14.w),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.r),
-                          border: Border.all(color: Pallets.primary100)),
-                      child: Icon(Icons.keyboard_arrow_left),
-                    ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextView(
+                    text: 'Skip',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    textAlign: TextAlign.right,
+                    onTap: skip,
                   ),
                 ),
-                SizedBox(width: 11.w),
-                Expanded(
-                    flex: 6,
-                    child: ButtonWidget(
-                        buttonText: btnText ?? '', onPressed: callback)),
+                SizedBox(height: 16.h),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: goBack,
+                        child: Container(
+                          padding: EdgeInsets.all(14.w),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              border: Border.all(color: Pallets.primary100)),
+                          child: Icon(Icons.keyboard_arrow_left),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 11.w),
+                    Expanded(
+                        flex: 6,
+                        child: ButtonWidget(
+                            color: Pallets.white,
+                            buttonText: btnText ?? '',
+                            onPressed: callback)),
+                  ],
+                ),
               ],
             ),
-          ],
-        ));
+          )),
+    );
   }
 }

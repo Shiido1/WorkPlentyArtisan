@@ -24,7 +24,7 @@ ThemeData lightThemeData(BuildContext context) {
       textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
           .apply(bodyColor: Pallets.primaryText),
       colorScheme: ColorScheme.light(
-        primary: Pallets.primary100,
+        primary: Pallets.primaryText,
         secondary: kSecondaryColor,
         error: kErrorColor,
       ),

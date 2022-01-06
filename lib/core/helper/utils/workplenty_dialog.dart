@@ -57,7 +57,7 @@ class WorkPlenty {
     required String btnText,
     required String title,
     required String message,
-    void Function()? onClose,
+    void Function()? next,
   }) async {
     var future = Future.delayed(const Duration(seconds: 5));
     var subscription = future.asStream().listen((_) {
@@ -109,10 +109,13 @@ class WorkPlenty {
             ButtonWidget(
                 width: 246.w,
                 buttonText: btnText,
-                onPressed: () {
-                  Navigator.of(key.currentContext!, rootNavigator: true).pop();
-                  subscription.cancel();
-                }),
+                color: Pallets.white,
+                onPressed: next ??
+                    () {
+                      Navigator.of(key.currentContext!, rootNavigator: true)
+                          .pop();
+                      subscription.cancel();
+                    }),
           ],
         ),
       ),
@@ -123,8 +126,8 @@ class WorkPlenty {
       builder: (BuildContext context) => dialog,
       barrierDismissible: false,
     ).then((_) {
-      if (onClose != null) {
-        onClose();
+      if (next != null) {
+        next();
       }
     });
   }
