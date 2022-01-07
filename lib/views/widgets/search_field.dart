@@ -1,5 +1,10 @@
+import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'edit_form_widget.dart';
+import 'image_loader.dart';
 
 class SearchAndFilter extends StatelessWidget {
   final String? hint;
@@ -29,34 +34,22 @@ class SearchAndFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-        controller: textEditingController,
-        cursorColor: Pallets.blue,
-        onSubmitted: onSubmitted,
-        onChanged: onChanged,
-        readOnly: readOnly!,
-        onTap: onTap,
-        textInputAction: TextInputAction.search,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: Pallets.grey1000),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Pallets.grey1000),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Pallets.grey1000),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          filled: true,
-          hintStyle:
-              TextStyle(color: Colors.grey[500], fontWeight: FontWeight.w500),
-          hintText: hint,
-          suffixIcon: IconButton(
-              onPressed: onPressed, icon: Icon(icon ?? Icons.search)),
-          fillColor: Colors.transparent,
-        ));
+    return Row(
+      children: [
+        Expanded(
+          child: EditFormField(
+              label: 'Search for gigs, live consultancy, home',
+              suffixIcon: Icons.search),
+        ),
+        SizedBox(width: 5.w),
+        Container(
+          padding: EdgeInsets.all(6.w),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.r),
+              color: Pallets.primary100),
+          child: ImageLoader(path: AppImages.filter),
+        ),
+      ],
+    );
   }
 }

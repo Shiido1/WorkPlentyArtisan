@@ -36,4 +36,7 @@ class AppImages {
   static String empty = 'assets/svgs/empty.svg';
   static String filter = 'assets/svgs/filter.svg';
   static String emoji = 'assets/svgs/emoji.svg';
+  static String wallet = 'assets/svgs/wallet.svg';
+  static String details = 'assets/svgs/details.svg';
+  static String attach = 'assets/svgs/attach.svg';
 }
