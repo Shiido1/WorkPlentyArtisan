@@ -1,29 +1,21 @@
-import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/job/job_details_copy.dart';
 import 'package:artisan/views/onboarding/profile/widget/button_widget.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
+import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
-import 'package:artisan/views/widgets/skills_widget.dart';
+import 'package:artisan/views/widgets/edit_form_widget.dart';
+import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class JobDetails extends StatelessWidget {
-  const JobDetails({Key? key}) : super(key: key);
+class JobDetailsCopy extends StatelessWidget {
+  const JobDetailsCopy({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    List<String> _skills = [
-      'UI',
-      'UX',
-      'Web Design',
-      'Figma',
-      'User Research',
-      'Style Guide'
-    ];
     return Scaffold(
       appBar: defaultAppBar2(
         context,
@@ -40,7 +32,6 @@ class JobDetails extends StatelessWidget {
           child: Stack(
         children: [
           ListView(
-            shrinkWrap: true,
             children: [
               TextView(
                 text: 'UI Redesign for Web Application',
@@ -64,18 +55,15 @@ class JobDetails extends StatelessWidget {
                       child: Column(
                     children: [
                       Row(children: [
-                        SvgPicture.asset(AppImages.credit_card),
-                        SizedBox(width: 5.h),
+                        ImageLoader(path: AppImages.credit_card),
                         TextView(
                           text: '₦150,000',
                           fontWeight: FontWeight.w400,
                           textAlign: TextAlign.left,
                         ),
                       ]),
-                      SizedBox(height: 8.h),
                       Row(children: [
-                        SvgPicture.asset(AppImages.bids),
-                        SizedBox(width: 5.h),
+                        ImageLoader(path: AppImages.bids),
                         TextView(
                           text: '16 Bids',
                           fontWeight: FontWeight.w400,
@@ -88,18 +76,15 @@ class JobDetails extends StatelessWidget {
                       child: Column(
                     children: [
                       Row(children: [
-                        SvgPicture.asset(AppImages.hour_glass),
-                        SizedBox(width: 5.h),
+                        ImageLoader(path: AppImages.hour_glass),
                         TextView(
                           text: '4 Weeks',
                           fontWeight: FontWeight.w400,
                           textAlign: TextAlign.left,
                         ),
                       ]),
-                      SizedBox(height: 8.h),
                       Row(children: [
-                        SvgPicture.asset(AppImages.star),
-                        SizedBox(width: 5.h),
+                        ImageLoader(path: AppImages.star),
                         TextView(
                           text: '4.0',
                           fontWeight: FontWeight.w400,
@@ -110,76 +95,82 @@ class JobDetails extends StatelessWidget {
                   )),
                 ],
               ),
-              SizedBox(height: 23.h),
-              Wrap(
-                spacing: 5,
-                runSpacing: 10,
-                children:
-                    _skills.map((element) => SkillsWidget(element)).toList(),
+              SizedBox(height: 50.h),
+              Row(children: [
+                ImageLoader(path: AppImages.wallet),
+                TextView(
+                  text: 'Payment Type',
+                  fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.left,
+                ),
+              ]),
+              SizedBox(height: 16.h),
+              Row(
+                children: [
+                  Expanded(
+                      child: ButtonWidget(
+                          radius: 10,
+                          buttonText: 'Milestone',
+                          onPressed: () => null)),
+                  SizedBox(width: 18.w),
+                  Expanded(
+                      child: ButtonWidget(
+                          radius: 10,
+                          buttonStyle: true,
+                          color: Pallets.grey,
+                          borderColor: Pallets.grey,
+                          primary: Colors.transparent,
+                          buttonText: 'Project Completion',
+                          onPressed: () => null)),
+                ],
               ),
-              SizedBox(height: 23.h),
-              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                SvgPicture.asset(AppImages.attach),
-                SizedBox(width: 4.w),
+              SizedBox(height: 48.h),
+              Row(children: [
+                ImageLoader(path: AppImages.hour_glass),
+                TextView(
+                  text: 'Milestone',
+                  fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.left,
+                ),
+              ]),
+              SizedBox(height: 16.h),
+              EditFormField(label: 'Milestone description'),
+              SizedBox(height: 8.h),
+              Row(
+                children: [
+                  Expanded(child: EditFormField(label: 'Due Date')),
+                  SizedBox(width: 7.w),
+                  Expanded(child: EditFormField(label: 'Amount (NGN)')),
+                ],
+              ),
+              SizedBox(height: 48.h),
+              Row(children: [
+                ImageLoader(path: AppImages.hour_glass),
+                TextView(
+                  text: 'Details',
+                  fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.left,
+                ),
+              ]),
+              SizedBox(height: 16.h),
+              EditFormField(height: 117.h, label: 'Type here...'),
+              SizedBox(height: 48.h),
+              Row(children: [
+                ImageLoader(path: AppImages.attach),
                 TextView(
                   text: 'Attachment:',
                   fontWeight: FontWeight.w700,
                   textAlign: TextAlign.left,
                 ),
-                SizedBox(width: 4.w),
-                Expanded(
-                  child: TextView(
-                    text: 'ui design project document.pdf',
-                    fontWeight: FontWeight.w400,
-                    color: Pallets.grey,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
               ]),
-              SizedBox(height: 23.h),
-              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                SvgPicture.asset(AppImages.wallet),
-                SizedBox(width: 4.w),
-                Expanded(
-                  child: TextView(
-                    text: 'Job Activity',
-                    fontWeight: FontWeight.w700,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ]),
-              SizedBox(height: 23.h),
-              _titleAndValueWidget('Bid', '0 Bids'),
               SizedBox(height: 16.h),
-              _titleAndValueWidget('Interviewing', '0 Interviews'),
-              SizedBox(height: 16.h),
-              _titleAndValueWidget('Date Created', '21/09/2021'),
-              SizedBox(height: 43.h),
-              TextView(
-                text: 'About Client',
-                fontWeight: FontWeight.w700,
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(height: 16.h),
-              Row(
-                children: [
-                  CircleAvatar(
-                      backgroundColor: Pallets.primary100, radius: 20.r),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                      child: TextView(
-                          text: 'Daniel James',
-                          fontWeight: FontWeight.w700,
-                          textAlign: TextAlign.left)),
-                ],
-              ),
-              SizedBox(height: 16.h),
-              _titleAndValueWidget('Location', 'Abuja, Nigeria'),
-              SizedBox(height: 16.h),
-              _titleAndValueWidget('Job Posted', '221'),
-              SizedBox(height: 16.h),
-              _titleAndValueWidget('Rating', '48', iconData: Icons.star),
-              SizedBox(height: Utils.getDeviceHeight(context) * .2),
+              ButtonWidget(
+                  radius: 10,
+                  buttonStyle: true,
+                  color: Pallets.grey,
+                  primary: Colors.transparent,
+                  buttonText: 'Add Attachment',
+                  onPressed: () => null)
             ],
           ),
           BtnWidget(
@@ -189,35 +180,12 @@ class JobDetails extends StatelessWidget {
               AppImages.bookmark,
               color: Pallets.primary100,
             ),
-            btnText: 'Submit Job Bid',
-            callback: () => PageRouter.gotoWidget(JobDetailsCopy(), context),
+            btnText: 'Bid The Bid',
+            callback: () => null,
             goBack: () => null,
           )
         ],
       )),
     );
-  }
-
-  Row _titleAndValueWidget(String title, String value, {IconData? iconData}) {
-    return Row(children: [
-      Expanded(
-        child: TextView(
-          text: title,
-          fontWeight: FontWeight.w700,
-          textAlign: TextAlign.left,
-          color: Pallets.grey,
-        ),
-      ),
-      Spacer(),
-      iconData != null
-          ? Icon(iconData, color: Pallets.primary100)
-          : Container(),
-      TextView(
-        text: value,
-        fontWeight: FontWeight.w700,
-        textAlign: TextAlign.right,
-        color: Pallets.grey,
-      ),
-    ]);
   }
 }

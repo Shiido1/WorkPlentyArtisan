@@ -3,6 +3,7 @@ import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/job/job_details.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
+import 'package:artisan/views/widgets/skills_widget.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +94,7 @@ class CardWidget extends StatelessWidget {
                 spacing: 5,
                 runSpacing: 10,
                 children:
-                    _skills.map((element) => _buildSkills(element)).toList(),
+                    _skills.map((element) => SkillsWidget(element)).toList(),
               ),
             ],
           ),
@@ -119,18 +120,5 @@ class CardWidget extends StatelessWidget {
         )
       ],
     ));
-  }
-
-  Container _buildSkills(String value) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.r),
-          color: Pallets.grey.withOpacity(.2)),
-      child: TextView(
-          text: value,
-          fontWeight: FontWeight.w500,
-          textAlign: TextAlign.center),
-    );
   }
 }

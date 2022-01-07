@@ -11,9 +11,19 @@ class BtnWidget extends StatelessWidget {
   final Function()? goBack;
   final Function()? skip;
   final String? btnText;
+  final bool? showSkip;
+  final Widget? iconWidget;
+  final double? height;
 
   const BtnWidget(
-      {Key? key, this.callback, this.goBack, this.btnText, this.skip})
+      {Key? key,
+      this.callback,
+      this.goBack,
+      this.btnText,
+      this.skip,
+      this.showSkip = true,
+      this.height = 140,
+      this.iconWidget})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -22,19 +32,22 @@ class BtnWidget extends StatelessWidget {
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
           color: Theme.of(context).scaffoldBackgroundColor,
-          height: 140.h,
+          height: height?.h,
           child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: TextView(
-                    text: 'Skip',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                    textAlign: TextAlign.right,
-                    onTap: skip,
+                Visibility(
+                  visible: showSkip!,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: TextView(
+                      text: 'Skip',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      textAlign: TextAlign.right,
+                      onTap: skip,
+                    ),
                   ),
                 ),
                 SizedBox(height: 16.h),
@@ -48,7 +61,7 @@ class BtnWidget extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.r),
                               border: Border.all(color: Pallets.primary100)),
-                          child: Icon(Icons.keyboard_arrow_left),
+                          child: iconWidget ?? Icon(Icons.keyboard_arrow_left),
                         ),
                       ),
                     ),
