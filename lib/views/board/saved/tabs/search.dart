@@ -1,3 +1,5 @@
+import 'package:artisan/core/bus/event_bus.dart';
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/views/board/widget/card_widget.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
@@ -15,7 +17,9 @@ class SearchTab extends StatelessWidget {
         padding: EdgeInsets.all(16.w),
         child: ListView(
           children: [
-            SearchAndFilter(),
+            SearchAndFilter(onFilter: () {
+              eventBus.fire(DrawerEvent(context, true));
+            }),
             SizedBox(height: 16.h),
             Row(children: [
               ImageLoader(path: AppImages.emoji),

@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:artisan/core/bus/event_bus.dart';
+import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/board/widget/drawer_widget.dart';
 import 'package:artisan/views/notification/notification_screen.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
@@ -31,10 +34,12 @@ class _MainBoardState extends State<MainBoard> {
   int? index = 0;
   List<Widget> _body = [];
   List<String> _bodyTitle = [];
+  var _scaffold;
 
   @override
   void initState() {
     index = widget.index;
+
     _eventListener();
     super.initState();
   }
@@ -47,11 +52,16 @@ class _MainBoardState extends State<MainBoard> {
             .on<DashboardRouteEvent>()
             .listen(onSelectedIndexChangedEvent);
       }
+      if (event is DrawerEvent) {
+        eventBus.on<DrawerEvent>().listen((event) {
+          if (event.open) Scaffold.of(event.context).openEndDrawer();
+        });
+      }
 
-      // if (event is UserLoggedInEvent) {
-      //   await SessionManager.instance.logOut();
-      //   PageRouter.gotoNamed(Routes.login, context, clearStack: true);
-      // }
+      if (event is UserLoggedInEvent) {
+        await SessionManager.instance.logOut();
+        PageRouter.gotoNamed(Routes.login, context, clearStack: true);
+      }
     });
   }
 
@@ -69,6 +79,7 @@ class _MainBoardState extends State<MainBoard> {
     _bodyTitle = ["Dashboard", "Saved", "Explore", "Profile", "Mail"];
     return Scaffold(
       appBar: index == 1 ? null : getCustomAppBar(context, _bodyTitle[index!]),
+      endDrawer: DrawerWidget(),
       body: ValueListenableBuilder(
           valueListenable: indexChangedNotifier,
           builder: (context, value, child) => Stack(
