@@ -2,31 +2,31 @@ import 'package:artisan/views/board/widget/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'tabs/bid.dart';
-import 'tabs/interview.dart';
+import 'tabs/live.dart';
+import 'tabs/home.dart';
 
-class Bids extends StatelessWidget {
-  const Bids({Key? key}) : super(key: key);
+class Requests extends StatelessWidget {
+  const Requests({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: getCustomAppBar(context, 'Bid',
-        
+        appBar: getCustomAppBar(context, 'Requests',
             bottom: TabBar(
               tabs: [
                 Container(
-                    margin: EdgeInsets.only(bottom: 10.h), child: Text('Bid')),
+                    margin: EdgeInsets.only(bottom: 10.h),
+                    child: Text('Live Consultancy')),
                 Container(
                     margin: EdgeInsets.only(bottom: 10.h),
-                    child: Text('Interview')),
+                    child: Text('Home Service')),
               ],
             )),
         body: TabBarView(
           children: [
-            BidTab(),
-            InterviewTab(),
+            LiveTab(),
+            HomeTab(),
           ],
         ),
       ),

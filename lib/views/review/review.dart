@@ -1,6 +1,6 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/review/widget/review_bg_card.dart';
+import 'package:artisan/views/widgets/review_bg_card.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/star_rating.dart';
 import 'package:artisan/views/widgets/text_views.dart';

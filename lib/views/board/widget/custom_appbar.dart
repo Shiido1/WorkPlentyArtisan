@@ -14,8 +14,11 @@ getCustomAppBar(BuildContext context, String title,
     backgroundColor: Pallets.primary100,
     bottom: bottom,
     leadingWidth: 70,
-    leadingWidget:
-        ImageLoader(path: AppImages.whiteLogo, height: 24.h, width: 24.w),
+    leadingWidget: ImageLoader(
+        path: AppImages.whiteLogo,
+        height: 24.h,
+        width: 24.w,
+        onTap: () => PageRouter.goBack(context)),
     centerTitle: true,
     title: title,
     textColor: Pallets.white,
