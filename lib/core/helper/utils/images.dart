@@ -55,4 +55,8 @@ class AppImages {
   static String send = 'assets/svgs/send.svg';
   static String free_session = 'assets/svgs/free_session.svg';
   static String video_player = 'assets/svgs/video_player.svg';
+  static String meeting = 'assets/svgs/meeting.svg';
+  static String video = 'assets/svgs/video.svg';
+  static String stopwatch = 'assets/svgs/timer.svg';
+  static String chat = 'assets/svgs/chat.svg';
 }

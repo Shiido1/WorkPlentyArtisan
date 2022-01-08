@@ -54,16 +54,18 @@ class BtnWidget extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: GestureDetector(
-                        onTap: goBack,
-                        child: Container(
-                          padding: EdgeInsets.all(14.w),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.r),
-                              border: Border.all(color: Pallets.primary100)),
-                          child: iconWidget ?? Icon(Icons.keyboard_arrow_left),
-                        ),
-                      ),
+                      child: iconWidget ??
+                          GestureDetector(
+                            onTap: goBack,
+                            child: Container(
+                              padding: EdgeInsets.all(14.w),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5.r),
+                                  border:
+                                      Border.all(color: Pallets.primary100)),
+                              child: Icon(Icons.keyboard_arrow_left),
+                            ),
+                          ),
                     ),
                     SizedBox(width: 11.w),
                     Expanded(

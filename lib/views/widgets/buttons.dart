@@ -22,29 +22,61 @@ class ButtonWidget extends StatelessWidget {
   final String? icon;
   final double? elevation;
   final bool? buttonStyle;
+  final bool? row;
 
-  const ButtonWidget(
-      {Key? key,
-      required this.buttonText,
-      required this.onPressed,
-      this.textOverflow = TextOverflow.clip,
-      this.textAlign = TextAlign.left,
-      this.color,
-      this.icon,
-      this.borderColor,
-      this.height = 50.0,
-      this.width,
-      this.fontSize = 14.0,
-      this.fontWeight = FontWeight.normal,
-      this.radius = 5.0,
-      this.elevation = .0,
-      this.fontStyle = FontStyle.normal,
-      this.primary,
-      this.buttonStyle = false})
-      : super(key: key);
+  const ButtonWidget({
+    Key? key,
+    required this.buttonText,
+    required this.onPressed,
+    this.textOverflow = TextOverflow.clip,
+    this.textAlign = TextAlign.left,
+    this.color,
+    this.icon,
+    this.borderColor,
+    this.height = 50.0,
+    this.width,
+    this.fontSize = 14.0,
+    this.fontWeight = FontWeight.normal,
+    this.radius = 5.0,
+    this.elevation = .0,
+    this.fontStyle = FontStyle.normal,
+    this.primary,
+    this.buttonStyle = false,
+    this.row = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (row!) {
+      return SizedBox(
+        width: width?.w,
+        height: height?.h,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: buttonStyle!
+              ? _getCustomStyle()
+              : Theme.of(context).elevatedButtonTheme.style,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ImageLoader(
+                path: icon,
+                width: 24.w,
+              ),
+              SizedBox(width: 8.w),
+              TextView(
+                text: buttonText,
+                fontWeight: fontWeight,
+                fontSize: fontSize,
+                color: color ?? Pallets.white,
+                textAlign: textAlign,
+              )
+            ],
+          ),
+        ),
+      );
+    }
     return SizedBox(
       width: width?.w,
       height: height?.h,

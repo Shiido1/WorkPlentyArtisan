@@ -2,6 +2,7 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/widget/card_widget.dart';
+import 'package:artisan/views/session/session.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/review_bg_card.dart';
@@ -155,7 +156,9 @@ class LiveTab extends StatelessWidget {
               SizedBox(height: 30.h),
               ButtonWidget(
                   buttonText: 'Join Session',
-                  onPressed: () => PageRouter.goBack(context))
+                  onPressed: () {
+                    PageRouter.gotoWidget(LiveSession(), context);
+                  })
             ],
           ),
         ));
