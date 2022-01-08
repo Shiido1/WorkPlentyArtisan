@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:flutter/material.dart';
 
 typedef void RatingChangeCallback(double rating);
@@ -16,17 +17,17 @@ class StarRating extends StatelessWidget {
     if (index >= rating!) {
       icon = new Icon(
         Icons.star_border,
-        color: Theme.of(context).buttonColor,
+        color: Pallets.grey,
       );
     } else if (index > rating! - 1 && index < rating!) {
       icon = new Icon(
         Icons.star_half,
-        color: color ?? Theme.of(context).primaryColor,
+        color: color ?? Pallets.gold,
       );
     } else {
       icon = new Icon(
         Icons.star,
-        color: color ?? Theme.of(context).primaryColor,
+        color: color ?? Pallets.gold,
       );
     }
     return new InkResponse(
@@ -39,6 +40,7 @@ class StarRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Row(
+        mainAxisSize: MainAxisSize.min,
         children: new List.generate(
             starCount!, (index) => buildStar(context, index)));
   }

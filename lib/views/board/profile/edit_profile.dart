@@ -1,5 +1,7 @@
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/review/review.dart';
 import 'package:artisan/views/widgets/star_rating.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +145,7 @@ adipiscing elit euismod eu eu erat..... more'''),
                                   '''John Doe\nLorem ipsum do whatever i want lol''')
                         ],
                       ),
-                      onTap: () {}),
+                      onTap: () => PageRouter.gotoWidget(Review(), context)),
                 ],
               ),
             )
