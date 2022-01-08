@@ -4,6 +4,7 @@ import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'bids/bids.dart';
 import 'edit_profile.dart';
 import 'widget/clicks_one.dart';
 import 'widget/profile_image_one.dart';
@@ -50,7 +51,7 @@ class Profile extends StatelessWidget {
                     image: AppImages.bid_two,
                     text: 'Bids',
                     trailing: true,
-                    onTap: () {}),
+                    onTap: () => PageRouter.gotoWidget(Bids(), context)),
                 SizedBox(height: 16.h),
                 ClickOne(
                     image: AppImages.request,
