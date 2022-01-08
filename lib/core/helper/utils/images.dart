@@ -35,6 +35,7 @@ class AppImages {
   static String empty = 'assets/svgs/empty.svg';
   static String filter = 'assets/svgs/filter.svg';
   static String emoji = 'assets/svgs/emoji.svg';
+  static String chat_emoji = 'assets/svgs/chat_emoji.svg';
   static String wallet = 'assets/svgs/wallet.svg';
   static String details = 'assets/svgs/details.svg';
   static String attach = 'assets/svgs/attach.svg';
@@ -43,7 +44,7 @@ class AppImages {
   static String bid_two = 'assets/svgs/bid_two.svg';
   static String request = 'assets/svgs/request.svg';
   static String statistics = 'assets/svgs/statistics.svg';
-  static String payout = 'assets/svgs/payout.svg';
+  static String payout = 'assets/svgs/payout.svg'; 
   static String manage = 'assets/svgs/manage.svg';
   static String logout = 'assets/svgs/logout.svg';
   static String edit_profile = 'assets/svgs/edit_profile.svg';
@@ -51,4 +52,5 @@ class AppImages {
   static String edit_two = 'assets/svgs/edit_two.svg';
   static String pen = 'assets/images/pen.png';
   static String edit_circle = 'assets/svgs/edit_circle.svg';
+  static String send = 'assets/svgs/send.svg';
 }

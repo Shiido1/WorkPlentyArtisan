@@ -90,7 +90,7 @@ AppBar defaultAppBar2(BuildContext context,
     leadingWidth: leadingWidth?.w,
     leading: leadingWidget,
     backgroundColor: backgroundColor,
-    iconTheme: IconThemeData(color: Pallets.grey900),
+    iconTheme: IconThemeData(color: Pallets.white),
     title: titleWidgte ??
         TextView(
             text: title,

@@ -1,8 +1,11 @@
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/widgets/search_field.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'chats.dart';
 
 class ContactChats extends StatelessWidget {
   const ContactChats({Key? key}) : super(key: key);
@@ -21,7 +24,8 @@ class ContactChats extends StatelessWidget {
             children: [
               ...ChatModel.getChatsList()
                   .map((chat) => GestureDetector(
-                        onTap: () {},
+                        onTap: () =>
+                            PageRouter.gotoWidget(ChatsScreen(), context),
                         child: Container(
                           margin: EdgeInsets.only(bottom: 23.h),
                           padding: EdgeInsets.symmetric(
@@ -33,11 +37,9 @@ class ContactChats extends StatelessWidget {
                                   : Colors.transparent),
                           child: Row(
                             children: [
-                              Container(
-                                child: CircleAvatar(
-                                  radius: 25.r,
-                                  backgroundColor: Pallets.primary100,
-                                ),
+                              CircleAvatar(
+                                radius: 25.r,
+                                backgroundColor: Pallets.primary100,
                               ),
                               SizedBox(width: 13.w),
                               Expanded(

@@ -5,7 +5,8 @@ class Pallets {
 
   static Color primary50 = const Color(0xffE6EFFF);
   static Color primaryText = const Color(0xff363535);
-  static Color primary100 = const Color(0xff10375C);
+  static Color primary100 = const Color(0xff0D2F4F);
+  // static Color primary100 = const Color(0xff10375C);
   static Color primary150 = const Color(0xff4F4F4F);
   static Color skyBlue = const Color(0xffCDE6FE);
   static Color lightGrey = const Color(0xffC4C4C4);
