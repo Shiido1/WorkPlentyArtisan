@@ -16,7 +16,6 @@ class AppImages {
   static String senior = 'assets/images/senior.png';
   static String edit = 'assets/svgs/edit.svg';
   static String close = 'assets/svgs/close.svg';
-
   static String home_filled = 'assets/svgs/home_filled.svg';
   static String archive_filled = 'assets/svgs/archive_filled.svg';
   static String search_filled = 'assets/svgs/search_filled.svg';
@@ -39,4 +38,17 @@ class AppImages {
   static String wallet = 'assets/svgs/wallet.svg';
   static String details = 'assets/svgs/details.svg';
   static String attach = 'assets/svgs/attach.svg';
+  static String union = 'assets/images/union.png';
+  static String map = 'assets/svgs/map.svg';
+  static String bid_two = 'assets/svgs/bid_two.svg';
+  static String request = 'assets/svgs/request.svg';
+  static String statistics = 'assets/svgs/statistics.svg';
+  static String payout = 'assets/svgs/payout.svg';
+  static String manage = 'assets/svgs/manage.svg';
+  static String logout = 'assets/svgs/logout.svg';
+  static String edit_profile = 'assets/svgs/edit_profile.svg';
+  static String share = 'assets/svgs/share.svg';
+  static String edit_two = 'assets/svgs/edit_two.svg';
+  static String pen = 'assets/images/pen.png';
+  static String edit_circle = 'assets/svgs/edit_circle.svg';
 }
