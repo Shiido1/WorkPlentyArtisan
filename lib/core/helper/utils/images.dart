@@ -59,4 +59,7 @@ class AppImages {
   static String video = 'assets/svgs/video.svg';
   static String stopwatch = 'assets/svgs/timer.svg';
   static String chat = 'assets/svgs/chat.svg';
+  static String tag = 'assets/svgs/tag.svg';
+  static String calendar = 'assets/svgs/calendate.svg';
+  static String flat = 'assets/svgs/flat.svg';
 }

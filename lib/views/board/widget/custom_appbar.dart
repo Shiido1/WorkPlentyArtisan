@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 getCustomAppBar(BuildContext context, String title,
-    {PreferredSizeWidget? bottom, showLeading = false}) {
+    {PreferredSizeWidget? bottom, showLeading = false, bool showMenu = true}) {
   return defaultAppBar2(
     context,
     backgroundColor: Pallets.primary100,
@@ -26,12 +26,15 @@ getCustomAppBar(BuildContext context, String title,
     title: title,
     textColor: Pallets.white,
     actions: [
-      Container(
-          margin: EdgeInsets.only(right: 16.w),
-          child: ImageLoader(
-            path: AppImages.bell,
-            onTap: () => PageRouter.gotoWidget(NotificationScreen(), context),
-          ))
+      Visibility(
+        visible: showMenu,
+        child: Container(
+            margin: EdgeInsets.only(right: 16.w),
+            child: ImageLoader(
+              path: AppImages.bell,
+              onTap: () => PageRouter.gotoWidget(NotificationScreen(), context),
+            )),
+      )
     ],
   );
 }

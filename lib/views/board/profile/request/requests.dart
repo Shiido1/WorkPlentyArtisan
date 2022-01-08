@@ -13,6 +13,7 @@ class Requests extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: getCustomAppBar(context, 'Requests',
+            showMenu: false,
             bottom: TabBar(
               tabs: [
                 Container(
