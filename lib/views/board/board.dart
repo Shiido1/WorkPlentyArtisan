@@ -15,6 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'dashboard/dashboard.dart';
+import 'message/contacts_chat.dart';
 import 'profile/profile.dart';
 import 'saved/saved.dart';
 import 'saved/tabs/search.dart';
@@ -76,8 +77,8 @@ class _MainBoardState extends State<MainBoard> {
 
   @override
   Widget build(BuildContext context) {
-    _body = [Dashboard(), Saved(), SearchTab(), Profile(), Container()];
-    _bodyTitle = ["Dashboard", "Saved", "Explore", "Profile", "Mail"];
+    _body = [Dashboard(), Saved(), SearchTab(), Profile(), ContactChats()];
+    _bodyTitle = ["Dashboard", "Saved", "Explore", "Profile", "Message"];
     return Scaffold(
       appBar: index == 1 || index == 3
           ? null

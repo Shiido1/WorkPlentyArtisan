@@ -40,9 +40,7 @@ class SearchAndFilter extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: EditFormField(
-              label: 'Search for gigs, live consultancy, home',
-              suffixIcon: Icons.search),
+          child: EditFormField(label: hint, suffixIcon: Icons.search),
         ),
         SizedBox(width: 5.w),
         GestureDetector(
