@@ -62,4 +62,5 @@ class AppImages {
   static String tag = 'assets/svgs/tag.svg';
   static String calendar = 'assets/svgs/calendate.svg';
   static String flat = 'assets/svgs/flat.svg';
+  static String mini_circle = 'assets/svgs/mini_circle.svg';
 }

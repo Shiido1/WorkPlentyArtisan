@@ -103,9 +103,7 @@ class HomeTab extends StatelessWidget {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Expanded(
-                                          child:
-                                              SvgPicture.asset(AppImages.map)),
+                                      SvgPicture.asset(AppImages.map),
                                       SizedBox(width: 4.w),
                                       TextView(
                                         text: 'Lekki, Nigeria',

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bids/bids.dart';
 import 'edit_profile.dart';
+import 'statistics/statistics.dart';
 import 'widget/clicks_one.dart';
 import 'widget/profile_image_one.dart';
 
@@ -64,7 +65,7 @@ class Profile extends StatelessWidget {
                     image: AppImages.statistics,
                     text: 'Statistics',
                     trailing: true,
-                    onTap: () {}),
+                    onTap: () => PageRouter.gotoWidget(Statistics(), context)),
                 SizedBox(height: 16.h),
                 ClickOne(
                     image: AppImages.payout,
