@@ -83,7 +83,7 @@ class _MainBoardState extends State<MainBoard> {
       appBar: index == 1 || index == 3
           ? null
           : getCustomAppBar(context, _bodyTitle[index!]),
-      endDrawer: DrawerWidget(),
+      endDrawer: ExploreDrawerWidget(),
       body: ValueListenableBuilder(
           valueListenable: indexChangedNotifier,
           builder: (context, value, child) => Stack(
