@@ -22,7 +22,7 @@ ThemeData lightThemeData(BuildContext context) {
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: appBarTheme,
       iconTheme: IconThemeData(color: Pallets.primary100),
-      textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
+      textTheme: GoogleFonts.dmSansTextTheme(Theme.of(context).textTheme)
           .apply(bodyColor: Pallets.primaryText),
       colorScheme: ColorScheme.light(
           primary: Pallets.primaryText,
@@ -63,15 +63,15 @@ ThemeData lightThemeData(BuildContext context) {
       ),
       inputDecorationTheme: InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Pallets.primary100),
+          borderSide: BorderSide(color: Pallets.primaryText),
           borderRadius: BorderRadius.circular(5.r),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Pallets.primary100),
+          borderSide: BorderSide(color: Pallets.primaryText),
           borderRadius: BorderRadius.circular(5.r),
         ),
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: Pallets.primary100),
+          borderSide: BorderSide(color: Pallets.primaryText),
           borderRadius: BorderRadius.circular(5.r),
         ),
         errorBorder: OutlineInputBorder(
