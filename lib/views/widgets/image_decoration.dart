@@ -11,6 +11,7 @@ class ImageBgCard extends StatelessWidget {
     return Container(
       decoration: new BoxDecoration(
           color: Pallets.primary100,
+          borderRadius: BorderRadius.circular(5.r),
           image: new DecorationImage(
               fit: BoxFit.cover, image: new AssetImage(AppImages.union))),
       child: Padding(

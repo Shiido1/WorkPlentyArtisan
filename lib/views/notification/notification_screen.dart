@@ -1,6 +1,7 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
+import 'package:artisan/views/widgets/review_bg_card.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,18 +27,11 @@ class NotificationScreen extends StatelessWidget {
           children: [
             ...[1, 2, 2, 2, 2, 4, 1, 2, 2, 2, 2, 4]
                 .map(
-                  (notification) => CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 16.h),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 14.w, vertical: 11.h),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(5.r),
-                          border:
-                              Border.all(color: Pallets.grey.withOpacity(.2))),
+                  (notification) => Container(
+                    margin: EdgeInsets.only(bottom: 16.h),
+                    child: ReviewBgCard(CupertinoButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {},
                       child: TextView(
                         text:
                             'NGN 5000, Pending earning from Live Consultancy with Daniel James',
@@ -47,7 +41,7 @@ class NotificationScreen extends StatelessWidget {
                         color: Pallets.grey,
                         fontSize: 16,
                       ),
-                    ),
+                    )),
                   ),
                 )
                 .toList()

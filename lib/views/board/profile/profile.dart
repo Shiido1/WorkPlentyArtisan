@@ -1,5 +1,6 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
+import 'package:artisan/views/board/payout/payout.dart';
 import 'package:artisan/views/board/profile/request/requests.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class Profile extends StatelessWidget {
                     image: AppImages.payout,
                     text: 'Payout',
                     trailing: true,
-                    onTap: () {}),
+                    onTap: () => PageRouter.gotoWidget(Payouts(), context)),
                 SizedBox(height: 16.h),
                 ClickOne(
                     image: AppImages.manage,
