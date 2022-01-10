@@ -11,7 +11,8 @@ class DashboardRouteEvent {
 class DrawerEvent {
   BuildContext context;
   bool open;
-  DrawerEvent(this.context, this.open);
+  int? value;
+  DrawerEvent(this.context, this.open, {this.value = 1});
 }
 
 class UserLoggedInEvent {

@@ -1,3 +1,4 @@
+import 'package:artisan/core/bus/event_bus.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/widgets/search_field.dart';
@@ -16,8 +17,10 @@ class ContactChats extends StatelessWidget {
       child: Column(
         children: [
           SearchAndFilter(
-            hint: 'Search for gigs, live consultancy, home',
-          ),
+              hint: 'Search for gigs, live consultancy, home',
+              onFilter: () {
+                eventBus.fire(DrawerEvent(context, true, value: 2));
+              }),
           SizedBox(height: 16.h),
           Expanded(
               child: ListView(

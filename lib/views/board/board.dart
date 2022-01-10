@@ -7,6 +7,7 @@ import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/widget/drawer_widget.dart';
+import 'package:artisan/views/board/widget/message_drawer.dart';
 import 'package:artisan/views/notification/notification_screen.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
@@ -36,7 +37,7 @@ class _MainBoardState extends State<MainBoard> {
   int? index = 0;
   List<Widget> _body = [];
   List<String> _bodyTitle = [];
-  var _scaffold;
+  int? _drawerIndex = 1;
 
   @override
   void initState() {
@@ -56,6 +57,8 @@ class _MainBoardState extends State<MainBoard> {
       }
       if (event is DrawerEvent) {
         eventBus.on<DrawerEvent>().listen((event) {
+          _drawerIndex = event.value;
+          setState(() {});
           if (event.open) Scaffold.of(event.context).openEndDrawer();
         });
       }
@@ -83,7 +86,8 @@ class _MainBoardState extends State<MainBoard> {
       appBar: index == 1 || index == 3
           ? null
           : getCustomAppBar(context, _bodyTitle[index!]),
-      endDrawer: ExploreDrawerWidget(),
+      endDrawer:
+          _drawerIndex == 1 ? ExploreDrawerWidget() : MessageDrawerWidget(),
       body: ValueListenableBuilder(
           valueListenable: indexChangedNotifier,
           builder: (context, value, child) => Stack(
