@@ -25,16 +25,16 @@ class _CustomSwitchState extends State<CustomSwitch> {
         ? Switch(
             onChanged: (value) => widget.onChanged!(value),
             value: widget.value!,
-            activeColor: Pallets.blue,
-            activeTrackColor: Pallets.blue.withOpacity(.3),
+            activeColor: Pallets.primary100,
+            activeTrackColor: Pallets.primary100.withOpacity(.3),
             inactiveThumbColor: Pallets.grey500,
             inactiveTrackColor: Pallets.grey500,
           )
         : CupertinoSwitch(
             value: widget.value!,
             onChanged: (value) => widget.onChanged!(value),
-            activeColor: Pallets.blue,
-            trackColor: Pallets.blue.withOpacity(.3),
+            activeColor: Pallets.primary100,
+            trackColor: Pallets.primary100.withOpacity(.3),
           );
   }
 }
