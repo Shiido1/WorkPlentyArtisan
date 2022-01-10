@@ -51,7 +51,8 @@ class ClickOne extends StatelessWidget {
                   textOverflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left),
             ),
-            if (trailing!) Icon(Icons.keyboard_arrow_right)
+            if (trailing!) Icon(Icons.keyboard_arrow_right),
+            if (widget != null) widget!,
           ],
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:artisan/views/board/profile/request/requests.dart';
 import 'package:artisan/views/board/profile/statistics/statistics.dart';
 import 'package:artisan/views/board/profile/widget/clicks_one.dart';
 import 'package:artisan/views/board/profile/widget/profile_image_three.dart';
+import 'package:artisan/views/widgets/custom_switch.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,8 +62,8 @@ class ManageProfile extends StatelessWidget {
                   ClickOne(
                       image: AppImages.moon,
                       text: 'Dark Mode',
-                      trailing: true,
-                      onTap: () => null),
+                      trailing: false,
+                      widget: CustomSwitch(onChanged: (value) {}, value: true)),
                   SizedBox(height: 16.h),
                   ClickOne(
                       image: AppImages.notification,
