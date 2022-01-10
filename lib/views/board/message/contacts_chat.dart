@@ -40,9 +40,21 @@ class ContactChats extends StatelessWidget {
                                   : Colors.transparent),
                           child: Row(
                             children: [
-                              CircleAvatar(
-                                radius: 25.r,
-                                backgroundColor: Pallets.primary100,
+                              Stack(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25.r,
+                                    backgroundColor: Pallets.primary100,
+                                  ),
+                                  Positioned(
+                                    left: 40.w,
+                                    top: 35.h,
+                                    child: CircleAvatar(
+                                      radius: 5.r,
+                                      backgroundColor: Pallets.green200,
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(width: 13.w),
                               Expanded(
