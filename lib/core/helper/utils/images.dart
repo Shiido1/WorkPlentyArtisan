@@ -67,4 +67,5 @@ class AppImages {
   static String moon = 'assets/svgs/moon.svg';
   static String notification = 'assets/svgs/notification.svg';
   static String security = 'assets/svgs/security.svg';
+  static String clock = 'assets/svgs/clock.svg';
 }
