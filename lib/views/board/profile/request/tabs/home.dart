@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
@@ -50,54 +51,55 @@ class HomeTab extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(AppImages.free_session),
                                       SizedBox(width: 4.w),
-                                      TextView(
-                                        text: 'Free Session',
-                                        fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
-                                        maxLines: 1,
-                                        textOverflow: TextOverflow.ellipsis,
+                                      SizedBox(
+                                        width:
+                                            Utils.getDeviceWidth(context) * .4,
+                                        child: TextView(
+                                          text: 'Free Session',
+                                          fontWeight: FontWeight.w400,
+                                          textAlign: TextAlign.left,
+                                          maxLines: 1,
+                                          textOverflow: TextOverflow.ellipsis,
+                                        ),
                                       )
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Expanded(
-                                          child: StarRating(
-                                              starCount: 5, rating: 4.5)),
-                                      SizedBox(width: 4.w),
-                                      TextView(
-                                        text: '4.5',
-                                        fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
-                                        maxLines: 1,
-                                        textOverflow: TextOverflow.ellipsis,
-                                      )
-                                    ],
-                                  ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    StarRating(starCount: 5, rating: 4.5),
+                                    SizedBox(width: 4.w),
+                                    TextView(
+                                      text: '4.5',
+                                      fontWeight: FontWeight.w400,
+                                      textAlign: TextAlign.right,
+                                      maxLines: 1,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    )
+                                  ],
                                 )
                               ],
                             ),
                             SizedBox(height: 8.h),
                             Row(
                               children: [
-                                Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SvgPicture.asset(AppImages.tag),
-                                      SizedBox(width: 4.w),
-                                      TextView(
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(AppImages.tag),
+                                    SizedBox(width: 4.w),
+                                    SizedBox(
+                                      width: Utils.getDeviceWidth(context) * .4,
+                                      child: TextView(
                                         text: 'Software Installation',
                                         fontWeight: FontWeight.w400,
                                         textAlign: TextAlign.left,
                                         maxLines: 1,
                                         textOverflow: TextOverflow.ellipsis,
-                                      )
-                                    ],
-                                  ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 Expanded(
                                   child: Row(
@@ -108,7 +110,7 @@ class HomeTab extends StatelessWidget {
                                       TextView(
                                         text: 'Lekki, Nigeria',
                                         fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
+                                        textAlign: TextAlign.right,
                                         maxLines: 1,
                                         textOverflow: TextOverflow.ellipsis,
                                       )

@@ -14,8 +14,7 @@ class ProfileImageCardThree extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-          EdgeInsets.only(top: 80.h, left: 16.w, right: 16.w, bottom: 16.w),
-      width: Utils.getDeviceWidth(context),
+          EdgeInsets.only(top: 50.h, left: 16.w, right: 16.w, bottom: 16.w),
       decoration: new BoxDecoration(
           color: Pallets.primary100,
           image: new DecorationImage(

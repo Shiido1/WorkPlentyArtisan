@@ -32,101 +32,96 @@ class _IntroOneScreenState extends State<IntroOneScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Expanded(
-                  child: PageView(
-                    pageSnapping: true,
-                    controller: controller,
-                    onPageChanged: (int page) {
-                      getChangedPageAndMoveBar(page);
-                    },
-                    children: _dataModel
-                        .map((data) => ImageLoader(
-                              path: data.image,
-                              width: Utils.getDeviceWidth(context),
-                              fit: BoxFit.cover,
-                            ))
-                        .toList(),
-                  ),
+      body: Stack(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: PageView(
+                  pageSnapping: true,
+                  controller: controller,
+                  onPageChanged: (int page) {
+                    getChangedPageAndMoveBar(page);
+                  },
+                  children: _dataModel
+                      .map((data) => Image.asset(
+                            data.image ?? '',
+                            fit: BoxFit.cover,
+                          ))
+                      .toList(),
                 ),
-                Expanded(
-                    child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 23.w, vertical: 16.h),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 30.h),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            for (int i = 0; i < _dataModel.length; i++)
-                              if (i == currentPageValue) ...[
-                                Container(
-                                    width: 50.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(10.r),
-                                        color: Pallets.primary100),
-                                    child: circleBar(true))
-                              ] else
-                                circleBar(false),
-                          ],
-                        ),
+              ),
+              Expanded(
+                  child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 16.h),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 30.h),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int i = 0; i < _dataModel.length; i++)
+                            if (i == currentPageValue) ...[
+                              Container(
+                                  width: 50.w,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      color: Pallets.primary100),
+                                  child: circleBar(true))
+                            ] else
+                              circleBar(false),
+                        ],
                       ),
-                      SizedBox(height: 35.h),
-                      TextView(
-                        text: _dataModel[currentPageValue].title ?? '',
-                        fontSize: 22.sp,
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 5.h),
-                      TextView(
-                        text: _dataModel[currentPageValue].body ?? '',
-                        textAlign: TextAlign.center,
-                        fontSize: 16.sp,
-                        color: Pallets.grey500,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      SizedBox(height: 43.h),
-                      ButtonWidget(
-                          buttonText: 'Get Started',
-                          width: Utils.getDeviceWidth(context),
-                          onPressed: () => PageRouter.gotoWidget(
-                              GetStartedScreen(), context)),
-                    ],
-                  ),
-                ))
-              ],
-            ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.symmetric(vertical: 23.h),
-              child: Wrap(alignment: WrapAlignment.center, children: [
-                TextView(
-                    text: 'Already on WorkPlenty? ',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400),
-                TextView(
-                  text: 'Sign in',
+                    ),
+                    SizedBox(height: 35.h),
+                    TextView(
+                      text: _dataModel[currentPageValue].title ?? '',
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w700,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 5.h),
+                    TextView(
+                      text: _dataModel[currentPageValue].body ?? '',
+                      textAlign: TextAlign.center,
+                      fontSize: 16.sp,
+                      color: Pallets.grey500,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    SizedBox(height: 43.h),
+                    ButtonWidget(
+                        buttonText: 'Get Started',
+                        width: Utils.getDeviceWidth(context),
+                        onPressed: () =>
+                            PageRouter.gotoWidget(GetStartedScreen(), context)),
+                  ],
+                ),
+              ))
+            ],
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.symmetric(vertical: 23.h),
+            child: Wrap(alignment: WrapAlignment.center, children: [
+              TextView(
+                  text: 'Already on WorkPlenty? ',
                   fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  onTap: () =>
-                      PageRouter.gotoWidget(WelcomeBackScreen(), context),
-                ),
-              ]),
-            )
-          ],
-        ),
+                  fontWeight: FontWeight.w400),
+              TextView(
+                text: 'Sign in',
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                onTap: () =>
+                    PageRouter.gotoWidget(WelcomeBackScreen(), context),
+              ),
+            ]),
+          )
+        ],
       ),
     );
   }

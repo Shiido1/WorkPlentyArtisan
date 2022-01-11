@@ -26,12 +26,11 @@ class SearchTab extends StatelessWidget {
                   eventBus.fire(DrawerEvent(context, true));
                 }),
             SizedBox(height: 16.h),
-            SizedBox(
-              height: 155.h,
-              child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: _colors.map((e) => _skills(context, e)).toList()),
-            ),
+            SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    children:
+                        _colors.map((e) => _skills(context, e)).toList())),
             SizedBox(height: 16.h),
             Row(children: [
               ImageLoader(path: AppImages.emoji),
@@ -85,8 +84,8 @@ class SearchTab extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.only(bottom: 30.h, right: 16.w, left: 16.w),
-            alignment: Alignment.bottomLeft,
+            padding: EdgeInsets.only(
+                top: 100.h, left: 16.w, right: 16.w, bottom: 16.h),
             child: TextView(
               text: 'Designs, Media & Architecture',
               maxLines: 2,

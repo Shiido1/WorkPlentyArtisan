@@ -1,5 +1,6 @@
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 typedef void RatingChangeCallback(double rating);
 
@@ -18,16 +19,19 @@ class StarRating extends StatelessWidget {
       icon = new Icon(
         Icons.star_border,
         color: Pallets.grey,
+        size: 14.w,
       );
     } else if (index > rating! - 1 && index < rating!) {
       icon = new Icon(
         Icons.star_half,
         color: color ?? Pallets.gold,
+        size: 14.w,
       );
     } else {
       icon = new Icon(
         Icons.star,
         color: color ?? Pallets.gold,
+        size: 14.w,
       );
     }
     return new InkResponse(

@@ -37,11 +37,7 @@ class Saved extends StatelessWidget {
               ],
             )),
         body: TabBarView(
-          children: [
-            FreelanceTab(),
-            ServiceTab(),
-            Icon(Icons.directions_bike),
-          ],
+          children: [FreelanceTab(), ServiceTab(), ServiceTab()],
         ),
       ),
     );

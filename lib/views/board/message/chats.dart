@@ -68,38 +68,36 @@ class ChatsScreen extends StatelessWidget {
           actions: [
             _popMenu(),
           ]),
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            ListView(
-              shrinkWrap: true,
-              children: [
-                SizedBox(height: 16.h),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(AppImages.clock),
-                    SizedBox(width: 4.w),
-                    TextView(
-                        text: 'Yesterday',
-                        fontWeight: FontWeight.w400,
-                        maxLines: 1,
-                        textOverflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                ...Chats.getMessage()
-                    .map((chat) =>
-                        chat.isMe! ? SenderSide(chat) : ReceiverSide(chat))
-                    .toList(),
-                SizedBox(height: Utils.getDeviceHeight(context) * .3)
-              ],
-            ),
-            MessageBox()
-          ],
-        ),
+      body: Stack(
+        children: <Widget>[
+          ListView(
+            shrinkWrap: true,
+            children: [
+              SizedBox(height: 16.h),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(AppImages.clock),
+                  SizedBox(width: 4.w),
+                  TextView(
+                      text: 'Yesterday',
+                      fontWeight: FontWeight.w400,
+                      maxLines: 1,
+                      textOverflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center),
+                ],
+              ),
+              SizedBox(height: 16.h),
+              ...Chats.getMessage()
+                  .map((chat) =>
+                      chat.isMe! ? SenderSide(chat) : ReceiverSide(chat))
+                  .toList(),
+              SizedBox(height: Utils.getDeviceHeight(context) * .3)
+            ],
+          ),
+          MessageBox()
+        ],
       ),
     );
   }

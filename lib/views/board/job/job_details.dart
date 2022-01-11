@@ -183,7 +183,6 @@ class JobDetails extends StatelessWidget {
             ],
           ),
           BtnWidget(
-            height: 100,
             showSkip: false,
             iconWidget: SvgPicture.asset(
               AppImages.bookmark,
@@ -209,9 +208,7 @@ class JobDetails extends StatelessWidget {
         ),
       ),
       Spacer(),
-      iconData != null
-          ? Icon(iconData, color: Pallets.primary100)
-          : Container(),
+      iconData != null ? Icon(iconData, color: Pallets.gold) : Container(),
       TextView(
         text: value,
         fontWeight: FontWeight.w700,

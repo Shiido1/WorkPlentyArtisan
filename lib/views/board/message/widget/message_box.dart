@@ -18,6 +18,7 @@ class MessageBox extends StatelessWidget {
           children: <Widget>[
             FloatingActionButton(
               onPressed: () {},
+              heroTag: 'hero-one',
               mini: true,
               child: Icon(
                 Icons.add,
@@ -33,7 +34,7 @@ class MessageBox extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                     hintText: "Type a message here",
-                    hintStyle: TextStyle(color: Pallets.grey),
+                    hintStyle: TextStyle(color: Colors.transparent),
                     border: InputBorder.none),
               ),
             ),
@@ -42,6 +43,7 @@ class MessageBox extends StatelessWidget {
             SizedBox(width: 13.w),
             FloatingActionButton(
               onPressed: () {},
+              heroTag: 'hero-two',
               mini: true,
               child: SvgPicture.asset(AppImages.send),
               backgroundColor: Color(0xff5B91B8),

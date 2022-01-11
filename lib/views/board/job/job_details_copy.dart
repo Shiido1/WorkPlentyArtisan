@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
@@ -170,11 +171,11 @@ class JobDetailsCopy extends StatelessWidget {
                   color: Pallets.grey,
                   primary: Colors.transparent,
                   buttonText: 'Add Attachment',
-                  onPressed: () => null)
+                  onPressed: () => null),
+              SizedBox(height: Utils.getDeviceHeight(context) * .2),
             ],
           ),
           BtnWidget(
-            height: 100,
             showSkip: false,
             iconWidget: SvgPicture.asset(
               AppImages.bookmark,

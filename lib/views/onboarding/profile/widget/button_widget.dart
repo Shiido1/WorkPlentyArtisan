@@ -22,63 +22,60 @@ class BtnWidget extends StatelessWidget {
       this.btnText,
       this.skip,
       this.showSkip = true,
-      this.height = 140,
+      this.height,
       this.iconWidget})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
-          color: Theme.of(context).scaffoldBackgroundColor,
-          height: height?.h,
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Visibility(
-                  visible: showSkip!,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: TextView(
-                      text: 'Skip',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                      textAlign: TextAlign.right,
-                      onTap: skip,
-                    ),
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          color: Theme.of(context).cardColor,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Visibility(
+                visible: showSkip!,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextView(
+                    text: 'Skip',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    textAlign: TextAlign.right,
+                    onTap: skip,
                   ),
                 ),
-                SizedBox(height: 16.h),
-                Row(
-                  children: [
-                    Expanded(
-                      child: iconWidget ??
-                          GestureDetector(
-                            onTap: goBack,
-                            child: Container(
-                              padding: EdgeInsets.all(14.w),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.r),
-                                  border:
-                                      Border.all(color: Pallets.primary100)),
-                              child: Icon(Icons.keyboard_arrow_left),
-                            ),
-                          ),
+              ),
+              SizedBox(height: 16.h),
+              Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: goBack,
+                      child: GestureDetector(
+                        onTap: goBack,
+                        child: Container(
+                          padding: EdgeInsets.all(14.w),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.r),
+                              border: Border.all(color: Pallets.primary100)),
+                          child: iconWidget ?? Icon(Icons.keyboard_arrow_left),
+                        ),
+                      ),
                     ),
-                    SizedBox(width: 11.w),
-                    Expanded(
-                        flex: 6,
-                        child: ButtonWidget(
-                            color: Pallets.white,
-                            buttonText: btnText ?? '',
-                            onPressed: callback)),
-                  ],
-                ),
-              ],
-            ),
-          )),
-    );
+                  ),
+                  SizedBox(width: 11.w),
+                  Expanded(
+                      flex: 6,
+                      child: ButtonWidget(
+                          color: Pallets.white,
+                          buttonText: btnText ?? '',
+                          onPressed: callback)),
+                ],
+              ),
+            ],
+          ),
+        ));
   }
 }

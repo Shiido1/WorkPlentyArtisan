@@ -12,8 +12,8 @@ class Bids extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: getCustomAppBar(context, 'Bid',
-        
+        appBar: getCustomAppBar(context, 'Bidd',
+            showLeading: true,
             bottom: TabBar(
               tabs: [
                 Container(

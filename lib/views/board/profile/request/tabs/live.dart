@@ -62,23 +62,19 @@ class LiveTab extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Expanded(
-                                          child: StarRating(
-                                              starCount: 5, rating: 4.5)),
-                                      SizedBox(width: 4.w),
-                                      TextView(
-                                        text: '4.5',
-                                        fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
-                                        maxLines: 1,
-                                        textOverflow: TextOverflow.ellipsis,
-                                      )
-                                    ],
-                                  ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    StarRating(starCount: 5, rating: 4.5),
+                                    SizedBox(width: 5.w),
+                                    TextView(
+                                      text: '4.5',
+                                      fontWeight: FontWeight.w400,
+                                      textAlign: TextAlign.right,
+                                      maxLines: 1,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    )
+                                  ],
                                 )
                               ],
                             ),

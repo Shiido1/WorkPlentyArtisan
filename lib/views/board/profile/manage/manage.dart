@@ -63,7 +63,8 @@ class ManageProfile extends StatelessWidget {
                       image: AppImages.moon,
                       text: 'Dark Mode',
                       trailing: false,
-                      widget: CustomSwitch(onChanged: (value) {}, value: true)),
+                      widget:
+                          CustomSwitch(onChanged: (value) {}, value: false)),
                   SizedBox(height: 16.h),
                   ClickOne(
                       image: AppImages.notification,
