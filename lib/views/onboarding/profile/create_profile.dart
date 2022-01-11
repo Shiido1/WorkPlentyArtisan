@@ -416,7 +416,6 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
-        Divider(),
         EditFormField(label: 'English - Fluent'),
         SizedBox(height: 8.h),
         EditFormField(

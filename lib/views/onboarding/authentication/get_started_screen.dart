@@ -1,4 +1,5 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/onboarding/authentication/welcom_back.dart';
@@ -53,7 +54,9 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               suffixIcon: Icons.visibility_outlined,
             ),
             SizedBox(height: 18.h),
-            ButtonWidget(buttonText: 'Continue', onPressed: () {}),
+            ButtonWidget(
+                buttonText: 'Continue',
+                onPressed: () => PageRouter.gotoNamed(Routes.board, context)),
             SizedBox(height: 57.h),
             Wrap(alignment: WrapAlignment.center, children: [
               TextView(

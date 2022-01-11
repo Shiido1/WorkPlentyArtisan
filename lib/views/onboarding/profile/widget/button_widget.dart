@@ -31,6 +31,7 @@ class BtnWidget extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: Container(
           color: Theme.of(context).cardColor,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -56,7 +57,7 @@ class BtnWidget extends StatelessWidget {
                       child: GestureDetector(
                         onTap: goBack,
                         child: Container(
-                          padding: EdgeInsets.all(14.w),
+                          height: 50.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.r),
                               border: Border.all(color: Pallets.primary100)),

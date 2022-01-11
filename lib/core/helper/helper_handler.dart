@@ -16,12 +16,12 @@ import 'utils/pallets.dart';
 class Utils {
   /// get device width
   static double getDeviceWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width.w;
+    return MediaQuery.of(context).size.width;
   }
 
   /// get device height
   static double getDeviceHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height.h;
+    return MediaQuery.of(context).size.height;
   }
 
   /// show snackbar

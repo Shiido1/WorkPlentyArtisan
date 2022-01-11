@@ -12,8 +12,6 @@ class StackedContainer extends StatelessWidget {
       children: [
         Container(
           height: 379.h,
-          width: Utils.getDeviceWidth(context),
-          margin: EdgeInsets.symmetric(horizontal: 25.w),
           decoration: BoxDecoration(
               color: Color(0xffCDE6FE).withOpacity(.4),
               borderRadius: BorderRadius.only(
@@ -23,8 +21,6 @@ class StackedContainer extends StatelessWidget {
         ),
         Container(
           height: 370.h,
-          width: Utils.getDeviceWidth(context),
-          margin: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
               color: Color(0xffCDE6FE),
               borderRadius: BorderRadius.only(
@@ -37,11 +33,11 @@ class StackedContainer extends StatelessWidget {
             bottomLeft: Radius.circular(30.r),
             bottomRight: Radius.circular(30.r),
           ),
-          child: ImageLoader(
+          child: Image.asset(
+            image!,
             height: 360.h,
-            width: Utils.getDeviceWidth(context),
-            path: image,
             fit: BoxFit.cover,
+            width: Utils.getDeviceWidth(context),
           ),
         ),
       ],
