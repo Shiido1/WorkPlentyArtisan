@@ -1,12 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:artisan/views/onboarding/domain/entity/login_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'data.dart';
 
 part 'login_response.g.dart';
 
-@JsonSerializable()
-class LoginResponse extends Equatable {
+@JsonSerializable(explicitToJson: true)
+class LoginResponse extends LoginEntity {
   final String? msg;
   final Data? data;
   final bool? success;

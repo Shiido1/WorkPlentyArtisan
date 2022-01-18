@@ -1,5 +1,5 @@
 import 'package:artisan/views/board/board.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/welcom_back.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/login/welcom_back.dart';
 import 'package:flutter/cupertino.dart';
 
 BuildContext? globalContext;

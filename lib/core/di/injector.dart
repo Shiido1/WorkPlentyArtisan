@@ -1,11 +1,13 @@
 import 'package:artisan/core/api/auth/auth_service.dart';
 import 'package:artisan/core/database/hive_database.dart';
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/authorization_impl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/authorization_source_contract_impl.dart';
-import 'package:artisan/views/onboarding/domain/source/authorization_source_contract.dart';
+import 'package:artisan/views/onboarding/domain/usecases/login_usecase.dart';
 import 'package:artisan/views/onboarding/domain/usecases/register_usecase.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/bloc/register_bloc.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/login/bloc/login_bloc.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/register/bloc/register_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../network/app_config.dart';
 import '../database/session_manager.dart';
@@ -39,6 +41,7 @@ void _initProviders() {}
 /// Initialize bloc's here
 void _initBloc() {
   inject.registerLazySingleton<RegisterBloc>(() => RegisterBloc(inject()));
+  inject.registerLazySingleton<LoginBloc>(() => LoginBloc(inject()));
 }
 
 /// Initialize data sources implementations
@@ -65,4 +68,5 @@ void _initServices() {
 void _initializeUsecase() {
   inject
       .registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(inject()));
+  inject.registerLazySingleton<LoginUseCase>(() => LoginUseCase(inject()));
 }
