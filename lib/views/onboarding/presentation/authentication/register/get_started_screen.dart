@@ -7,7 +7,6 @@ import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/register_entity.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/bloc/register_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/welcom_back.dart';
 import 'package:artisan/views/onboarding/presentation/profile/profile_setup.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
@@ -18,6 +17,8 @@ import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'bloc/register_bloc.dart';
 
 class GetStartedScreen extends StatefulWidget {
   GetStartedScreen({Key? key}) : super(key: key);

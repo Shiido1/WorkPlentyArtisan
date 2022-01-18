@@ -2,7 +2,7 @@ import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/onboarding/presentation/intro/data/data_model.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/get_started_screen.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/register/get_started_screen.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/welcom_back.dart';
 import 'package:artisan/views/widgets/animated_container.dart';
 import 'package:artisan/views/widgets/buttons.dart';
