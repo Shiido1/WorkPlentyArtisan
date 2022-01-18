@@ -1,10 +1,8 @@
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/widget/card_widget.dart';
-import 'package:artisan/views/onboarding/profile/widget/button_widget.dart';
+import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
-import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

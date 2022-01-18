@@ -3,7 +3,7 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/job/job_details_copy.dart';
-import 'package:artisan/views/onboarding/profile/widget/button_widget.dart';
+import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/skills_widget.dart';

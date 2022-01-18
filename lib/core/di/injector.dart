@@ -1,4 +1,11 @@
+import 'package:artisan/core/api/auth/auth_service.dart';
 import 'package:artisan/core/database/hive_database.dart';
+import 'package:artisan/core/network/network_service.dart';
+import 'package:artisan/views/onboarding/data/contractImpl/authorization_impl.dart';
+import 'package:artisan/views/onboarding/data/sourceImpl/authorization_source_contract_impl.dart';
+import 'package:artisan/views/onboarding/domain/source/authorization_source_contract.dart';
+import 'package:artisan/views/onboarding/domain/usecases/register_usecase.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/bloc/register_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../network/app_config.dart';
 import '../database/session_manager.dart';
@@ -14,7 +21,7 @@ Future<void> initializeCore({required Environment environment}) async {
   _initProviders();
   _initBloc();
   _initDataSources();
-  _initDataRepositories();
+  _initDataContracts();
   _initializeUsecase();
 }
 
@@ -30,16 +37,32 @@ Future<void> _initializeCore() async {
 void _initProviders() {}
 
 /// Initialize bloc's here
-void _initBloc() {}
+void _initBloc() {
+  inject.registerLazySingleton<RegisterBloc>(() => RegisterBloc(inject()));
+}
 
 /// Initialize data sources implementations
-void _initDataSources() {}
+void _initDataSources() {
+  inject.registerLazySingleton<AuthorizationSourcesImpl>(
+      () => AuthorizationSourcesImpl(authorizationService: inject()));
+}
 
 /// Initialize data repositories implementations
-void _initDataRepositories() {}
+void _initDataContracts() {
+  inject.registerLazySingleton<AuthorizationContractImpl>(
+      () => AuthorizationContractImpl(inject()));
+}
 
 /// Initialize services's here
-void _initServices() {}
+void _initServices() {
+  inject.registerLazySingleton<NetworkService>(
+      () => NetworkService(baseUrl: AppConfig.coreBaseUrl));
+  inject.registerLazySingleton<AuthorizationService>(
+      () => AuthorizationService(networkService: inject()));
+}
 
 /// Initialize usecases here
-void _initializeUsecase() {}
+void _initializeUsecase() {
+  inject
+      .registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(inject()));
+}

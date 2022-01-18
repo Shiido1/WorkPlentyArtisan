@@ -36,7 +36,7 @@ class CustomProfilePicture extends StatelessWidget {
         ),
       );
     }
-    return CircularProfileAvatar('${AppConfig.imageBaseURL}$image',
+    return CircularProfileAvatar('$image',
         radius: radius!.r,
         backgroundColor: Colors.transparent,
         placeHolder: (c, url) => CircleAvatar(

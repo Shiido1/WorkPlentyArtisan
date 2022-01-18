@@ -1,5 +1,3 @@
-import 'package:artisan/core/helper/helper_handler.dart';
-import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,17 +26,14 @@ class StackedContainer extends StatelessWidget {
                 bottomRight: Radius.circular(30.r),
               )),
         ),
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30.r),
-            bottomRight: Radius.circular(30.r),
-          ),
-          child: Image.asset(
-            image!,
-            height: 360.h,
-            fit: BoxFit.cover,
-            width: Utils.getDeviceWidth(context),
-          ),
+        Container(
+          height: 360.h,
+          decoration: BoxDecoration(
+              color: Colors.red.withOpacity(.3),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30.r),
+                bottomRight: Radius.circular(30.r),
+              )),
         ),
       ],
     );

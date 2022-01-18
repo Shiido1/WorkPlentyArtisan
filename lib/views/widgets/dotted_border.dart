@@ -22,7 +22,8 @@ class DottedBorder extends StatelessWidget {
   final StrokeCap strokeCap;
   final PathBuilder? customPath;
 
-  DottedBorder({Key? key, 
+  DottedBorder({
+    Key? key,
     required this.child,
     this.color = Colors.black,
     this.strokeWidth = 1,

@@ -2,7 +2,7 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/onboarding/authentication/get_started_screen.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/get_started_screen.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';

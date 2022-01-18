@@ -269,5 +269,4 @@ class BarChartSample2State extends State<BarChartSample2> {
       ],
     );
   }
-
 }
