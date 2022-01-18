@@ -21,7 +21,7 @@ class EditFormField extends StatelessWidget {
       this.alignLabelWithHint = false,
       this.onPasswordToggle,
       this.initialValue,
-      this.autoValidateMode = AutovalidateMode.disabled,
+      this.autoValidateMode = AutovalidateMode.onUserInteraction,
       this.autocorrect = true,
       this.enabled = true,
       this.obscureText = false,

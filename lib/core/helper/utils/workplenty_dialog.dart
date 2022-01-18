@@ -18,7 +18,7 @@ class WorkPlenty {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SpinKitFadingCircle(
+          SpinKitCircle(
             color: Pallets.lightBlue50,
             size: 50.0,
           ),

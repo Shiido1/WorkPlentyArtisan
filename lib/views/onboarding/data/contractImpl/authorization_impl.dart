@@ -15,6 +15,8 @@ class AuthorizationContractImpl implements AuthorizationContract {
       RegisterEntity entity) async {
     try {
       final _response = await authorizationSources!.register(entity);
+      /// cache users informations
+      
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));

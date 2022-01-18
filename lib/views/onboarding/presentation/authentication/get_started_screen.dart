@@ -1,9 +1,11 @@
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
-import 'package:artisan/core/helper/routes/routes.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/core/helper/utils/validators.dart';
+import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/register_entity.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/bloc/register_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/welcom_back.dart';
@@ -26,18 +28,38 @@ class GetStartedScreen extends StatefulWidget {
 
 class _GetStartedScreenState extends State<GetStartedScreen> {
   final _bloc = RegisterBloc(inject());
+  final _loadingKey = GlobalKey<FormState>();
+  final _globalFormKey = GlobalKey<FormState>();
+  bool _togglePassword = true;
+
+  final _fnController = TextEditingController();
+  final _lnController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _passwordController = TextEditingController();
+  Country? _country;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: defaultAppBar(context),
       body: BodyWidget(
+        globalFormKey: _globalFormKey,
         child: BlocListener<RegisterBloc, RegisterState>(
           bloc: _bloc,
           listener: (context, state) {
-            if (state is RegisterLoading) {}
-            if (state is RegisterSuccess) {}
-            if (state is RegisterFailed) {}
+            if (state is RegisterLoading) {
+              WorkPlenty.showLoading(context, _loadingKey);
+            }
+            if (state is RegisterSuccess) {
+              WorkPlenty.hideLoading(_loadingKey);
+              logger.d(state.response.toJson());
+            }
+            if (state is RegisterFailed) {
+              WorkPlenty.hideLoading(_loadingKey);
+              WorkPlenty.error(state.message ?? '');
+            }
           },
           child: ListView(
             children: [
@@ -54,20 +76,84 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                 fontWeight: FontWeight.w500,
               ),
               SizedBox(height: 30.h),
-              EditFormField(label: 'First Name'),
+              EditFormField(
+                label: 'First Name',
+                controller: _fnController,
+                validator: Validators.validateString(),
+                keyboardType: TextInputType.name,
+              ),
               SizedBox(height: 18.h),
-              EditFormField(label: 'Last Name'),
+              EditFormField(
+                label: 'Last Name',
+                controller: _lnController,
+                validator: Validators.validateString(),
+                keyboardType: TextInputType.name,
+              ),
               SizedBox(height: 18.h),
-              EditFormField(label: 'Username'),
+              EditFormField(
+                label: 'Username',
+                controller: _usernameController,
+                validator: Validators.validateString(),
+                keyboardType: TextInputType.name,
+              ),
               SizedBox(height: 18.h),
-              EditFormField(label: 'Email Address'),
+              EditFormField(
+                label: 'Email Address',
+                controller: _emailController,
+                validator: Validators.validateEmail(),
+                keyboardType: TextInputType.emailAddress,
+              ),
               SizedBox(height: 18.h),
-              EditFormField(label: 'Phone Number'),
+              EditFormField(
+                label: 'Phone Number',
+                controller: _phoneController,
+                validator: Validators.validatePhone(),
+                keyboardType: TextInputType.phone,
+                prefixWidget: GestureDetector(
+                  onTap: () => showCountryPicker(
+                    context: context,
+                    countryListTheme: const CountryListThemeData(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(0.0),
+                        topRight: Radius.circular(0.0),
+                      ),
+                    ),
+                    showPhoneCode: true,
+                    onSelect: (Country country) {
+                      setState(() => _country = country);
+                    },
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextView(
+                            text: _country?.countryCode ?? 'NG',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Pallets.grey900,
+                            textAlign: TextAlign.center),
+                        Icon(
+                          Icons.keyboard_arrow_down_outlined,
+                          color: Pallets.grey900,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(height: 18.h),
               EditFormField(
                 label: 'Password',
-                obscureText: true,
-                suffixIcon: Icons.visibility_outlined,
+                controller: _passwordController,
+                obscureText: _togglePassword,
+                suffixIcon: _togglePassword
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
+                onPasswordToggle: () =>
+                    setState(() => _togglePassword = !_togglePassword),
+                validator: Validators.validatePlainPassword(),
               ),
               SizedBox(height: 18.h),
               ButtonWidget(buttonText: 'Continue', onPressed: () => _proceed()),
@@ -143,13 +229,14 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   }
 
   void _proceed() {
-    _bloc.add(RegisteringEvent(
-        entity: RegisterEntity(
-      email: faker.internet.freeEmail(),
-      fname: faker.person.firstName(),
-      lname: faker.person.lastName(),
-      phone: '+2347036331480',
-      password: faker.person.name(),
-    )));
+    if (_globalFormKey.currentState!.validate()) {
+      _bloc.add(RegisteringEvent(
+          entity: RegisterEntity(
+              email: _emailController.text,
+              fname: _fnController.text,
+              lname: _lnController.text,
+              phone: '${_country?.phoneCode ?? '+234'}${_phoneController.text}',
+              password: _passwordController.text)));
+    }
   }
 }

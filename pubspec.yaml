@@ -12,6 +12,7 @@ dependencies:
   bloc: ^8.0.2
   cached_network_image: ^3.1.0
   circular_profile_avatar: ^2.0.5
+  country_picker: ^2.0.9
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.0
