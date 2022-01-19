@@ -1,6 +1,7 @@
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/forgot_password_entity.dart';
@@ -44,8 +45,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               }
               if (state is PasswordSuccess) {
                 WorkPlenty.hideLoading(_loadingKey);
-                WorkPlenty.success(state.response.msg ?? '');
-                PageRouter.gotoWidget(ResetPasswordScreen(), context);
+
+                WorkPlenty.showSuccessDialog(context, _loadingKey,
+                    image: AppImages.smiling,
+                    title: 'Check your Mail',
+                    message: state.response.msg,
+                    btnText: 'Open Email App',
+                    next: () => PageRouter.gotoWidget(
+                        ResetPasswordScreen(_emailController.text), context));
               }
               if (state is PasswordFailed) {
                 WorkPlenty.hideLoading(_loadingKey);
