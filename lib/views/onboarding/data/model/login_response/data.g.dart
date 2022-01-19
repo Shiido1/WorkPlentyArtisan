@@ -9,9 +9,7 @@ part of 'data.dart';
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       token: json['token'] as String?,
       tokenType: json['token_type'] as String?,
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'],
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{

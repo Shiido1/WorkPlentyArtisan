@@ -1,4 +1,4 @@
-import 'package:artisan/core/entity/user.dart';
+import 'package:artisan/core/entity/user/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 

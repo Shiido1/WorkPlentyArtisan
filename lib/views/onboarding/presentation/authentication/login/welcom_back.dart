@@ -17,7 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../email_verification.dart';
-import '../forgot_password.dart';
+import '../password/forgot_password.dart';
 import 'bloc/login_bloc.dart';
 
 class WelcomeBackScreen extends StatefulWidget {

@@ -4,9 +4,12 @@ import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/authorization_impl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/authorization_source_contract_impl.dart';
+import 'package:artisan/views/onboarding/domain/usecases/forgot_password_usecase.dart';
 import 'package:artisan/views/onboarding/domain/usecases/login_usecase.dart';
 import 'package:artisan/views/onboarding/domain/usecases/register_usecase.dart';
+import 'package:artisan/views/onboarding/domain/usecases/reset_password_usecase.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/login/bloc/login_bloc.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/password/bloc/password_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/register/bloc/register_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../network/app_config.dart';
@@ -42,6 +45,8 @@ void _initProviders() {}
 void _initBloc() {
   inject.registerLazySingleton<RegisterBloc>(() => RegisterBloc(inject()));
   inject.registerLazySingleton<LoginBloc>(() => LoginBloc(inject()));
+  inject.registerLazySingleton<PasswordBloc>(
+      () => PasswordBloc(inject(), inject()));
 }
 
 /// Initialize data sources implementations
@@ -69,4 +74,8 @@ void _initializeUsecase() {
   inject
       .registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(inject()));
   inject.registerLazySingleton<LoginUseCase>(() => LoginUseCase(inject()));
+  inject.registerLazySingleton<ForgotPasswordUseCase>(
+      () => ForgotPasswordUseCase(inject()));
+  inject.registerLazySingleton<ResetPasswordUseCase>(
+      () => ResetPasswordUseCase(inject()));
 }
