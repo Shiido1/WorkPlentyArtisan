@@ -144,6 +144,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       ),
                     ),
                   ),
+              
                 ),
                 SizedBox(height: 18.h),
                 EditFormField(
