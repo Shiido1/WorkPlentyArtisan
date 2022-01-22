@@ -5,15 +5,10 @@ import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
-import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/widget/drawer_widget.dart';
 import 'package:artisan/views/board/widget/message_drawer.dart';
-import 'package:artisan/views/notification/notification_screen.dart';
-import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import 'dashboard/dashboard.dart';
 import 'message/contacts_chat.dart';
@@ -58,7 +53,7 @@ class _MainBoardState extends State<MainBoard> {
       if (event is DrawerEvent) {
         eventBus.on<DrawerEvent>().listen((event) {
           _drawerIndex = event.value;
-          setState(() {});
+          // setState(() {});
           if (event.open) Scaffold.of(event.context).openEndDrawer();
         });
       }
@@ -85,7 +80,7 @@ class _MainBoardState extends State<MainBoard> {
     return Scaffold(
       appBar: index == 1 || index == 3
           ? null
-          : getCustomAppBar(context, _bodyTitle[index!]),
+          : getCustomAppBar(context, _bodyTitle[index!], onTap: () {}),
       endDrawer:
           _drawerIndex == 1 ? ExploreDrawerWidget() : MessageDrawerWidget(),
       body: ValueListenableBuilder(

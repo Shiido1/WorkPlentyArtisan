@@ -14,6 +14,7 @@ class TextView extends StatelessWidget {
   final Function()? onTap;
   final int? maxLines;
   final double? wordSpacing;
+  final double? letterSpacing;
 
   const TextView(
       {Key? key,
@@ -23,6 +24,7 @@ class TextView extends StatelessWidget {
       this.color,
       this.onTap,
       this.fontSize = 14.0,
+      this.letterSpacing = -0.33,
       this.height,
       this.maxLines,
       this.wordSpacing,
@@ -41,6 +43,7 @@ class TextView extends StatelessWidget {
             fontSize: fontSize.sp,
             fontStyle: fontStyle,
             wordSpacing: wordSpacing,
+            letterSpacing: letterSpacing,
             height: height),
         textAlign: textAlign,
         overflow: textOverflow,

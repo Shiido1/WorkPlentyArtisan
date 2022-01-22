@@ -16,9 +16,9 @@ class Statistics extends StatefulWidget {
 }
 
 class _StatisticsState extends State<Statistics> {
-  final Color leftBarColor = const Color(0xff61C5FF);
-  final Color centerBarColor = const Color(0xff008BDB);
-  final Color rightBarColor = const Color(0xff035584);
+  // final Color leftBarColor = const Color(0xff61C5FF);
+  // final Color centerBarColor = const Color(0xff008BDB);
+  // final Color rightBarColor = const Color(0xff035584);
   final double width = 10.w;
 
   late List<BarChartGroupData> rawBarGroups;
@@ -54,17 +54,17 @@ class _StatisticsState extends State<Statistics> {
     return BarChartGroupData(barsSpace: 4, x: x, barRods: [
       BarChartRodData(
           y: y1,
-          colors: [leftBarColor],
+          colors: [Pallets.workPlentyLightShade],
           width: width,
           borderRadius: BorderRadius.zero),
       BarChartRodData(
           y: y2,
-          colors: [centerBarColor],
+          colors: [Pallets.workPlentyDarkShade],
           width: width,
           borderRadius: BorderRadius.zero),
       BarChartRodData(
           y: y3,
-          colors: [rightBarColor],
+          colors: [Pallets.workPlentyProgressShade],
           width: width,
           borderRadius: BorderRadius.zero),
     ]);
@@ -79,123 +79,147 @@ class _StatisticsState extends State<Statistics> {
         padding: EdgeInsets.all(16.w),
         child: ListView(
           children: [
-            Container(
-              height: Utils.getDeviceHeight(context) * .4,
-              child: ReviewBgCard(BarChart(
-                BarChartData(
-                  maxY: 100,
-                  barTouchData: BarTouchData(
-                      touchTooltipData: BarTouchTooltipData(
-                        tooltipBgColor: Colors.grey,
-                        getTooltipItem: (_a, _b, _c, _d) => null,
-                      ),
-                      touchCallback: (FlTouchEvent event, response) {
-                        if (response == null || response.spot == null) {
-                          setState(() {
-                            touchedGroupIndex = -1;
-                            showingBarGroups = List.of(rawBarGroups);
-                          });
-                          return;
-                        }
-
-                        touchedGroupIndex = response.spot!.touchedBarGroupIndex;
-
-                        setState(() {
-                          if (!event.isInterestedForInteractions) {
-                            touchedGroupIndex = -1;
-                            showingBarGroups = List.of(rawBarGroups);
-                            return;
-                          }
-                          showingBarGroups = List.of(rawBarGroups);
-                          if (touchedGroupIndex != -1) {
-                            var sum = 0.0;
-                            for (var rod in showingBarGroups[touchedGroupIndex]
-                                .barRods) {
-                              sum += rod.y;
-                            }
-                            final avg = sum /
-                                showingBarGroups[touchedGroupIndex]
-                                    .barRods
-                                    .length;
-
-                            showingBarGroups[touchedGroupIndex] =
-                                showingBarGroups[touchedGroupIndex].copyWith(
-                              barRods: showingBarGroups[touchedGroupIndex]
-                                  .barRods
-                                  .map((rod) {
-                                return rod.copyWith(y: avg);
-                              }).toList(),
-                            );
-                          }
-                        });
-                      }),
-                  titlesData: FlTitlesData(
-                    show: true,
-                    rightTitles: SideTitles(showTitles: false),
-                    topTitles: SideTitles(showTitles: false),
-                    bottomTitles: SideTitles(
-                      showTitles: true,
-                      getTextStyles: (context, value) => const TextStyle(
-                          color: Color(0xff7589a2),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                      margin: 20,
-                      getTitles: (double value) {
-                        switch (value.toInt()) {
-                          case 0:
-                            return 'Jan';
-                          case 1:
-                            return 'Feb';
-                          case 2:
-                            return 'Mar';
-                          case 3:
-                            return 'Apr';
-                          case 4:
-                            return 'May';
-                          case 5:
-                            return 'June';
-
-                          default:
-                            return '';
-                        }
-                      },
-                    ),
-                    leftTitles: SideTitles(
-                      showTitles: true,
-                      getTextStyles: (context, value) => const TextStyle(
-                          color: Color(0xff7589a2),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                      margin: 8,
-                      reservedSize: 28,
-                      interval: 10,
-                      getTitles: (value) {
-                        return '${value.toInt()}';
-                        // if (value == 0) {
-                        //   return '1';
-                        // } else if (value == 10) {
-                        //   return '5';
-                        // } else if (value == 19) {
-                        //   return '10';
-                        // } else {
-                        //   return '';
-                        // }
-                      },
-                    ),
+            ReviewBgCard(Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 13.h),
+                Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _key(Pallets.workPlentyLightShade, 'Freelance'),
+                      SizedBox(width: 8.w),
+                      _key(Pallets.workPlentyDarkShade, 'Home Service'),
+                      SizedBox(width: 8.w),
+                      _key(Pallets.workPlentyProgressShade, 'Live Consultancy'),
+                    ],
                   ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  barGroups: showingBarGroups,
-                  gridData: FlGridData(show: false),
                 ),
-              )),
-            ),
-            SizedBox(height: 24.h),
+                SizedBox(height: 30.h),
+                Container(
+                  height: Utils.getDeviceHeight(context) * .3,
+                  child: BarChart(
+                    BarChartData(
+                      maxY: 100,
+                      barTouchData: BarTouchData(
+                          touchTooltipData: BarTouchTooltipData(
+                              tooltipBgColor: Colors.grey,
+                              getTooltipItem: (_a, _b, _c, _d) => null),
+                          touchCallback: (FlTouchEvent event, response) {
+                            if (response == null || response.spot == null) {
+                              setState(() {
+                                touchedGroupIndex = -1;
+                                showingBarGroups = List.of(rawBarGroups);
+                              });
+                              return;
+                            }
+
+                            touchedGroupIndex =
+                                response.spot!.touchedBarGroupIndex;
+
+                            setState(() {
+                              if (!event.isInterestedForInteractions) {
+                                touchedGroupIndex = -1;
+                                showingBarGroups = List.of(rawBarGroups);
+                                return;
+                              }
+                              showingBarGroups = List.of(rawBarGroups);
+                              if (touchedGroupIndex != -1) {
+                                var sum = 0.0;
+                                for (var rod
+                                    in showingBarGroups[touchedGroupIndex]
+                                        .barRods) {
+                                  sum += rod.y;
+                                }
+                                final avg = sum /
+                                    showingBarGroups[touchedGroupIndex]
+                                        .barRods
+                                        .length;
+
+                                showingBarGroups[touchedGroupIndex] =
+                                    showingBarGroups[touchedGroupIndex]
+                                        .copyWith(
+                                  barRods: showingBarGroups[touchedGroupIndex]
+                                      .barRods
+                                      .map((rod) {
+                                    return rod.copyWith(y: avg);
+                                  }).toList(),
+                                );
+                              }
+                            });
+                          }),
+                      titlesData: FlTitlesData(
+                        show: true,
+                        rightTitles: SideTitles(showTitles: false),
+                        topTitles: SideTitles(showTitles: false),
+                        bottomTitles: SideTitles(
+                          showTitles: true,
+                          getTextStyles: (context, value) => TextStyle(
+                              color: Pallets.mildGrey300,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14),
+                          margin: 20,
+                          getTitles: (double value) {
+                            switch (value.toInt()) {
+                              case 0:
+                                return 'Jan';
+                              case 1:
+                                return 'Feb';
+                              case 2:
+                                return 'Mar';
+                              case 3:
+                                return 'Apr';
+                              case 4:
+                                return 'May';
+                              case 5:
+                                return 'June';
+
+                              default:
+                                return '';
+                            }
+                          },
+                        ),
+                        leftTitles: SideTitles(
+                          showTitles: true,
+                          getTextStyles: (context, value) => TextStyle(
+                              color: Pallets.mildGrey300,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14),
+                          margin: 8,
+                          reservedSize: 28,
+                          interval: 10,
+                          getTitles: (value) {
+                            return '${value.toInt()}';
+                            // if (value == 0) {
+                            //   return '1';
+                            // } else if (value == 10) {
+                            //   return '5';
+                            // } else if (value == 19) {
+                            //   return '10';
+                            // } else {
+                            //   return '';
+                            // }
+                          },
+                        ),
+                      ),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      barGroups: showingBarGroups,
+                      gridData: FlGridData(show: false),
+                    ),
+                  ),
+                ),
+              ],
+            )),
+            SizedBox(height: 38.h),
             TextView(
               text: 'My Earning',
               textAlign: TextAlign.left,
               fontWeight: FontWeight.w700,
+              fontSize: 18,
+              color: Pallets.primary150,
               maxLines: 1,
             ),
             SizedBox(height: 16.h),
@@ -279,14 +303,16 @@ class _StatisticsState extends State<Statistics> {
                 )),
               ],
             )),
-            SizedBox(height: 24.h),
+            SizedBox(height: 46.h),
             Row(
               children: [
                 Expanded(
                     child: TextView(
-                  text: 'My Earning',
+                  text: 'My Statistics',
                   textAlign: TextAlign.left,
                   fontWeight: FontWeight.w700,
+                  color: Pallets.primary150,
+                  fontSize: 18,
                   maxLines: 1,
                 )),
                 Row(
@@ -295,6 +321,7 @@ class _StatisticsState extends State<Statistics> {
                       text: 'Sort: ',
                       textAlign: TextAlign.left,
                       fontWeight: FontWeight.w700,
+                      color: Pallets.primary150,
                       maxLines: 1,
                     ),
                     TextView(
@@ -331,7 +358,7 @@ class _StatisticsState extends State<Statistics> {
                   _row('Number of Home Service', '76'),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -346,6 +373,7 @@ class _StatisticsState extends State<Statistics> {
             text: left,
             textAlign: TextAlign.left,
             fontWeight: FontWeight.w700,
+            color: Pallets.primary150,
             maxLines: 1,
           ),
         ),
@@ -355,6 +383,28 @@ class _StatisticsState extends State<Statistics> {
           text: right,
           textAlign: TextAlign.right,
           fontWeight: FontWeight.w700,
+          maxLines: 1,
+        ),
+      ],
+    );
+  }
+
+  Row _key(Color color, String text) {
+    return Row(
+      children: [
+        Container(
+          height: 10.h,
+          width: 10.w,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(2.r), color: color),
+        ),
+        SizedBox(width: 5.w),
+        TextView(
+          text: text,
+          textAlign: TextAlign.left,
+          fontWeight: FontWeight.w700,
+          color: Pallets.mildGrey300,
+          fontSize: 8,
           maxLines: 1,
         ),
       ],

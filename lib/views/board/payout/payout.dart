@@ -24,7 +24,7 @@ class _PayoutsState extends State<Payouts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: defaultAppBar2(context,
-          centerTitle: true, textColor: Pallets.white, title: 'Statistics'),
+          centerTitle: true, textColor: Pallets.white, title: 'Payout'),
       body: BodyWidget(
         child: ListView(
           children: [
@@ -35,11 +35,10 @@ class _PayoutsState extends State<Payouts> {
                     onTap: () => setState(() => _index = 0),
                     child: TextView(
                       text: 'Overview',
-                      color: _index == 0
-                          ? Theme.of(context).colorScheme.primary
-                          : Pallets.grey,
+                      color: _index == 0 ? Pallets.primary150 : Pallets.grey,
                       textAlign: TextAlign.left,
                       fontWeight: FontWeight.w700,
+                      fontSize: 18,
                       maxLines: 1,
                     ),
                   ),
@@ -49,9 +48,7 @@ class _PayoutsState extends State<Payouts> {
                     onTap: () => setState(() => _index = 1),
                     child: TextView(
                       text: 'Withdraw',
-                      color: _index == 1
-                          ? Theme.of(context).colorScheme.primary
-                          : Pallets.grey,
+                      color: _index == 1 ? Pallets.primary150 : Pallets.grey,
                       textAlign: TextAlign.right,
                       fontWeight: FontWeight.w700,
                       maxLines: 1,
@@ -190,7 +187,7 @@ class _PayoutsState extends State<Payouts> {
             )),
           ],
         )),
-        SizedBox(height: 24.h),
+        SizedBox(height: 37.h),
         Row(
           children: [
             Expanded(
@@ -198,6 +195,7 @@ class _PayoutsState extends State<Payouts> {
               text: 'Activity',
               textAlign: TextAlign.left,
               fontWeight: FontWeight.w700,
+              fontSize: 18,
               maxLines: 1,
             )),
             Row(
@@ -205,7 +203,8 @@ class _PayoutsState extends State<Payouts> {
                 TextView(
                   text: 'Sort: ',
                   textAlign: TextAlign.left,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                   maxLines: 1,
                 ),
                 TextView(
@@ -213,13 +212,13 @@ class _PayoutsState extends State<Payouts> {
                     textAlign: TextAlign.left,
                     fontWeight: FontWeight.w500,
                     maxLines: 1,
-                    color: Pallets.grey),
+                    color: Pallets.mildGrey200),
                 Icon(Icons.keyboard_arrow_down, color: Pallets.grey)
               ],
             )
           ],
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 12.h),
         ...[1, 2, 2, 2, 2, 4, 1, 2, 2, 2, 2, 4]
             .map(
               (notification) => Container(
@@ -298,6 +297,8 @@ class _PayoutsState extends State<Payouts> {
           text: 'Request Withdrawal',
           textAlign: TextAlign.left,
           fontWeight: FontWeight.w700,
+          fontSize: 18,
+          color: Pallets.primary150,
           maxLines: 1,
         ),
         SizedBox(height: 16.h),

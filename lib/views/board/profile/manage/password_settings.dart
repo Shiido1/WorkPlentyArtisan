@@ -6,20 +6,20 @@ import 'package:artisan/views/widgets/edit_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AddressSettings extends StatefulWidget {
-  AddressSettings({Key? key}) : super(key: key);
+class PasswordSettings extends StatefulWidget {
+  PasswordSettings({Key? key}) : super(key: key);
 
   @override
-  _AddressSettingsState createState() => _AddressSettingsState();
+  _PasswordSettingsState createState() => _PasswordSettingsState();
 }
 
-class _AddressSettingsState extends State<AddressSettings> {
+class _PasswordSettingsState extends State<PasswordSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: defaultAppBar2(context,
-          title: 'Address Settings',
+          title: 'Password & Security',
           centerTitle: true,
           textColor: Pallets.white),
       body: BodyWidget(
@@ -29,40 +29,28 @@ class _AddressSettingsState extends State<AddressSettings> {
             children: [
               SizedBox(height: 55.h),
               EditFormField(
-                decoration: _getDecoration('Country', dropDown: true),
+                decoration: _getDecoration('Old Password'),
               ),
               SizedBox(height: 20.h),
               EditFormField(
-                decoration: _getDecoration('State', dropDown: true),
+                decoration: _getDecoration('New Password'),
               ),
               SizedBox(height: 20.h),
               EditFormField(
-                decoration: _getDecoration('Stree Address', dropDown: false),
-              ),
-              SizedBox(height: 20.h),
-              EditFormField(
-                decoration: _getDecoration('Apt./ Suite', dropDown: false),
-              ),
-              SizedBox(height: 20.h),
-              EditFormField(
-                decoration: _getDecoration('City', dropDown: false),
-              ),
-              SizedBox(height: 20.h),
-              EditFormField(
-                decoration: _getDecoration('ZIP/Postal Code', dropDown: true),
+                decoration: _getDecoration('Confirm Password'),
               ),
             ],
           ),
           Align(
               alignment: Alignment.bottomCenter,
               child: ButtonWidget(
-                  buttonText: 'Save Details', onPressed: () => null)),
+                  buttonText: 'Change Password', onPressed: () => null)),
         ],
       )),
     );
   }
 
-  _getDecoration(String hint, {bool? dropDown}) {
+  _getDecoration(String hint, {bool? dropDown = false}) {
     return InputDecoration(
         border:
             UnderlineInputBorder(borderSide: BorderSide(color: Pallets.grey)),

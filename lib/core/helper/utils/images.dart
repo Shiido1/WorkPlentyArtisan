@@ -6,6 +6,8 @@ class AppImages {
   static String google = 'assets/svgs/google.svg';
   static String meta = 'assets/images/meta.png';
   static String smiling = 'assets/images/smiling.png';
+  static String successfullyVerified =
+      'assets/images/successful_verification.png';
   static String blowWhistle = 'assets/images/blow_whistle.png';
   static String computer = 'assets/images/computer.png';
   static String timer = 'assets/images/timer.png';
@@ -68,4 +70,5 @@ class AppImages {
   static String notification = 'assets/svgs/notification.svg';
   static String security = 'assets/svgs/security.svg';
   static String clock = 'assets/svgs/clock.svg';
+  static String allDone = 'assets/svgs/all-done.svg';
 }

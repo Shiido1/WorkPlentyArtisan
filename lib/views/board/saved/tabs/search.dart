@@ -20,18 +20,19 @@ class SearchTab extends StatelessWidget {
         padding: EdgeInsets.all(16.w),
         child: ListView(
           children: [
+            SizedBox(height: 23.h),
             SearchAndFilter(
                 hint: 'Search for gigs, live consultancy, home',
                 onFilter: () {
                   eventBus.fire(DrawerEvent(context, true));
                 }),
-            SizedBox(height: 16.h),
+            SizedBox(height: 31.h),
             SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                     children:
                         _colors.map((e) => _skills(context, e)).toList())),
-            SizedBox(height: 16.h),
+            SizedBox(height: 54.h),
             Row(children: [
               ImageLoader(path: AppImages.emoji),
               SizedBox(width: 5.w),
@@ -43,7 +44,7 @@ class SearchTab extends StatelessWidget {
                 textAlign: TextAlign.left,
               ))
             ]),
-            ...[1, 2, 2, 2, 2, 2, 3].map((_) => CardWidget()).toList()
+            ...[1].map((_) => CardWidget()).toList()
           ],
         ),
       ),

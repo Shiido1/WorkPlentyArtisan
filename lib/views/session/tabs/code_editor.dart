@@ -41,6 +41,7 @@ class EditorTab extends StatelessWidget {
                       text: '00:00',
                       fontWeight: FontWeight.w700,
                       textAlign: TextAlign.right,
+                      color: Pallets.mildGrey100,
                     )
                   ],
                 ),
@@ -55,14 +56,8 @@ class EditorTab extends StatelessWidget {
           ),
           BtnWidget(
             iconWidget: GestureDetector(
-              onTap: () => _showModal(context),
-              child: Container(
-                  padding: EdgeInsets.all(14.w),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.r),
-                      border: Border.all(color: Pallets.primary100)),
-                  child: SvgPicture.asset(AppImages.chat)),
-            ),
+                onTap: () => _showModal(context),
+                child: SvgPicture.asset(AppImages.chat)),
             showSkip: false,
             btnText: 'Start Session',
             callback: () => null,

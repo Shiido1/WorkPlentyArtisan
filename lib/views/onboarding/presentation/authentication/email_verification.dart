@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
+import 'package:artisan/views/onboarding/presentation/profile/profile_setup.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
@@ -12,7 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
-  EmailVerificationScreen({Key? key}) : super(key: key);
+  final String? email;
+
+  EmailVerificationScreen(this.email, {Key? key}) : super(key: key);
 
   @override
   _EmailVerificationScreenState createState() =>
@@ -53,29 +58,25 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             TextView(
               text: 'Verification',
               fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.normal,
+              letterSpacing: -0.33,
             ),
             SizedBox(height: 4.h),
             TextView(
               text:
-                  'Hi John, check your mail. We’ve sent you the PIN at johndoe@workplenty.com',
+                  'Hi John, check your mail. We’ve sent you the PIN at ${widget.email}',
               fontSize: 14,
               fontWeight: FontWeight.w500,
+              letterSpacing: -0.33,
             ),
             SizedBox(height: 84.h),
             Form(
               key: formKey,
               child: PinCodeTextField(
                 appContext: context,
-                pastedTextStyle: TextStyle(
-                  color: Colors.green.shade600,
-                  fontWeight: FontWeight.bold,
-                ),
                 length: 6,
                 obscureText: false,
-                obscuringCharacter: '*',
-
-                blinkWhenObscuring: true,
                 animationType: AnimationType.fade,
                 validator: (v) {
                   if (v!.length < 3) {
@@ -85,48 +86,26 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   }
                 },
                 pinTheme: PinTheme(
-                  shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(5),
-                  fieldHeight: 58,
-                  fieldWidth: 58,
-                  selectedColor: Pallets.primary100,
-                  selectedFillColor: Colors.transparent,
-                  activeColor: Pallets.primary100,
-                  activeFillColor: Colors.transparent,
-                  inactiveFillColor: Colors.transparent,
-                  inactiveColor: Pallets.primary100,
-                ),
+                    shape: PinCodeFieldShape.box,
+                    borderRadius: BorderRadius.circular(5),
+                    fieldHeight: 58,
+                    fieldWidth: 58,
+                    borderWidth: 1,
+                    selectedColor: Pallets.primary100,
+                    selectedFillColor:
+                        Theme.of(context).scaffoldBackgroundColor,
+                    activeFillColor: Theme.of(context).scaffoldBackgroundColor,
+                    inactiveFillColor:
+                        Theme.of(context).scaffoldBackgroundColor,
+                    activeColor: Pallets.primary100,
+                    inactiveColor: Pallets.primary100),
                 cursorColor: Colors.black,
                 animationDuration: Duration(milliseconds: 300),
                 enableActiveFill: true,
                 errorAnimationController: errorController,
                 controller: textEditingController,
                 keyboardType: TextInputType.number,
-                boxShadows: [
-                  BoxShadow(
-                    offset: Offset(0, 1),
-                    color: Colors.black12,
-                    blurRadius: 10,
-                  )
-                ],
-                onCompleted: (v) {
-                  print("Completed");
-                },
-                // onTap: () {
-                //   print("Pressed");
-                // },
-                onChanged: (value) {
-                  print(value);
-                  setState(() {
-                    currentText = value;
-                  });
-                },
-                beforeTextPaste: (text) {
-                  print("Allowing to paste $text");
-                  //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                  //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                  return true;
-                },
+                onChanged: (value) => setState(() => currentText = value),
               ),
             ),
             Padding(
@@ -139,22 +118,25 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     fontWeight: FontWeight.w400),
               ),
             ),
-            SizedBox(height: 18.h),
+            SizedBox(height: 40.h),
             ButtonWidget(
                 buttonText: 'Verify now',
                 onPressed: () => WorkPlenty.showSuccessDialog(
                     context, _loadingKey,
-                    image: AppImages.smiling,
-                    title: 'Check your Mail',
+                    image: AppImages.successfullyVerified,
+                    title: 'Verification Complete',
                     message:
-                        'We have sent a password recovery instruction to your mail',
-                    btnText: 'Open Email App')),
+                        'You’ve successfully verified your account. Find Artisans & Clients now!',
+                    btnText: 'Continue',
+                    next: () =>
+                        PageRouter.gotoWidget(SetUpProfile(), context))),
             SizedBox(height: 43.h),
             Wrap(alignment: WrapAlignment.center, children: [
               TextView(
-                  text: 'Didn’t recieve any code? ',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400),
+                text: 'Didn’t recieve any code? ',
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
               TextView(
                   text: 'Resend Code',
                   fontSize: 16,

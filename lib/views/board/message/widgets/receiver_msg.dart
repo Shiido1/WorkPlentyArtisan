@@ -1,10 +1,8 @@
-import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/board/message/model/dummy_chats.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../chats.dart';
 
 class ReceiverSide extends StatelessWidget {
   final Chats chats;

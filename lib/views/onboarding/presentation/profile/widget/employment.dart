@@ -88,6 +88,7 @@ class EmploymentSheet extends StatelessWidget {
                 ),
                 BtnWidget(
                   btnText: 'Save',
+                  showSkip: false,
                   callback: () => null,
                   goBack: () => null,
                 )

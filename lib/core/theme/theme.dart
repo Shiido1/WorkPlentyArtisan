@@ -23,9 +23,9 @@ ThemeData lightThemeData(BuildContext context) {
       appBarTheme: appBarTheme,
       iconTheme: IconThemeData(color: Pallets.primary100),
       textTheme: GoogleFonts.dmSansTextTheme(Theme.of(context).textTheme)
-          .apply(bodyColor: Pallets.primaryText),
+          .apply(bodyColor: Pallets.black),
       colorScheme: ColorScheme.light(
-          primary: Pallets.primaryText,
+          primary: Pallets.black,
           secondary: kSecondaryColor,
           error: kErrorColor),
       cardTheme: CardTheme(

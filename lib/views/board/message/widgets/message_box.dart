@@ -32,10 +32,16 @@ class MessageBox extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
+                cursorColor: Colors.white,
                 decoration: InputDecoration(
-                    hintText: "Type a message here",
-                    hintStyle: TextStyle(color: Colors.transparent),
-                    border: InputBorder.none),
+                  hintText: "Type a message here",
+                  hintStyle:
+                      TextStyle(color: Color.fromRGBO(255, 255, 255, .6)),
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                ),
+                maxLines: null,
               ),
             ),
             SizedBox(width: 15.w),

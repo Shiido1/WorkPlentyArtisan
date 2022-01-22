@@ -2,16 +2,14 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/strings.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/login/welcom_back.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
-import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/stacked_container.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'create_profile.dart';
 
 class AwaitingApproval extends StatelessWidget {
   const AwaitingApproval({Key? key}) : super(key: key);
@@ -22,8 +20,9 @@ class AwaitingApproval extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           leadingWidth: 70,
           leadingWidget: IconButton(
-              onPressed: () => PageRouter.goBack(context),
-              icon: Icon(Icons.close)),
+              onPressed: () =>
+                  PageRouter.gotoWidget(WelcomeBackScreen(), context),
+              icon: Icon(Icons.close, color: Pallets.primary100)),
           actions: [
             Container(
               margin: EdgeInsets.only(right: 16.w),
@@ -54,7 +53,7 @@ class AwaitingApproval extends StatelessWidget {
                     children: [
                       TextView(
                         text: 'Awaiting Verification - 24 hours',
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                         fontSize: 18,
                         textAlign: TextAlign.left,
                       ),
@@ -62,7 +61,8 @@ class AwaitingApproval extends StatelessWidget {
                       TextView(
                         text: AppString.waitingTime,
                         fontWeight: FontWeight.w400,
-                        fontSize: 18,
+                        fontSize: 14,
+                        color: Pallets.mildGrey,
                         textAlign: TextAlign.left,
                       ),
                     ],

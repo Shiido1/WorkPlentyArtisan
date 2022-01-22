@@ -9,12 +9,16 @@ class ClickTwo extends StatelessWidget {
   final String? text;
   final Widget? widget;
   final MainAxisAlignment? mainAxisAlignment;
+  final EdgeInsetsGeometry? padding;
+  final double? radius;
   const ClickTwo(
       {this.onTap,
       this.image,
       this.text,
       this.widget,
       this.mainAxisAlignment,
+      this.padding,
+      this.radius = 12,
       Key? key})
       : super(key: key);
   @override
@@ -22,9 +26,10 @@ class ClickTwo extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        padding:
+            padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(radius!.r),
           color: Theme.of(context).cardColor,
           boxShadow: [
             BoxShadow(

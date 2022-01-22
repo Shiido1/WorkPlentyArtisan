@@ -8,7 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 getCustomAppBar(BuildContext context, String title,
-    {PreferredSizeWidget? bottom, showLeading = false, bool showMenu = true}) {
+    {PreferredSizeWidget? bottom,
+    showLeading = false,
+    bool showMenu = true,
+    Function()? onTap}) {
   return defaultAppBar2(
     context,
     backgroundColor: Pallets.primary100,
@@ -21,7 +24,7 @@ getCustomAppBar(BuildContext context, String title,
             path: AppImages.whiteLogo,
             height: 24.h,
             width: 24.w,
-            onTap: () => PageRouter.goBack(context)),
+            onTap: onTap ?? () => PageRouter.goBack(context)),
     centerTitle: true,
     title: title,
     textColor: Pallets.white,

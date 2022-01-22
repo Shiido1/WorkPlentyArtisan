@@ -1,5 +1,3 @@
-import 'package:artisan/core/helper/configs/instances.dart';
-import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/text_views.dart';
@@ -58,6 +56,7 @@ class BtnWidget extends StatelessWidget {
                         onTap: goBack,
                         child: Container(
                           height: 50.h,
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.r),
                               border: Border.all(color: Pallets.primary100)),

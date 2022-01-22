@@ -27,22 +27,23 @@ class _AccountSettingsState extends State<AccountSettings> {
         children: [
           ListView(
             children: [
+              SizedBox(height: 55.h),
               EditFormField(
                 decoration: _getDecoration('Full Name', dropDown: false),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration: _getDecoration('Username', dropDown: false),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration: _getDecoration('Email Address', dropDown: false),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration: _getDecoration('Phone Number', dropDown: false),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration: _getDecoration('User Type', dropDown: true),
               ),

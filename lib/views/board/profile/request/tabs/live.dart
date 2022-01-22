@@ -1,7 +1,6 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/widget/card_widget.dart';
 import 'package:artisan/views/session/session.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
@@ -20,114 +19,128 @@ class LiveTab extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       child: ListView(
         children: [
+          SizedBox(height: 23.h),
           ...[false, true]
               .map((e) => Container(
                     margin: EdgeInsets.only(bottom: 16.h),
-                    child: ReviewBgCard(Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          radius: 25.r,
-                          backgroundColor: Pallets.primary100,
-                        ),
-                        SizedBox(width: 8.h),
-                        Expanded(
-                            child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextView(
-                              text:
-                                  'Daniel James request a live consultancy session',
-                              fontWeight: FontWeight.w500,
-                              textAlign: TextAlign.left,
-                              textOverflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(height: 8.h),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
+                    child: ReviewBgCard(
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            radius: 20.r,
+                            backgroundColor: Pallets.primary100,
+                          ),
+                          SizedBox(width: 8.h),
+                          Expanded(
+                              child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextView(
+                                text:
+                                    'Daniel James request a live consultancy session',
+                                fontWeight: FontWeight.w500,
+                                textAlign: TextAlign.left,
+                                color: Pallets.mildGrey100,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 8.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        SvgPicture.asset(
+                                            AppImages.free_session),
+                                        SizedBox(width: 4.w),
+                                        TextView(
+                                          text: 'Free Session',
+                                          fontWeight: FontWeight.w400,
+                                          color: Pallets.mildGrey100,
+                                          fontSize: 12,
+                                          textAlign: TextAlign.left,
+                                          maxLines: 1,
+                                          textOverflow: TextOverflow.ellipsis,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      SvgPicture.asset(AppImages.free_session),
-                                      SizedBox(width: 4.w),
+                                      StarRating(starCount: 5, rating: 4.5),
+                                      SizedBox(width: 5.w),
                                       TextView(
-                                        text: 'Free Session',
+                                        text: '4.5',
                                         fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
+                                        fontSize: 12,
+                                        color: Pallets.mildGrey100,
+                                        textAlign: TextAlign.right,
                                         maxLines: 1,
                                         textOverflow: TextOverflow.ellipsis,
                                       )
                                     ],
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    StarRating(starCount: 5, rating: 4.5),
-                                    SizedBox(width: 5.w),
-                                    TextView(
-                                      text: '4.5',
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 18.h),
+                              e
+                                  ? TextView(
+                                      text: 'Session was accepted',
                                       fontWeight: FontWeight.w400,
-                                      textAlign: TextAlign.right,
-                                      maxLines: 1,
+                                      fontSize: 12,
+                                      textAlign: TextAlign.left,
                                       textOverflow: TextOverflow.ellipsis,
                                     )
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 18.h),
-                            e
-                                ? TextView(
-                                    text: 'Session was accepted',
-                                    fontWeight: FontWeight.w500,
-                                    textAlign: TextAlign.left,
-                                    textOverflow: TextOverflow.ellipsis,
-                                  )
-                                : Row(
-                                    children: [
-                                      Expanded(
-                                          child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 16.w, vertical: 8.h),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5.r),
-                                            border: Border.all(
-                                                color: Pallets.primary100)),
-                                        child: TextView(
-                                          text: 'Decline',
-                                          fontWeight: FontWeight.w500,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),
-                                      Spacer(),
-                                      Expanded(
-                                          child: GestureDetector(
-                                        onTap: () => _showModal(context),
-                                        child: Container(
+                                  : Row(
+                                      children: [
+                                        Expanded(
+                                            child: Container(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 16.w, vertical: 8.h),
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5.r),
-                                              color: Pallets.primary100),
+                                              border: Border.all(
+                                                  color: Pallets.primary100)),
                                           child: TextView(
-                                            text: 'Accept',
-                                            fontWeight: FontWeight.w500,
-                                            color: Pallets.white,
+                                            text: 'Decline',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 12,
                                             textAlign: TextAlign.center,
                                           ),
-                                        ),
-                                      ))
-                                    ],
-                                  )
-                          ],
-                        ))
-                      ],
-                    )),
+                                        )),
+                                        Spacer(),
+                                        Expanded(
+                                            child: GestureDetector(
+                                          onTap: () => _showModal(context),
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 16.w,
+                                                vertical: 8.h),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.r),
+                                                color: Pallets.primary100),
+                                            child: TextView(
+                                              text: 'Accept',
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 12,
+                                              color: Pallets.white,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ))
+                                      ],
+                                    )
+                            ],
+                          ))
+                        ],
+                      ),
+                      vertical: 17,
+                    ),
                   ))
               .toList()
         ],

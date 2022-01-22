@@ -19,44 +19,89 @@ class HomeTab extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       child: ListView(
         children: [
+          SizedBox(height: 23.h),
           ...[1]
               .map((_) => Container(
-                    margin: EdgeInsets.only(bottom: 16.h),
-                    child: ReviewBgCard(Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          radius: 25.r,
-                          backgroundColor: Pallets.primary100,
-                        ),
-                        SizedBox(width: 8.h),
-                        Expanded(
-                            child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextView(
-                              text:
-                                  'Daniel James request a live consultancy session',
-                              fontWeight: FontWeight.w500,
-                              textAlign: TextAlign.left,
-                              textOverflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(height: 8.h),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
+                    margin: EdgeInsets.only(bottom: 23.h),
+                    child: ReviewBgCard(
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            radius: 20.r,
+                            backgroundColor: Pallets.primary100,
+                          ),
+                          SizedBox(width: 8.h),
+                          Expanded(
+                              child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextView(
+                                text:
+                                    'Daniel James request a live consultancy session',
+                                fontWeight: FontWeight.w500,
+                                color: Pallets.mildGrey100,
+                                textAlign: TextAlign.left,
+                                textOverflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 8.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        SvgPicture.asset(
+                                            AppImages.free_session),
+                                        SizedBox(width: 4.w),
+                                        SizedBox(
+                                          width: Utils.getDeviceWidth(context) *
+                                              .4,
+                                          child: TextView(
+                                            text: 'Free Session',
+                                            color: Pallets.mildGrey100,
+                                            fontWeight: FontWeight.w400,
+                                            textAlign: TextAlign.left,
+                                            maxLines: 1,
+                                            textOverflow: TextOverflow.ellipsis,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      SvgPicture.asset(AppImages.free_session),
+                                      StarRating(starCount: 5, rating: 4.5),
+                                      SizedBox(width: 4.w),
+                                      TextView(
+                                        text: '4.5',
+                                        fontWeight: FontWeight.w400,
+                                        color: Pallets.mildGrey100,
+                                        textAlign: TextAlign.right,
+                                        maxLines: 1,
+                                        textOverflow: TextOverflow.ellipsis,
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 8.h),
+                              Row(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SvgPicture.asset(AppImages.tag),
                                       SizedBox(width: 4.w),
                                       SizedBox(
                                         width:
                                             Utils.getDeviceWidth(context) * .4,
                                         child: TextView(
-                                          text: 'Free Session',
+                                          text: 'Software Installation',
                                           fontWeight: FontWeight.w400,
+                                          color: Pallets.mildGrey100,
                                           textAlign: TextAlign.left,
                                           maxLines: 1,
                                           textOverflow: TextOverflow.ellipsis,
@@ -64,126 +109,93 @@ class HomeTab extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    StarRating(starCount: 5, rating: 4.5),
-                                    SizedBox(width: 4.w),
-                                    TextView(
-                                      text: '4.5',
-                                      fontWeight: FontWeight.w400,
-                                      textAlign: TextAlign.right,
-                                      maxLines: 1,
-                                      textOverflow: TextOverflow.ellipsis,
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 8.h),
-                            Row(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    SvgPicture.asset(AppImages.tag),
-                                    SizedBox(width: 4.w),
-                                    SizedBox(
-                                      width: Utils.getDeviceWidth(context) * .4,
-                                      child: TextView(
-                                        text: 'Software Installation',
-                                        fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
-                                        maxLines: 1,
-                                        textOverflow: TextOverflow.ellipsis,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Expanded(
-                                          child:
-                                              SvgPicture.asset(AppImages.map)),
-                                      SizedBox(width: 4.w),
-                                      TextView(
-                                        text: 'Lekki, Nigeria',
-                                        fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.right,
-                                        maxLines: 1,
-                                        textOverflow: TextOverflow.ellipsis,
-                                      )
-                                    ],
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        SvgPicture.asset(AppImages.map),
+                                        SizedBox(width: 4.w),
+                                        TextView(
+                                          text: 'Lekki, Nigeria',
+                                          fontWeight: FontWeight.w400,
+                                          color: Pallets.mildGrey100,
+                                          textAlign: TextAlign.right,
+                                          maxLines: 1,
+                                          textOverflow: TextOverflow.ellipsis,
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 8.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        SvgPicture.asset(AppImages.calendar),
+                                        SizedBox(width: 4.w),
+                                        TextView(
+                                          text: '24/04/2021 - 4PM',
+                                          fontWeight: FontWeight.w400,
+                                          color: Pallets.mildGrey100,
+                                          textAlign: TextAlign.left,
+                                          maxLines: 1,
+                                          textOverflow: TextOverflow.ellipsis,
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 8.h),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SvgPicture.asset(AppImages.calendar),
-                                      SizedBox(width: 4.w),
-                                      TextView(
-                                        text: '24/04/2021 - 4PM',
-                                        fontWeight: FontWeight.w400,
-                                        textAlign: TextAlign.left,
-                                        maxLines: 1,
-                                        textOverflow: TextOverflow.ellipsis,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 18.h),
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16.w, vertical: 8.h),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5.r),
-                                      border: Border.all(
-                                          color: Pallets.primary100)),
-                                  child: TextView(
-                                    text: 'Decline',
-                                    fontWeight: FontWeight.w500,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                )),
-                                Spacer(),
-                                Expanded(
-                                    child: GestureDetector(
-                                  onTap: () => _showModal(context),
-                                  child: Container(
+                                ],
+                              ),
+                              SizedBox(height: 18.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Container(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 16.w, vertical: 8.h),
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(5.r),
-                                        color: Pallets.primary100),
+                                        border: Border.all(
+                                            color: Pallets.primary100)),
                                     child: TextView(
-                                      text: 'Accept',
+                                      text: 'Decline',
                                       fontWeight: FontWeight.w500,
-                                      color: Pallets.white,
                                       textAlign: TextAlign.center,
                                     ),
-                                  ),
-                                ))
-                              ],
-                            )
-                          ],
-                        ))
-                      ],
-                    )),
+                                  )),
+                                  Spacer(),
+                                  Expanded(
+                                      child: GestureDetector(
+                                    onTap: () => _showModal(context),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w, vertical: 8.h),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5.r),
+                                          color: Pallets.primary100),
+                                      child: TextView(
+                                        text: 'Accept',
+                                        fontWeight: FontWeight.w500,
+                                        color: Pallets.white,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ))
+                                ],
+                              )
+                            ],
+                          ))
+                        ],
+                      ),
+                      vertical: 17,
+                    ),
                   ))
               .toList()
         ],

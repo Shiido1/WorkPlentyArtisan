@@ -1,12 +1,12 @@
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/login_entity.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/register/get_started_screen.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../email_verification.dart';
 import '../password/forgot_password.dart';
 import 'bloc/login_bloc.dart';
 
@@ -35,6 +34,7 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isTypingPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +63,14 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
                 TextView(
                   text: 'Welcome Back',
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w700,
                 ),
                 SizedBox(height: 4.h),
                 TextView(
                   text: 'Signin to your account.',
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
                 ),
                 SizedBox(height: 30.h),
                 EditFormField(
@@ -88,6 +89,14 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
                   suffixIcon: _togglePassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
+                  onChange: (password) {
+                    password.isEmpty
+                        ? _isTypingPassword = false
+                        : _isTypingPassword = true;
+                    setState(() {});
+                  },
+                  suffixIconColor:
+                      _isTypingPassword ? Pallets.primary100 : Pallets.grey,
                   onPasswordToggle: () =>
                       setState(() => _togglePassword = !_togglePassword),
                 ),
@@ -133,22 +142,25 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
                     primary: Pallets.skyBlue,
                     borderColor: Pallets.skyBlue,
                     icon: AppImages.meta,
-                    onPressed: () => PageRouter.gotoWidget(
-                        EmailVerificationScreen(), context)),
+                    onPressed: () => null),
                 SizedBox(height: 16.h),
-                Wrap(alignment: WrapAlignment.center, children: [
-                  TextView(
-                      text: 'Not on WorkPlenty? ',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400),
-                  TextView(
-                    text: 'Sign up',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    onTap: () =>
-                        PageRouter.gotoWidget(GetStartedScreen(), context),
-                  ),
-                ]),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                  child: Wrap(alignment: WrapAlignment.center, children: [
+                    TextView(
+                        text: 'Already on WorkPlenty? ',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500),
+                    TextView(
+                      text: 'Sign in',
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      onTap: () =>
+                          PageRouter.gotoWidget(WelcomeBackScreen(), context),
+                    ),
+                  ]),
+                )
               ],
             ),
           ),
@@ -158,11 +170,12 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
   }
 
   void _proceed() {
-    if (_formKey.currentState!.validate()) {
-      _bloc.add(LoginingEvent(
-          entity: LoginEntity(
-              email: _emailController.text,
-              password: _passwordController.text)));
-    }
+    PageRouter.gotoNamed(Routes.board, context);
+    // if (_formKey.currentState!.validate()) {
+    //   _bloc.add(LoginingEvent(
+    //       entity: LoginEntity(
+    //           email: _emailController.text,
+    //           password: _passwordController.text)));
+    // }
   }
 }

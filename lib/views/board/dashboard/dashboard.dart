@@ -19,6 +19,7 @@ class Dashboard extends StatelessWidget {
         padding: EdgeInsets.all(16.w),
         child: ListView(
           children: [
+            SizedBox(height: 34.h),
             Row(
               children: [
                 Expanded(

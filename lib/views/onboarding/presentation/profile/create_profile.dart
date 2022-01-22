@@ -1,8 +1,9 @@
+import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
-import 'package:artisan/views/onboarding/presentation/profile/awaiting_approval.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/employment.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/status.dart';
@@ -44,6 +45,7 @@ class _CreateProfileState extends State<CreateProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: defaultAppBar2(context,
           backgroundColor: Pallets.primary100,
           leadingWidth: 70,
@@ -70,15 +72,16 @@ class _CreateProfileState extends State<CreateProfile> {
                   value: _progress / 100,
                   color: Pallets.shade100,
                 ),
-                SizedBox(height: 16.h),
+                SizedBox(height: 24.h),
                 Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-                    child: _bodySelect())
+                    child: _bodySelect()),
               ],
             ),
             BtnWidget(
               btnText: 'Next',
+              showSkip: !_showSkip(_index),
               callback: () => _increamentIndex(),
               goBack: () => _decreamentIndex(),
             )
@@ -96,7 +99,7 @@ class _CreateProfileState extends State<CreateProfile> {
           message: 'Guess who just completed setting up is profile? You!',
           btnText: 'Continue', next: () {
         PageRouter.goBack(context);
-        PageRouter.gotoWidget(AwaitingApproval(), context);
+        PageRouter.gotoNamed(Routes.awaitingApproval, context);
       });
       return;
     }
@@ -136,35 +139,37 @@ class _CreateProfileState extends State<CreateProfile> {
       children: [
         TextView(
           text: 'Categorize the work the you do',
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
           fontSize: 18,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 43.h),
+        SizedBox(height: 32.h),
         TextView(
           text: 'Industry?',
           fontWeight: FontWeight.w500,
-          fontSize: 18,
+          fontSize: 16,
+          letterSpacing: -0.75,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 2.h),
         EditFormField(
           label: 'Technology',
           suffixIcon: Icons.keyboard_arrow_down,
         ),
-        SizedBox(height: 26.h),
+        SizedBox(height: 22.h),
         TextView(
           text: 'Service you offer?',
           fontWeight: FontWeight.w500,
-          fontSize: 18,
+          fontSize: 16,
+          letterSpacing: -0.75,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 2.h),
         EditFormField(
           label: 'Select Category',
           suffixIcon: Icons.keyboard_arrow_down,
         ),
-        SizedBox(height: 18.h),
+        SizedBox(height: 22.h),
         EditFormField(
           label: 'Select Subcategory',
           suffixIcon: Icons.keyboard_arrow_down,
@@ -173,6 +178,7 @@ class _CreateProfileState extends State<CreateProfile> {
             BottomSheets.showSheet(context, child: SubCategorySheet());
           },
         ),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -187,21 +193,23 @@ class _CreateProfileState extends State<CreateProfile> {
           fontSize: 18,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 5.h),
+        SizedBox(height: 3.h),
         TextView(
           text: 'Choose as many as you want',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 43.h),
+        SizedBox(height: 10.h),
         Wrap(
-          spacing: 18.w,
+          spacing: 14.w,
           children: List<Widget>.generate(
             _fields.length,
             (int index) {
               final _field = _fields[index];
               return ChoiceChip(
+                backgroundColor: Color(0xffC4E2FE),
                 label: TextView(
                   text: _field,
                   fontWeight: FontWeight.w700,
@@ -228,17 +236,124 @@ class _CreateProfileState extends State<CreateProfile> {
         SizedBox(height: 114.h),
         TextView(
           text: 'Not what you’re looking for?',
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 16,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: 6.h),
         EditFormField(label: 'Add'),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
 
   Widget _formThree() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Work Experence?',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text:
+              'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Color(0xff9E9C9C),
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 31.h),
+        Divider(),
+        SizedBox(height: 13.h),
+        ...[1].map((_) => _experience()).toList(),
+        SizedBox(height: 55.h),
+        ButtonWidget(
+            buttonText: 'Add Experience',
+            buttonStyle: true,
+            primary: Colors.transparent,
+            color: Pallets.primary150,
+            fontWeight: FontWeight.w500,
+            onPressed: () =>
+                BottomSheets.showSheet(context, child: EmploymentSheet())),
+      ],
+    );
+  }
+
+  Widget _formFour() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextView(
+          text: 'Level of Education?',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 5.h),
+        TextView(
+          text:
+              'Add schools, courses you attended, areas of study, and degrees you attained',
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 43.h),
+        TextView(
+          text: 'School',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'Ex: University of Ibadan',
+        ),
+        SizedBox(height: 31.h),
+        TextView(
+          text: 'Field of Study',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Ex: Computer Engineering'),
+        SizedBox(height: 31.h),
+        TextView(
+          text: 'Degree',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(label: 'Ex. Bachelor\'s'),
+        SizedBox(height: 31.h),
+        TextView(
+          text: 'Dates Attended',
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'From',
+          suffixIcon: Icons.keyboard_arrow_down_sharp,
+        ),
+        SizedBox(height: 8.h),
+        EditFormField(
+          label: 'To(expected graduation year)',
+          suffixIcon: Icons.keyboard_arrow_down_sharp,
+        ),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
+      ],
+    );
+  }
+
+  Widget _formFive() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -252,8 +367,9 @@ class _CreateProfileState extends State<CreateProfile> {
         TextView(
           text:
               'Select your overall experience regarding skills selected ealier',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
@@ -291,108 +407,8 @@ class _CreateProfileState extends State<CreateProfile> {
               onTap: () {},
             )
           ],
-        )
-      ],
-    );
-  }
-
-  Widget _formFour() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextView(
-          text: 'Level of Education?',
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          textAlign: TextAlign.left,
         ),
-        SizedBox(height: 5.h),
-        TextView(
-          text:
-              'Add schools, courses you attended, areas of study, and degrees you attained',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 43.h),
-        TextView(
-          text: 'School',
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 8.h),
-        EditFormField(
-          label: 'Ex: University of Ibadan',
-        ),
-        SizedBox(height: 18.h),
-        TextView(
-          text: 'Field of Study',
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 8.h),
-        EditFormField(label: 'Ex: Computer Engineering'),
-        SizedBox(height: 18.h),
-        TextView(
-          text: 'Degree',
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 8.h),
-        EditFormField(label: 'Ex. Bachelor\'s'),
-        SizedBox(height: 18.h),
-        TextView(
-          text: 'Dates Attended',
-          fontWeight: FontWeight.w500,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 8.h),
-        EditFormField(
-          label: 'From',
-          suffixIcon: Icons.keyboard_arrow_down_sharp,
-        ),
-        SizedBox(height: 8.h),
-        EditFormField(
-          label: 'To(expected graduation year)',
-          suffixIcon: Icons.keyboard_arrow_down_sharp,
-        ),
-      ],
-    );
-  }
-
-  Widget _formFive() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextView(
-          text: 'Work Experence?',
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 5.h),
-        TextView(
-          text:
-              'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 43.h),
-        Divider(),
-        ...[1, 2].map((_) => _experience()).toList(),
-        SizedBox(height: 43.h),
-        ButtonWidget(
-            buttonText: 'Add Experience',
-            buttonStyle: true,
-            primary: Colors.transparent,
-            color: Pallets.primary100,
-            onPressed: () =>
-                BottomSheets.showSheet(context, child: EmploymentSheet())),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -403,7 +419,7 @@ class _CreateProfileState extends State<CreateProfile> {
       children: [
         TextView(
           text: 'Preferred Language',
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w700,
           fontSize: 18,
           textAlign: TextAlign.left,
         ),
@@ -411,8 +427,9 @@ class _CreateProfileState extends State<CreateProfile> {
         TextView(
           text:
               'Language you are proefficient with, meaning can have conversation with',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
@@ -422,6 +439,7 @@ class _CreateProfileState extends State<CreateProfile> {
           label: 'Add Language',
           suffixIcon: Icons.keyboard_arrow_down,
         ),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -436,11 +454,11 @@ class _CreateProfileState extends State<CreateProfile> {
           fontSize: 18,
           textAlign: TextAlign.left,
         ),
-        SizedBox(height: 8.h),
         TextView(
           text: 'Choose available hour range and rate',
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
@@ -462,7 +480,7 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(label: 'Ex. NGN1000 / hour'),
-        SizedBox(height: 18.h),
+        SizedBox(height: 31.h),
         TextView(
           text: 'Rate - Live Consultancy',
           fontWeight: FontWeight.w500,
@@ -471,6 +489,7 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(label: 'Ex. NGN1000 / 15 minutes'),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -489,8 +508,9 @@ class _CreateProfileState extends State<CreateProfile> {
         TextView(
           text:
               'Write a great profile bio, remember that’s what attracts your clients',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
@@ -526,6 +546,7 @@ class _CreateProfileState extends State<CreateProfile> {
           label: '',
           suffixIcon: Icons.keyboard_arrow_down,
         ),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -544,8 +565,9 @@ class _CreateProfileState extends State<CreateProfile> {
         TextView(
           text:
               'Please upload a professional portrait in which your face appears',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
@@ -560,6 +582,7 @@ class _CreateProfileState extends State<CreateProfile> {
             primary: Colors.transparent,
             color: Pallets.primary100,
             onPressed: () {}),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -578,8 +601,9 @@ class _CreateProfileState extends State<CreateProfile> {
         TextView(
           text:
               'We take your privacy seriously. Only your city and country will be visible to clients',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          fontSize: 14,
+          color: Pallets.mildGrey,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
@@ -591,7 +615,7 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(label: 'Nigeria', suffixIcon: Icons.keyboard_arrow_down),
-        SizedBox(height: 18.h),
+        SizedBox(height: 31.h),
         TextView(
           text: 'Street Address',
           fontWeight: FontWeight.w500,
@@ -602,7 +626,7 @@ class _CreateProfileState extends State<CreateProfile> {
         EditFormField(label: 'Ex : 123 Street Close'),
         SizedBox(height: 8.h),
         EditFormField(label: 'Apartment/Suite'),
-        SizedBox(height: 18.h),
+        SizedBox(height: 31.h),
         TextView(
           text: 'City',
           fontWeight: FontWeight.w500,
@@ -611,7 +635,7 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(label: 'Search for your city'),
-        SizedBox(height: 18.h),
+        SizedBox(height: 31.h),
         TextView(
           text: 'ZIP/Postal Code',
           fontWeight: FontWeight.w500,
@@ -619,7 +643,8 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex: 00000')
+        EditFormField(label: 'Ex: 00000'),
+        SizedBox(height: Utils.getDeviceHeight(context) * .3),
       ],
     );
   }
@@ -634,18 +659,19 @@ class _CreateProfileState extends State<CreateProfile> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 18.h),
                 TextView(
                   text: 'Software Engineer | Eduwiki',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: Pallets.primary150,
                   textAlign: TextAlign.left,
                 ),
                 SizedBox(height: 8.h),
                 TextView(
                   text: 'May 2020 - Present',
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: 14,
+                  color: Pallets.primary150,
                   textAlign: TextAlign.left,
                 ),
               ],
@@ -654,9 +680,20 @@ class _CreateProfileState extends State<CreateProfile> {
           ImageLoader(path: AppImages.edit),
           ImageLoader(path: AppImages.close),
         ]),
-        SizedBox(height: 18.h),
+        SizedBox(height: 31.h),
         Divider(),
       ],
     );
   }
+}
+
+bool _showSkip(int _index) {
+  return _index == 0 ||
+      _index == 1 ||
+      _index == 2 ||
+      _index == 4 ||
+      _index == 6 ||
+      _index == 7 ||
+      _index == 8 ||
+      _index == 9;
 }

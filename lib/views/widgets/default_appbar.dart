@@ -94,8 +94,8 @@ AppBar defaultAppBar2(BuildContext context,
     title: titleWidgte ??
         TextView(
             text: title,
-            fontWeight: FontWeight.w700,
-            fontSize: 22,
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
             color: textColor ?? Theme.of(context).colorScheme.primary,
             textAlign: TextAlign.center),
     actions: actions,

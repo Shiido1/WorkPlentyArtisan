@@ -7,11 +7,16 @@ typedef void RatingChangeCallback(double rating);
 class StarRating extends StatelessWidget {
   final int? starCount;
   final double? rating;
+  final double? starSize;
   final RatingChangeCallback? onRatingChanged;
   final Color? color;
 
   StarRating(
-      {this.starCount = 5, this.rating = .0, this.onRatingChanged, this.color});
+      {this.starSize = 14,
+      this.starCount = 5,
+      this.rating = .0,
+      this.onRatingChanged,
+      this.color});
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
@@ -19,19 +24,19 @@ class StarRating extends StatelessWidget {
       icon = new Icon(
         Icons.star_border,
         color: Pallets.grey,
-        size: 14.w,
+        size: starSize?.w,
       );
     } else if (index > rating! - 1 && index < rating!) {
       icon = new Icon(
         Icons.star_half,
         color: color ?? Pallets.gold,
-        size: 14.w,
+        size: starSize?.w,
       );
     } else {
       icon = new Icon(
         Icons.star,
         color: color ?? Pallets.gold,
-        size: 14.w,
+        size: starSize?.w,
       );
     }
     return new InkResponse(

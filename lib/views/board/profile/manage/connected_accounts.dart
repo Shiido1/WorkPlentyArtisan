@@ -27,6 +27,7 @@ class _ConnectedAccountsState extends State<ConnectedAccounts> {
         padding: EdgeInsets.all(16.w),
         child: ListView(
           children: [
+            SizedBox(height: 55.h),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

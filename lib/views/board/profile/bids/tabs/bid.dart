@@ -10,6 +10,7 @@ class BidTab extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       child: ListView(
         children: [
+          SizedBox(height: 23.h),
           ...[1, 2, 2, 2, 2, 2, 3].map((_) => CardWidget()).toList()
         ],
       ),

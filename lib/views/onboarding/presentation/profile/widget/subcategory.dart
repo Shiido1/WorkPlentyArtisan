@@ -39,6 +39,7 @@ class SubCategorySheet extends StatelessWidget {
                             text: category,
                             textAlign: TextAlign.left,
                             fontSize: 14,
+                            color: Color(0xff4F4F4F),
                             fontWeight: FontWeight.w500,
                           ),
                         ))

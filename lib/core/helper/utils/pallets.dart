@@ -6,7 +6,7 @@ class Pallets {
   static Color primary50 = const Color(0xffE6EFFF);
   static Color primaryText = const Color(0xff363535);
   static Color primary100 = const Color(0xff0D2F4F);
-  // static Color primary100 = const Color(0xff10375C);
+  static Color mildGrey = const Color(0xff646363);
   static Color primary150 = const Color(0xff4F4F4F);
   static Color skyBlue = const Color(0xffCDE6FE);
   static Color lightGrey = const Color(0xffC4C4C4);
@@ -14,10 +14,16 @@ class Pallets {
   static Color shade100 = const Color(0xff035584);
   static Color shade200 = const Color(0xff035584);
   static Color chipBackground = const Color(0xffC4E2FE);
-  static Color grey = const Color(0xff9E9C9C);
+  static Color grey = const Color(0xffC4C4C4);
   static Color grey100 = const Color(0xffD0D3D9);
+  static Color mildGrey100 = const Color(0xff9E9C9C);
+  static Color mildGrey200 = const Color(0xff707C97);
+  static Color mildGrey300 = const Color(0xff808191);
   static Color lightShade = const Color(0xff7FA3C5);
   static Color gold = const Color(0xffFCCF5A);
+  static Color workPlentyLightShade = const Color(0xff61C5FF);
+  static Color workPlentyDarkShade = const Color(0xff008BDB);
+  static Color workPlentyProgressShade = const Color(0xff035584);
 
   static Color warning = const Color(0xffFFFAEB);
   static Color warning700 = const Color(0xffB54708);

@@ -29,6 +29,7 @@ class Review extends StatelessWidget {
               StarRating(
                 starCount: 5,
                 rating: 4,
+                starSize: 40,
               ),
               SizedBox(height: 16.h),
               TextView(
@@ -39,50 +40,63 @@ class Review extends StatelessWidget {
               SizedBox(height: 10.h),
               TextView(
                   text: '(31 Reviews)',
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
                   textAlign: TextAlign.center),
             ],
           )),
           SizedBox(height: 16.h),
           ...[1, 1, 1]
               .map(
-                (_) => ReviewBgCard(Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 16.h),
-                    Row(
+                (_) => Container(
+                  margin: EdgeInsets.only(bottom: 20.h),
+                  child: ReviewBgCard(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: StarRating(
-                            starCount: 5,
-                            rating: 4,
-                          ),
+                        SizedBox(height: 16.h),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: StarRating(
+                                starCount: 5,
+                                rating: 4,
+                              ),
+                            ),
+                            TextView(
+                                text: '7 days ago',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                textAlign: TextAlign.right),
+                          ],
                         ),
+                        SizedBox(height: 16.h),
                         TextView(
-                            text: '7 days ago',
+                            text: 'Falimi Balogun',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            textAlign: TextAlign.left),
+                        SizedBox(height: 16.h),
+                        TextView(
+                            text: 'Awesome Service',
                             fontWeight: FontWeight.w700,
-                            textAlign: TextAlign.right),
+                            fontSize: 14,
+                            textAlign: TextAlign.left),
+                        SizedBox(height: 16.h),
+                        TextView(
+                            text:
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing Dignissim viverra morbi eget fames volutpat aliquam. Posuere odio a etiam maecenas vitae et.',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Pallets.primary150,
+                            textAlign: TextAlign.left),
+                        SizedBox(height: 16.h),
                       ],
                     ),
-                    SizedBox(height: 16.h),
-                    TextView(
-                        text: 'Falimi Balogun',
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.left),
-                    SizedBox(height: 16.h),
-                    TextView(
-                        text: 'Awesome Service',
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.left),
-                    SizedBox(height: 16.h),
-                    TextView(
-                        text:
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing Dignissim viverra morbi eget fames volutpat aliquam. Posuere odio a etiam maecenas vitae et.',
-                        fontWeight: FontWeight.w500,
-                        textAlign: TextAlign.left),
-                    SizedBox(height: 16.h),
-                  ],
-                )),
+                    borderRadiusGeometry: BorderRadius.zero,
+                    vertical: 17,
+                  ),
+                ),
               )
               .toList()
         ],

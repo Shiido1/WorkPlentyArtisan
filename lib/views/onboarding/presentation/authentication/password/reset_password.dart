@@ -1,8 +1,10 @@
 import 'package:artisan/core/di/injector.dart';
-import 'package:artisan/core/helper/utils/images.dart';
+import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/reset_password_entity.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/login/welcom_back.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
@@ -26,10 +28,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final _loadingKey = GlobalKey<FormState>();
   final _bloc = PasswordBloc(inject(), inject());
   final _formKey = GlobalKey<FormState>();
-  bool _passwordToggle = true;
-  bool _confirmPasswordToggle = true;
+
   final _passwordController = TextEditingController();
   final _pinController = TextEditingController();
+  bool _togglePassword = true;
+  bool _isTypingPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -77,28 +80,23 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 SizedBox(height: 18.h),
                 EditFormField(
                   label: 'Password',
+                  obscureText: _togglePassword,
                   controller: _passwordController,
-                  obscureText: _passwordToggle,
                   validator: Validators.validatePlainPassword(),
                   keyboardType: TextInputType.visiblePassword,
-                  suffixIcon: _passwordToggle
+                  suffixIcon: _togglePassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
+                  onChange: (password) {
+                    password.isEmpty
+                        ? _isTypingPassword = false
+                        : _isTypingPassword = true;
+                    setState(() {});
+                  },
+                  suffixIconColor:
+                      _isTypingPassword ? Pallets.primary100 : Pallets.grey,
                   onPasswordToggle: () =>
-                      setState(() => _passwordToggle = !_passwordToggle),
-                ),
-                SizedBox(height: 18.h),
-                EditFormField(
-                  label: 'Confirm Password',
-                  obscureText: _confirmPasswordToggle,
-                  validator: Validators.validateConfirmPassword(
-                      _passwordController.text),
-                  keyboardType: TextInputType.visiblePassword,
-                  suffixIcon: _confirmPasswordToggle
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined,
-                  onPasswordToggle: () => setState(
-                      () => _confirmPasswordToggle = !_confirmPasswordToggle),
+                      setState(() => _togglePassword = !_togglePassword),
                 ),
                 SizedBox(height: 18.h),
                 ButtonWidget(
@@ -113,12 +111,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   void _proceed() {
-    if (_formKey.currentState!.validate()) {
-      _bloc.add(ResetPasswordEvent(
-          entity: ResetPasswordEntity(
-              email: widget.email,
-              pin: '121212',
-              password: _passwordController.text)));
-    }
+    PageRouter.gotoWidget(WelcomeBackScreen(), context);
+    // if (_formKey.currentState!.validate()) {
+    //   _bloc.add(ResetPasswordEvent(
+    //       entity: ResetPasswordEntity(
+    //           email: widget.email,
+    //           pin: '121212',
+    //           password: _passwordController.text)));
+    // }
   }
 }

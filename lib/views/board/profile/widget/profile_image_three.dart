@@ -1,8 +1,6 @@
-import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,7 +56,7 @@ class ProfileImageCardThree extends StatelessWidget {
                   color: Pallets.white,
                   maxLines: 1,
                   textOverflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left),
+                  textAlign: TextAlign.center),
               SizedBox(width: 8.w),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
@@ -69,11 +67,12 @@ class ProfileImageCardThree extends StatelessWidget {
                     text: 'Artisan',
                     fontWeight: FontWeight.w400,
                     color: Pallets.white,
+                    fontSize: 8,
                     textAlign: TextAlign.center),
               )
             ],
           ),
-          SizedBox(height: 22.h),
+          SizedBox(height: 18.h),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -81,17 +80,17 @@ class ProfileImageCardThree extends StatelessWidget {
               SizedBox(width: 4.w),
               TextView(
                   text: 'Abuja, Nigeria',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                   color: Pallets.grey100,
                   maxLines: 1,
                   textOverflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left),
             ],
           ),
+          SizedBox(height: 30.h),
         ],
       ),
     );
-    ;
   }
 }

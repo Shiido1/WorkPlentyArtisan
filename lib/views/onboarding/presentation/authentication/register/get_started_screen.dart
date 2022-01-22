@@ -1,6 +1,8 @@
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/email_verification.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
@@ -32,6 +34,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   final _loadingKey = GlobalKey<FormState>();
   final _globalFormKey = GlobalKey<FormState>();
   bool _togglePassword = true;
+  bool _isTypingPassword = false;
 
   final _fnController = TextEditingController();
   final _lnController = TextEditingController();
@@ -57,6 +60,8 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               if (state is RegisterSuccess) {
                 WorkPlenty.hideLoading(_loadingKey);
                 logger.d(state.response.toJson());
+                PageRouter.gotoWidget(
+                    EmailVerificationScreen(_emailController.text), context);
               }
               if (state is RegisterFailed) {
                 WorkPlenty.hideLoading(_loadingKey);
@@ -131,7 +136,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextView(
-                              text: _country?.countryCode ?? 'NG',
+                              text: '+${_country?.phoneCode ?? '234'}',
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
                               color: Pallets.grey900,
@@ -144,7 +149,6 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                       ),
                     ),
                   ),
-              
                 ),
                 SizedBox(height: 18.h),
                 EditFormField(
@@ -154,8 +158,16 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   suffixIcon: _togglePassword
                       ? Icons.visibility_outlined
                       : Icons.visibility_off_outlined,
+                  onChange: (password) {
+                    password.isEmpty
+                        ? _isTypingPassword = false
+                        : _isTypingPassword = true;
+                    setState(() {});
+                  },
                   onPasswordToggle: () =>
                       setState(() => _togglePassword = !_togglePassword),
+                  suffixIconColor:
+                      _isTypingPassword ? Pallets.primary100 : Pallets.grey,
                   validator: Validators.validatePlainPassword(),
                 ),
                 SizedBox(height: 18.h),
@@ -212,19 +224,23 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                     icon: AppImages.meta,
                     onPressed: () {}),
                 SizedBox(height: 16.h),
-                Wrap(alignment: WrapAlignment.center, children: [
-                  TextView(
-                      text: 'Already on WorkPlenty? ',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400),
-                  TextView(
-                    text: 'Sign in',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    onTap: () =>
-                        PageRouter.gotoWidget(WelcomeBackScreen(), context),
-                  ),
-                ]),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
+                  child: Wrap(alignment: WrapAlignment.center, children: [
+                    TextView(
+                        text: 'Already on WorkPlenty? ',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500),
+                    TextView(
+                      text: 'Sign in',
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      onTap: () =>
+                          PageRouter.gotoWidget(WelcomeBackScreen(), context),
+                    ),
+                  ]),
+                )
               ],
             ),
           ),
@@ -234,14 +250,16 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   }
 
   void _proceed() {
-    if (_globalFormKey.currentState!.validate()) {
-      _bloc.add(RegisteringEvent(
-          entity: RegisterEntity(
-              email: _emailController.text,
-              fname: _fnController.text,
-              lname: _lnController.text,
-              phone: '${_country?.phoneCode ?? '+234'}${_phoneController.text}',
-              password: _passwordController.text)));
-    }
+    PageRouter.gotoWidget(
+        EmailVerificationScreen(_emailController.text), context);
+    // if (_globalFormKey.currentState!.validate()) {
+    //   // _bloc.add(RegisteringEvent(
+    //   //     entity: RegisterEntity(
+    //   //         email: _emailController.text,
+    //   //         fname: _fnController.text,
+    //   //         lname: _lnController.text,
+    //   //         phone: '${_country?.phoneCode ?? '+234'}${_phoneController.text}',
+    //   //         password: _passwordController.text)));
+    // }
   }
 }

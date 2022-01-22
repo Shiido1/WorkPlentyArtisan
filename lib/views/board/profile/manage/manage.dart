@@ -1,19 +1,15 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
-import 'package:artisan/views/board/payout/payout.dart';
 import 'package:artisan/views/board/profile/manage/address_settings.dart';
-import 'package:artisan/views/board/profile/request/requests.dart';
-import 'package:artisan/views/board/profile/statistics/statistics.dart';
 import 'package:artisan/views/board/profile/widget/clicks_one.dart';
 import 'package:artisan/views/board/profile/widget/profile_image_three.dart';
 import 'package:artisan/views/widgets/custom_switch.dart';
-import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../edit_profile.dart';
 import 'account_settings.dart';
 import 'connected_accounts.dart';
+import 'password_settings.dart';
 import 'payout_Settings.dart';
 
 class ManageProfile extends StatelessWidget {
@@ -76,7 +72,8 @@ class ManageProfile extends StatelessWidget {
                       image: AppImages.security,
                       text: 'Password & Security',
                       trailing: true,
-                      onTap: () {}),
+                      onTap: () =>
+                          PageRouter.gotoWidget(PasswordSettings(), context)),
                 ],
               ),
             )

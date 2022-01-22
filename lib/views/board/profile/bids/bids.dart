@@ -12,7 +12,7 @@ class Bids extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: getCustomAppBar(context, 'Bidd',
+        appBar: getCustomAppBar(context, 'Bid',
             showLeading: true,
             bottom: TabBar(
               tabs: [

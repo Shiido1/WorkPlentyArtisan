@@ -27,24 +27,25 @@ class _PayoutSettingsState extends State<PayoutSettings> {
         children: [
           ListView(
             children: [
+              SizedBox(height: 55.h),
               EditFormField(
                 decoration: _getDecoration('Country', dropDown: true),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration: _getDecoration('Bank', dropDown: true),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration:
                     _getDecoration('Bank Account Name', dropDown: false),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration:
                     _getDecoration('Bank Account Number', dropDown: false),
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 20.h),
               EditFormField(
                 decoration: _getDecoration('BVN', dropDown: false),
               ),

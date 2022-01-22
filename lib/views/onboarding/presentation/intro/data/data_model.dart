@@ -8,28 +8,26 @@ class DataModel {
   static List<DataModel> getDataModel() {
     List<DataModel> _data = [];
     DataModel _dataModel = DataModel(
-        title: 'Find Creative Artisans',
-        body:
-            'Easily find and outsource creative artisans for gigs and services',
+        title: 'Find Interesting Projects',
+        body: 'Easily find and outsource intresting gigs and projects',
         image: 'assets/images/obnd_one.png');
     _data.add(_dataModel);
 
     _dataModel = DataModel(
-        title: 'Get Bids on your Projects',
-        body:
-            'Get bids from qualified artisans and proposal on your gigs and projects',
+        title: 'Submit Bids and Proposal',
+        body: 'Make bids and proposal on gigs and projects',
         image: 'assets/images/obnd_two.png');
     _data.add(_dataModel);
 
     _dataModel = DataModel(
-        title: 'Track Artisans for Home Service',
-        body: 'Get bids on home services from qualified artisan and track them',
+        title: 'Get Invited for Home Service',
+        body: 'Get invites from Artisan for home service projects',
         image: 'assets/images/obnd_three.png');
     _data.add(_dataModel);
 
     _dataModel = DataModel(
-        title: 'Pay Artisan for Gigs Completed',
-        body: 'Pay artisan for projects completion or milestones',
+        title: 'Earn on Completed Gigs',
+        body: 'Get paid  for projects, and for each milestone completed.',
         image: 'assets/images/obnd_four.png');
     _data.add(_dataModel);
 

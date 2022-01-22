@@ -1,12 +1,5 @@
-import 'package:artisan/core/helper/routes/navigation.dart';
-import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/widget/card_widget.dart';
 import 'package:artisan/views/board/widget/custom_appbar.dart';
-import 'package:artisan/views/notification/notification_screen.dart';
-import 'package:artisan/views/widgets/default_appbar.dart';
-import 'package:artisan/views/widgets/image_loader.dart';
-import 'package:artisan/views/widgets/tab_painter.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,13 +20,28 @@ class Saved extends StatelessWidget {
               tabs: [
                 Container(
                     margin: EdgeInsets.only(bottom: 10.h),
-                    child: Text('Freelance')),
+                    child: TextView(
+                      text: 'Freelance',
+                      color: Pallets.white,
+                      maxLines: 1,
+                      textOverflow: TextOverflow.ellipsis,
+                    )),
                 Container(
                     margin: EdgeInsets.only(bottom: 10.h),
-                    child: Text('Home Service')),
+                    child: TextView(
+                      text: 'Home Service',
+                      color: Pallets.white,
+                      maxLines: 1,
+                      textOverflow: TextOverflow.ellipsis,
+                    )),
                 Container(
                     margin: EdgeInsets.only(bottom: 10.h),
-                    child: Text('Live Consultancy')),
+                    child: TextView(
+                      text: 'Live Consultancy',
+                      color: Pallets.white,
+                      maxLines: 1,
+                      textOverflow: TextOverflow.ellipsis,
+                    )),
               ],
             )),
         body: TabBarView(
