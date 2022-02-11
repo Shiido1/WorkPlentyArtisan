@@ -1,6 +1,5 @@
 import 'package:artisan/core/api/auth/auth_service.dart';
 import 'package:artisan/core/database/hive_database.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/authorization_impl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/authorization_source_contract_impl.dart';
@@ -12,8 +11,9 @@ import 'package:artisan/views/onboarding/presentation/authentication/login/bloc/
 import 'package:artisan/views/onboarding/presentation/authentication/password/bloc/password_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/register/bloc/register_bloc.dart';
 import 'package:get_it/get_it.dart';
-import '../network/app_config.dart';
+
 import '../database/session_manager.dart';
+import '../network/app_config.dart';
 
 final inject = GetIt.instance;
 final sessionManager = SessionManager();

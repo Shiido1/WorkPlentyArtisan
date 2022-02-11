@@ -1,10 +1,8 @@
 import 'package:artisan/core/di/injector.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
-import 'package:artisan/views/onboarding/domain/entity/forgot_password_entity.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/password/bloc/password_bloc.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';

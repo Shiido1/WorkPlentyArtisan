@@ -3,7 +3,6 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
-import 'package:artisan/views/onboarding/domain/entity/reset_password_entity.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/login/welcom_back.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';

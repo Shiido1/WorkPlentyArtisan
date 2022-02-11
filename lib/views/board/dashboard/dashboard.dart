@@ -1,12 +1,6 @@
-import 'package:artisan/core/helper/routes/navigation.dart';
-import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/widget/card_widget.dart';
-import 'package:artisan/views/notification/notification_screen.dart';
-import 'package:artisan/views/widgets/default_appbar.dart';
-import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

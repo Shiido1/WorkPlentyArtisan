@@ -1,5 +1,4 @@
 import 'package:artisan/views/onboarding/domain/entity/reset_password_entity.dart';
-import 'package:equatable/equatable.dart';
 
 class ForgotPasswordEntity extends ResetPasswordEntity {
   final String? email;

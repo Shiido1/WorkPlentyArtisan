@@ -1,4 +1,4 @@
-import 'package:artisan/core/helper/configs/instances.dart';
+
 
 class LaravelError {
   String? msg;

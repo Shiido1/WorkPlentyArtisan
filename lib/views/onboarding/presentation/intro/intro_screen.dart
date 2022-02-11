@@ -88,12 +88,12 @@ class _IntroOneScreenState extends State<IntroOneScreen> {
                         TextView(
                           text: _dataModel[currentPageValue].body ?? '',
                           textAlign: TextAlign.center,
-                          fontSize: 16.sp,
-                          color: Pallets.grey500,
+                          fontSize: 15.sp,
+                          color: Pallets.black,
                           fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
-                        SizedBox(height: 50.h),
+                        SizedBox(height: 40.h),
                         ButtonWidget(
                             buttonText: 'Get Started',
                             width: Utils.getDeviceWidth(context),

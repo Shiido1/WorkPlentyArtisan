@@ -1,6 +1,4 @@
-import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/profile/widget/clicks_two.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/edit_form_widget.dart';
 import 'package:artisan/views/widgets/review_bg_card.dart';

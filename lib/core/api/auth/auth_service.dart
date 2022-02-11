@@ -1,5 +1,4 @@
 import 'package:artisan/core/entity/default_response/default_response.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/onboarding/data/model/login_response/login_response.dart';
@@ -8,7 +7,6 @@ import 'package:artisan/views/onboarding/domain/entity/forgot_password_entity.da
 import 'package:artisan/views/onboarding/domain/entity/login_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/register_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/reset_password_entity.dart';
-import 'package:dio/dio.dart';
 
 class AuthorizationService {
   final NetworkService _networkService;

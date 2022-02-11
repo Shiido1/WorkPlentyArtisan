@@ -1,4 +1,3 @@
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,3 @@
-import 'package:artisan/views/board/dashboard/dashboard.dart';
 import 'package:artisan/views/onboarding/presentation/intro/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ import 'core/di/injector.dart';
 import 'core/helper/routes/routes.dart';
 import 'core/network/app_config.dart';
 import 'core/theme/theme.dart';
-import 'views/board/board.dart';
 
 void main() async {
   await initializeCore(environment: Environment.staging);

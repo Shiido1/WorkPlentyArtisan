@@ -6,7 +6,6 @@ import 'package:artisan/views/widgets/edit_form_widget.dart';
 import 'package:artisan/views/widgets/image_decoration.dart';
 import 'package:artisan/views/widgets/review_bg_card.dart';
 import 'package:artisan/views/widgets/text_views.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
