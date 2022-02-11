@@ -1,8 +1,10 @@
+import 'package:artisan/core/helper/configs/providers.dart';
 import 'package:artisan/views/onboarding/presentation/intro/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:provider/provider.dart';
 
 import 'core/di/injector.dart';
 import 'core/helper/routes/routes.dart';
@@ -24,7 +26,9 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       builder: () => OverlaySupport.global(
-        child: MaterialApp(
+        child:MultiProvider(providers: Providers.getProviders,
+        
+        child:  MaterialApp(
           title: 'Artisan',
           debugShowCheckedModeBanner: false,
           theme: lightThemeData(context),
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
           routes: Routes.getRoutes,
           home: IntroOneScreen(),
-        ),
+        ),),
       ),
     );
   }

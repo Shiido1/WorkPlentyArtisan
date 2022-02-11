@@ -81,7 +81,6 @@ class CardWidget extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 7.h),
-               
                 SingleChildScrollView(
                   child: Row(
                     children: [

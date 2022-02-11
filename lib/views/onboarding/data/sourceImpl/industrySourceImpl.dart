@@ -1,5 +1,6 @@
 import 'package:artisan/core/api/industry/industry_api.dart';
 import 'package:artisan/views/onboarding/data/model/industry/delete_industry_response/delete_industry_response.dart';
+import 'package:artisan/views/onboarding/data/model/industry/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry/list_industry_response/list_industr_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry/save_industry_response/save_industry_response.dart';
 import 'package:artisan/views/onboarding/domain/entity/industry_entity.dart';
@@ -23,5 +24,10 @@ class IndustrySourceImpl implements IndustrySource {
   @override
   Future<SaveIndustryResponse> saveIndustry(IndustryEntity entity) async {
     return await _api.saveIndustry(entity);
+  }
+
+  @override
+  Future<GeneralListOfIndustryResponse> generalListOfIndustry() async {
+    return await _api.generalListOfIndustries();
   }
 }

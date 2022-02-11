@@ -1,5 +1,3 @@
-
-
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 

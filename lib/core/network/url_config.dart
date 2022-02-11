@@ -39,7 +39,7 @@ class UrlConfig {
   static const String gigCategory = 'gig/categories';
   static const String gigSkill = 'gig/skills';
 
-  static const String industry = 'industry/fetch';
+  static const String generalIndustryList = 'industry/fetch';
   static const String reviewList = 'review/list';
   static const String reviewSave = 'review/save';
   static const String listOfArtisans = 'user/artisan/list';

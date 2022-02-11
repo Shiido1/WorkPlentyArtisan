@@ -1,5 +1,3 @@
-
-
 class LaravelError {
   String? msg;
   int? code;

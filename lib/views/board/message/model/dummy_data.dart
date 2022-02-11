@@ -1,4 +1,3 @@
-
 class ChatModel {
   final String? name;
   final String? message;

@@ -1,5 +1,3 @@
-
-
 import 'package:artisan/core/api/payment/payment_api.dart';
 import 'package:artisan/views/onboarding/data/model/payment/deposit_response/deposit_response.dart';
 import 'package:artisan/views/onboarding/data/model/payment/overview_payment_response/overview_payment_response.dart';

@@ -1,12 +1,16 @@
 import 'package:artisan/core/api/auth/auth_api.dart';
+import 'package:artisan/core/api/industry/industry_api.dart';
 import 'package:artisan/core/api/profile/profile_api.dart';
 import 'package:artisan/core/database/hive_database.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/authContractImpl.dart';
+import 'package:artisan/views/onboarding/data/contractImpl/industryContractImpl.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/authSourceImpl.dart';
+import 'package:artisan/views/onboarding/data/sourceImpl/industrySourceImpl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/profileSourceImpl.dart';
 import 'package:artisan/views/onboarding/domain/usecases/auth_usecase.dart';
+import 'package:artisan/views/onboarding/domain/usecases/industry_usecases.dart';
 import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/bloc/authbloc_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/profile/bloc/profile_bloc.dart';
@@ -50,16 +54,16 @@ void _initBloc() {
 void _initDataSources() {
   inject.registerLazySingleton<AuthSourceImpl>(
       () => AuthSourceImpl(api: inject()));
-  inject.registerLazySingleton<ProfileSourceImpl>(
-      () => ProfileSourceImpl(api: inject()));
+  inject.registerLazySingleton<ProfileSourceImpl>(() => ProfileSourceImpl(api: inject()));
+  inject.registerLazySingleton<IndustrySourceImpl>(() => IndustrySourceImpl(api: inject()));
 }
 
 /// Initialize data repositories implementations
 void _initDataContracts() {
   inject.registerLazySingleton<AuthContractImpl>(
       () => AuthContractImpl(inject()));
-  inject.registerLazySingleton<ProfileContractImpl>(
-      () => ProfileContractImpl(inject()));
+  inject.registerLazySingleton<ProfileContractImpl>(() => ProfileContractImpl(inject()));
+  inject.registerLazySingleton<IndustryContractImpl>(() => IndustryContractImpl(inject()));
 }
 
 /// Initialize services's here
@@ -68,13 +72,13 @@ void _initServices() {
       () => NetworkService(baseUrl: AppConfig.coreBaseUrl));
   inject
       .registerLazySingleton<AuthApi>(() => AuthApi(networkService: inject()));
-  inject.registerLazySingleton<ProfileApi>(
-      () => ProfileApi(networkService: inject()));
+  inject.registerLazySingleton<ProfileApi>(() => ProfileApi(networkService: inject()));
+  inject.registerLazySingleton<IndustryApi>(() => IndustryApi(networkService: inject()));
 }
 
 /// Initialize usecases here
 void _initializeUsecase() {
   inject.registerLazySingleton<AuthUsesCases>(() => AuthUsesCases(inject()));
-  inject
-      .registerLazySingleton<ProfileUseCases>(() => ProfileUseCases(inject()));
+  inject.registerLazySingleton<ProfileUseCases>(() => ProfileUseCases(inject()));
+  inject.registerLazySingleton<IndustryUseCase>(() => IndustryUseCase(inject()));
 }
