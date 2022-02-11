@@ -10,6 +10,7 @@ class BtnWidget extends StatelessWidget {
   final Function()? skip;
   final String? btnText;
   final bool? showSkip;
+  final bool? showBackButton;
   final Widget? iconWidget;
   final double? height;
 
@@ -20,6 +21,7 @@ class BtnWidget extends StatelessWidget {
       this.btnText,
       this.skip,
       this.showSkip = true,
+      this.showBackButton = true,
       this.height,
       this.iconWidget})
       : super(key: key);
@@ -49,18 +51,22 @@ class BtnWidget extends StatelessWidget {
               SizedBox(height: 16.h),
               Row(
                 children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: goBack,
+                  Visibility(
+                    visible: showBackButton!,
+                    child: Expanded(
                       child: GestureDetector(
                         onTap: goBack,
-                        child: Container(
-                          height: 50.h,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.r),
-                              border: Border.all(color: Pallets.primary100)),
-                          child: iconWidget ?? Icon(Icons.keyboard_arrow_left),
+                        child: GestureDetector(
+                          onTap: goBack,
+                          child: Container(
+                            height: 50.h,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.r),
+                                border: Border.all(color: Pallets.primary100)),
+                            child:
+                                iconWidget ?? Icon(Icons.keyboard_arrow_left),
+                          ),
                         ),
                       ),
                     ),

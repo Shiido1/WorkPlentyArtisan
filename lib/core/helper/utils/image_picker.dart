@@ -4,12 +4,14 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:http_parser/http_parser.dart';
 
 import 'pallets.dart';
 
@@ -161,4 +163,14 @@ class ImagePickerHandler {
 
   String _generateKey(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
+
+
+      /// Convert image to Multipath
+MultipartFile multiPathFile(File file){
+  return MultipartFile.fromBytes(file.readAsBytesSync(),
+              filename: file.path.split("/").last,
+              contentType:
+                  MediaType("image", file.path.split("/").last));
+}
 }

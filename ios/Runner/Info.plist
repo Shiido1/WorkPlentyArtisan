@@ -28,6 +28,14 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
+		<key>NSCameraUsageDescription</key>
+		<string>WorkPlenty needs Camera permission to function</string>
+		<key>NSContactsUsageDescription</key>
+		<string>WorkPlenty needs permission to access your contacts</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>WorkPlenty needs Microphone permission to function</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>WorkPlenty needs access to your gallery to continue</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>

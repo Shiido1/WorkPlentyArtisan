@@ -1,19 +1,18 @@
-import 'package:artisan/core/api/auth/auth_service.dart';
+import 'package:artisan/core/api/auth/auth_api.dart';
+import 'package:artisan/core/api/profile/profile_api.dart';
 import 'package:artisan/core/database/hive_database.dart';
 import 'package:artisan/core/network/network_service.dart';
-import 'package:artisan/views/onboarding/data/contractImpl/authorization_impl.dart';
-import 'package:artisan/views/onboarding/data/sourceImpl/authorization_source_contract_impl.dart';
-import 'package:artisan/views/onboarding/domain/usecases/forgot_password_usecase.dart';
-import 'package:artisan/views/onboarding/domain/usecases/login_usecase.dart';
-import 'package:artisan/views/onboarding/domain/usecases/register_usecase.dart';
-import 'package:artisan/views/onboarding/domain/usecases/reset_password_usecase.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/login/bloc/login_bloc.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/password/bloc/password_bloc.dart';
-import 'package:artisan/views/onboarding/presentation/authentication/register/bloc/register_bloc.dart';
+import 'package:artisan/views/onboarding/data/contractImpl/authContractImpl.dart';
+import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.dart';
+import 'package:artisan/views/onboarding/data/sourceImpl/authSourceImpl.dart';
+import 'package:artisan/views/onboarding/data/sourceImpl/profileSourceImpl.dart';
+import 'package:artisan/views/onboarding/domain/usecases/auth_usecase.dart';
+import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/bloc/authbloc_bloc.dart';
+import 'package:artisan/views/onboarding/presentation/profile/bloc/profile_bloc.dart';
 import 'package:get_it/get_it.dart';
-
-import '../database/session_manager.dart';
 import '../network/app_config.dart';
+import '../database/session_manager.dart';
 
 final inject = GetIt.instance;
 final sessionManager = SessionManager();
@@ -43,39 +42,39 @@ void _initProviders() {}
 
 /// Initialize bloc's here
 void _initBloc() {
-  inject.registerLazySingleton<RegisterBloc>(() => RegisterBloc(inject()));
-  inject.registerLazySingleton<LoginBloc>(() => LoginBloc(inject()));
-  inject.registerLazySingleton<PasswordBloc>(
-      () => PasswordBloc(inject(), inject()));
+  inject.registerLazySingleton<AuthblocBloc>(() => AuthblocBloc(inject()));
+  inject.registerLazySingleton<ProfileBloc>(() => ProfileBloc(inject()));
 }
 
 /// Initialize data sources implementations
 void _initDataSources() {
-  inject.registerLazySingleton<AuthorizationSourcesImpl>(
-      () => AuthorizationSourcesImpl(authorizationService: inject()));
+  inject.registerLazySingleton<AuthSourceImpl>(
+      () => AuthSourceImpl(api: inject()));
+  inject.registerLazySingleton<ProfileSourceImpl>(
+      () => ProfileSourceImpl(api: inject()));
 }
 
 /// Initialize data repositories implementations
 void _initDataContracts() {
-  inject.registerLazySingleton<AuthorizationContractImpl>(
-      () => AuthorizationContractImpl(inject()));
+  inject.registerLazySingleton<AuthContractImpl>(
+      () => AuthContractImpl(inject()));
+  inject.registerLazySingleton<ProfileContractImpl>(
+      () => ProfileContractImpl(inject()));
 }
 
 /// Initialize services's here
 void _initServices() {
   inject.registerLazySingleton<NetworkService>(
       () => NetworkService(baseUrl: AppConfig.coreBaseUrl));
-  inject.registerLazySingleton<AuthorizationService>(
-      () => AuthorizationService(networkService: inject()));
+  inject
+      .registerLazySingleton<AuthApi>(() => AuthApi(networkService: inject()));
+  inject.registerLazySingleton<ProfileApi>(
+      () => ProfileApi(networkService: inject()));
 }
 
 /// Initialize usecases here
 void _initializeUsecase() {
+  inject.registerLazySingleton<AuthUsesCases>(() => AuthUsesCases(inject()));
   inject
-      .registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(inject()));
-  inject.registerLazySingleton<LoginUseCase>(() => LoginUseCase(inject()));
-  inject.registerLazySingleton<ForgotPasswordUseCase>(
-      () => ForgotPasswordUseCase(inject()));
-  inject.registerLazySingleton<ResetPasswordUseCase>(
-      () => ResetPasswordUseCase(inject()));
+      .registerLazySingleton<ProfileUseCases>(() => ProfileUseCases(inject()));
 }

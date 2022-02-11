@@ -1,4 +1,5 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/buttons.dart';
@@ -12,7 +13,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'create_profile.dart';
 
 class SetUpProfile extends StatelessWidget {
-  const SetUpProfile({Key? key}) : super(key: key);
+  final String? args;
+  const SetUpProfile(this.args, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +45,7 @@ class SetUpProfile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextView(
-                        text: 'Hi John',
+                        text: 'Hi $args',
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         textAlign: TextAlign.left,
@@ -66,8 +68,9 @@ class SetUpProfile extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: ButtonWidget(
                     buttonText: 'Proceed',
-                    onPressed: () =>
-                        PageRouter.gotoWidget(CreateProfile(), context))),
+                    onPressed: () => PageRouter.gotoNamed(
+                        Routes.createProfile, context,
+                        clearStack: true))),
           ],
         ),
       ),
