@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 //? General Application UseCases
-
 class UseCase<Type, Params> {
   Future<Either<Failure, Type>>? call(Params params) {}
   Future<Either<Failure, Type>>? registerUseCase(Params params) {}
@@ -32,6 +31,9 @@ class UseCase<Type, Params> {
   Future<Either<Failure, Type>>? listOfArtisan() {}
   Future<Either<Failure, Type>>? savedProfile(Params params) {}
   Future<Either<Failure, Type>>? generalListOfIndustries() {}
+  Future<Either<Failure, Type>>? gigCategory() {}
+  Future<Either<Failure, Type>>? updateSkills(Params p) {}
+  Future<Either<Failure, Type>>? updateExperienceLevel(Params p) {}
 }
 
 class NoParams extends Equatable {

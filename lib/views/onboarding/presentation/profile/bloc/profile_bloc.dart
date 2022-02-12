@@ -53,6 +53,36 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           emit(ProfileFailed(message: e.toString()));
         }
       }
+
+      /// Updates artisans skills
+      if (event is SkillsProfileUpdate) {
+        try {
+          emit(ProfileLoading());
+          final _response =
+              await _useCase.updateSkills(Params(entity: event.entity));
+          _response!.fold(
+              (l) => emit(ProfileFailed(message: l.errorMessage(l)!)),
+              (r) => emit(ProfileSuccess(response: r)));
+        } catch (e) {
+          emit(ProfileFailed(message: e.toString()));
+        }
+      }
+
+      /// Updates artisans experience
+      if (event is UpdateExperience) {
+        logger.d('asdsadadaddadd');
+
+        try {
+          emit(ProfileLoading());
+          final _response = await _useCase
+              .updateExperienceLevel(Params(entity: event.entity));
+          _response!.fold(
+              (l) => emit(ProfileFailed(message: l.errorMessage(l)!)),
+              (r) => emit(ProfileSuccess(response: r)));
+        } catch (e) {
+          emit(ProfileFailed(message: e.toString()));
+        }
+      }
     });
   }
 }

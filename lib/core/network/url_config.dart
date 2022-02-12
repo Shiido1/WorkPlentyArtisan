@@ -43,4 +43,8 @@ class UrlConfig {
   static const String reviewList = 'review/list';
   static const String reviewSave = 'review/save';
   static const String listOfArtisans = 'user/artisan/list';
+  static const String skillsFetch = 'skills/fetch';
+  static const String artisanSkillUpdate = 'artisan/skills/update';
+  static const String artisanExperienceUpdate =
+      'artisan/profile/update-experience-level';
 }

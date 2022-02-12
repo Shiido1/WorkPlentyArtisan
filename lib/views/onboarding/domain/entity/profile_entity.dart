@@ -17,22 +17,25 @@ class ProfileEntity extends DefaultResponse {
   final String? zipcode;
   final String? address;
   final String? appartment;
+  final List<String>? skills;
+  final int? experienceLevel;
 
-  ProfileEntity({
-    this.title,
-    this.description,
-    this.gender,
-    this.avatar,
-    this.country,
-    this.lga,
-    this.state,
-    this.city,
-    this.countryID,
-    this.stateId,
-    this.zipcode,
-    this.address,
-    this.appartment,
-  });
+  ProfileEntity(
+      {this.title,
+      this.description,
+      this.gender,
+      this.avatar,
+      this.country,
+      this.lga,
+      this.state,
+      this.city,
+      this.countryID,
+      this.stateId,
+      this.zipcode,
+      this.address,
+      this.appartment,
+      this.experienceLevel,
+      this.skills});
 
   Map<String, dynamic> toMap() {
     return {
@@ -59,4 +62,9 @@ class ProfileEntity extends DefaultResponse {
       'appartment': appartment
     };
   }
+
+  Map<String, dynamic> toSkills() => {'skills': skills};
+
+  Map<String, dynamic> toExperience() =>
+      {'experience_level': '$experienceLevel'};
 }

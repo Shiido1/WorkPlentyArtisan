@@ -24,3 +24,15 @@ class AvatarProfileUpdate extends ProfileEvent {
 
   const AvatarProfileUpdate(this.entity);
 }
+
+class SkillsProfileUpdate extends ProfileEvent {
+  final ProfileEntity entity;
+
+  const SkillsProfileUpdate(this.entity);
+}
+
+class UpdateExperience extends ProfileEvent {
+  final ProfileEntity entity;
+
+  const UpdateExperience(this.entity);
+}

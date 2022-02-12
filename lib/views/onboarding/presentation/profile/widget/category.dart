@@ -2,22 +2,21 @@ import 'package:artisan/core/enums/viewstate.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/onboarding/data/model/industry/general_list_of_industry_response/datum.dart';
-import 'package:artisan/views/onboarding/presentation/profile/provider/industry_provider.dart';
+import 'package:artisan/views/onboarding/data/model/industry_categories_response/datum.dart';
+import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class IndustrySheet extends StatelessWidget {
+class CategorySheet extends StatelessWidget {
   final Function(Datum d)? onTap;
-  const IndustrySheet({required this.onTap, Key? key}) : super(key: key);
+  const CategorySheet({required this.onTap, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Provider.of<IndustryProvider>(context, listen: false)
-        .fetchListOfIndustries();
-    return Consumer<IndustryProvider>(
+    Provider.of<ProfileProvider>(context, listen: false).fetchCategoryOfGigs();
+    return Consumer<ProfileProvider>(
       builder: (context, provider, child) {
         return Container(
             height: Utils.getDeviceHeight(context) * .6,
@@ -26,7 +25,7 @@ class IndustrySheet extends StatelessWidget {
                   showLeading: false,
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   centerTitle: true,
-                  title: 'Select Industry',
+                  title: 'Select Category',
                   elevation: 1),
               body: Padding(
                 padding: EdgeInsets.all(16.w),
@@ -34,7 +33,7 @@ class IndustrySheet extends StatelessWidget {
                   children: [
                     if (provider.state == ViewState.busy)
                       LinearProgressIndicator(color: Pallets.primary50),
-                    ...provider.data!
+                    ...provider.categoriesOfGigs!
                         .map((data) => Padding(
                               padding: EdgeInsets.symmetric(vertical: 16.h),
                               child: TextView(

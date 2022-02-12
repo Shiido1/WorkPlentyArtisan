@@ -1,35 +1,36 @@
 import 'dart:io';
 
+import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
-import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/image_picker.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
+import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
+import 'package:artisan/views/onboarding/presentation/profile/widget/category.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/subcategory.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
-import 'package:artisan/views/widgets/custom_profile_picture.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/edit_form_widget.dart';
-import 'package:artisan/views/widgets/global_dialog.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'bloc/profile_bloc.dart';
 import 'widget/employment.dart';
 import 'widget/industry.dart';
 import 'widget/skills.dart';
+import 'widget/skills_choice.dart';
 
 class CreateProfile extends StatefulWidget {
   const CreateProfile({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class CreateProfile extends StatefulWidget {
 }
 
 class _CreateProfileState extends State<CreateProfile> {
-  double _progress = 70;
+  double _progress = 10;
   int _index = 0;
   final _loadingKey = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
@@ -58,16 +59,13 @@ class _CreateProfileState extends State<CreateProfile> {
   final _bloc = ProfileBloc(inject());
   final _pickImage = ImagePickerHandler();
   File? _imageFile;
-  List<String> _fields = [
-    "HTML",
-    "Vue JS",
-    "JavaScript",
-    "React",
-    "AngularJS",
-    "AngularJS"
-  ];
+  List<String> _skills = [];
 
-  List<String> _selectedFields = [];
+  @override
+  void initState() {
+    Provider.of<ProfileProvider>(context, listen: false).fetchSkills();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,26 +109,29 @@ class _CreateProfileState extends State<CreateProfile> {
             key: _formKey,
             child: Stack(
               children: [
-                ListView(
-                  shrinkWrap: true,
-                  children: [
-                    LinearProgressIndicator(
-                      minHeight: 12.h,
-                      backgroundColor: Pallets.shade,
-                      value: _progress / 100,
-                      color: Pallets.shade100,
-                    ),
-                    SizedBox(height: 33.h),
-                    Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 16.h),
-                        child: _bodySelect())
-                  ],
+                Scrollbar(
+                  isAlwaysShown: true,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      LinearProgressIndicator(
+                        minHeight: 12.h,
+                        backgroundColor: Pallets.shade,
+                        value: _progress / 100,
+                        color: Pallets.shade100,
+                      ),
+                      SizedBox(height: 33.h),
+                      Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16.w, vertical: 16.h),
+                          child: _bodySelect())
+                    ],
+                  ),
                 ),
                 BtnWidget(
                   showBackButton: _index > 0,
-                  btnText: _index != 3 ? 'Next' : "Complete",
-                  showSkip: _index != 3 && _index != 0,
+                  btnText: _index != 9 ? 'Next' : "Complete",
+                  showSkip: false,
                   callback: () => _whenFormIsField(),
                   goBack: () => _decreamentIndex(),
                   skip: () {},
@@ -144,7 +145,7 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   void _increamentIndex() {
-    if (_index == 2) {
+    if (_index == 9) {
       WorkPlenty.showSuccessDialog(context, _loadingKey,
           image: AppImages.blowWhistle,
           title: 'Profile looking good',
@@ -198,6 +199,17 @@ class _CreateProfileState extends State<CreateProfile> {
     return Container();
   }
 
+  String _skill = '';
+
+  void _checkIfSelectedSkills(String value) {
+    if (_skills.contains(value)) {
+      _skills.remove(value);
+    } else {
+      _skills.add(value);
+    }
+    setState(() {});
+  }
+
   Widget _formOne() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,6 +249,12 @@ class _CreateProfileState extends State<CreateProfile> {
         EditFormField(
           label: 'Select Category',
           suffixIcon: Icons.keyboard_arrow_down,
+          readOnly: true,
+          onTapped: () {
+            BottomSheets.showSheet(context, child: CategorySheet(onTap: (d) {
+              logger.d(d.toJson());
+            }));
+          },
         ),
         SizedBox(height: 18.h),
         EditFormField(
@@ -269,37 +287,13 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
-        Wrap(
-          spacing: 18.w,
-          children: List<Widget>.generate(
-            _fields.length,
-            (int index) {
-              final _field = _fields[index];
-              return ChoiceChip(
-                label: TextView(
-                  text: _field,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                  color: _selectedFields.contains(_field)
-                      ? Pallets.white
-                      : Pallets.shade100,
-                ),
-                selected: _selectedFields.contains(_field),
-                selectedColor: _selectedFields.contains(_field)
-                    ? Pallets.primary100
-                    : Pallets.chipBackground,
-                onSelected: (bool selected) {
-                  setState(() {
-                    _selectedFields.contains(_field)
-                        ? _selectedFields.remove(_field)
-                        : _selectedFields.add(_field);
-                  });
-                },
-              );
-            },
-          ).toList(),
+        SkillsChoice(
+          listOfSkills: _skills,
+          onSelected: (String value) {
+            _checkIfSelectedSkills(value);
+          },
         ),
-        SizedBox(height: 114.h),
+        SizedBox(height: 23.h),
         TextView(
           text: 'Not what you’re looking for?',
           fontWeight: FontWeight.w500,
@@ -308,9 +302,12 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(label: 'Add'),
+        SizedBox(height: 114.h),
       ],
     );
   }
+
+  int? _experienceIndex = 1;
 
   Widget _formThree() {
     return Column(
@@ -337,14 +334,18 @@ class _CreateProfileState extends State<CreateProfile> {
               image: AppImages.entry,
               text: 'Entry',
               color: Color(0xffFAC1B4),
-              onTap: () {},
+              index: _experienceIndex,
+              defaultIndex: 1,
+              onTap: () => setState(() => _experienceIndex = 1),
             ),
             SizedBox(width: 40.w),
             SkillStatus(
               image: AppImages.intermediate,
               text: 'Intermediate',
               color: Color(0xffFFE5B8),
-              onTap: () {},
+              index: _experienceIndex,
+              defaultIndex: 2,
+              onTap: () => setState(() => _experienceIndex = 2),
             )
           ],
         ),
@@ -355,14 +356,18 @@ class _CreateProfileState extends State<CreateProfile> {
               image: AppImages.midLevel,
               text: 'Mid-Level',
               color: Color(0xffB8AEF4),
-              onTap: () {},
+              onTap: () => setState(() => _experienceIndex = 3),
+              index: _experienceIndex,
+              defaultIndex: 3,
             ),
             SizedBox(width: 40.w),
             SkillStatus(
               image: AppImages.senior,
               text: 'Senior',
               color: Color(0xffB4FCE5),
-              onTap: () {},
+              index: _experienceIndex,
+              defaultIndex: 4,
+              onTap: () => setState(() => _experienceIndex = 4),
             )
           ],
         )
@@ -751,9 +756,23 @@ class _CreateProfileState extends State<CreateProfile> {
     }
   }
 
-  void _submitFormOne() {}
-  void _submitFormTwo() {}
-  void _submitFormThree() {}
+  void _submitFormOne() {
+    // _increamentIndex();
+  }
+
+  void _submitFormTwo() {
+    if (_skills.isEmpty) {
+      WorkPlenty.error('You need to have atlease one skill');
+      return;
+    }
+    _bloc.add(SkillsProfileUpdate(ProfileEntity(skills: _skills)));
+  }
+
+  void _submitFormThree() {
+    _bloc.add(
+        UpdateExperience(ProfileEntity(experienceLevel: _experienceIndex)));
+  }
+
   void _submitFormFour() {}
   void _submitFormFive() {}
   void _submitFormSix() {}
