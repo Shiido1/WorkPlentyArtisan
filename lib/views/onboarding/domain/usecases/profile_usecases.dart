@@ -5,6 +5,7 @@ import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.d
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/skills_response.dart';
+import 'package:artisan/views/onboarding/data/model/work_history_response/work_history_response.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -67,6 +68,11 @@ class ProfileUseCases extends UseCase<DefaultResponse, Params> {
   @override
   Future<Either<Failure, DefaultResponse>>? updateWorkHistory(Params p) async {
     return await _repository.updateWorkHistory(p.entity!);
+  }
+
+  @override
+  Future<Either<Failure, WorkHistoryResponse>>? workHistory() async {
+    return await _repository.workHistory();
   }
 }
 

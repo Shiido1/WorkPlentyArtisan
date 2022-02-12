@@ -163,7 +163,7 @@ showSheet(BuildContext context, {required Widget child}) =>
       builder: (context) => CupertinoActionSheet(
         actions: [child],
         cancelButton: CupertinoActionSheetAction(
-          child:  Text('Done', style: TextStyle(color: Pallets.primary100)),
+          child: Text('Done', style: TextStyle(color: Pallets.primary100)),
           onPressed: () {
             PageRouter.goBack(context);
           },

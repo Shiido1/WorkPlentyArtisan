@@ -6,6 +6,7 @@ import 'package:artisan/views/onboarding/data/model/industry_categories_response
 import 'package:artisan/views/onboarding/data/model/list_industry_response/list_industr_response.dart';
 import 'package:artisan/views/onboarding/data/model/save_industry_response/save_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/skills_response.dart';
+import 'package:artisan/views/onboarding/data/model/work_history_response/work_history_response.dart';
 import 'package:artisan/views/onboarding/domain/entity/industry_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/domain/source/profile_source.dart';
@@ -78,5 +79,10 @@ class ProfileSourceImpl implements ProfileSource {
   @override
   Future<DefaultResponse> updateWorkHistory(ProfileEntity entity) async {
     return await _api.updateWorkHistory(entity);
+  }
+
+  @override
+  Future<WorkHistoryResponse> workHistory() async {
+    return await _api.workHistory();
   }
 }

@@ -5,6 +5,7 @@ import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/skills_response.dart';
+import 'package:artisan/views/onboarding/data/model/work_history_response/work_history_response.dart';
 import 'package:artisan/views/onboarding/domain/entity/auth_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/industry_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
@@ -147,13 +148,24 @@ class ProfileApi {
     }
   }
 
-  /// Update education level
+  /// Update work history level
   Future<DefaultResponse> updateWorkHistory(ProfileEntity entity) async {
     try {
       final _response = await _networkService.call(
           UrlConfig.artisanWorkHistory, RequestMethod.post,
           data: entity.toWorkHistory());
       return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// fetch artisans work history
+  Future<WorkHistoryResponse> workHistory() async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.artisanWorkHistoryList, RequestMethod.get);
+      return WorkHistoryResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }

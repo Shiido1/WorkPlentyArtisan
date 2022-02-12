@@ -6,6 +6,7 @@ import 'package:artisan/views/onboarding/data/model/industry_categories_response
 import 'package:artisan/views/onboarding/data/model/list_industry_response/list_industr_response.dart';
 import 'package:artisan/views/onboarding/data/model/save_industry_response/save_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/skills_response.dart';
+import 'package:artisan/views/onboarding/data/model/work_history_response/work_history_response.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/profileSourceImpl.dart';
 import 'package:artisan/views/onboarding/domain/contract/profile_contract.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
@@ -145,6 +146,16 @@ class ProfileContractImpl implements ProfileContract {
       ProfileEntity entity) async {
     try {
       final _response = await _impl.updateWorkHistory(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, WorkHistoryResponse>> workHistory() async {
+    try {
+      final _response = await _impl.workHistory();
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));

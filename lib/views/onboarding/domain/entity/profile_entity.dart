@@ -27,7 +27,7 @@ class ProfileEntity extends DefaultResponse {
   final String? attendedTo;
   final String? company;
   final String? position;
-  final String? currentleHere;
+  final int? currentleHere;
   final String? startedOn;
   final String? endedOn;
   final String? location;
@@ -101,11 +101,11 @@ class ProfileEntity extends DefaultResponse {
       };
 
   Map<String, dynamic> toWorkHistory() => {
-        'company': school,
-        'position': fieldOfStudy,
-        'currently_here': degree,
-        'started_on': attendedFrom,
-        'ended_on': attendedTo,
-        'location': attendedTo
+        'company': company,
+        'position': position,
+        'currently_here': '$currentleHere',
+        'started_on': startedOn,
+        'ended_on': endedOn,
+        'location': location
       };
 }

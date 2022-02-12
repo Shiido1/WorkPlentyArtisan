@@ -6,6 +6,8 @@ import 'package:artisan/views/onboarding/data/model/industry_categories_response
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/datum.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/datum.dart'
     as skills;
+import 'package:artisan/views/onboarding/data/model/work_history_response/datum.dart'
+    as workHistory;
 
 import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
 
@@ -23,8 +25,10 @@ class ProfileProvider extends BaseModel {
   List<categories.Datum>? get categoriesOfGigs => _categoriesOfGigs;
 
   List<skills.Datum>? _skills = [];
-
   List<skills.Datum>? get getSkills => _skills;
+
+  List<workHistory.Datum>? _workHistory = [];
+  List<workHistory.Datum>? get getWorkHistory => _workHistory;
 
   void fetchListOfIndustries() async {
     try {
@@ -60,6 +64,20 @@ class ProfileProvider extends BaseModel {
       final _response = await _useCase.listOfSkills();
       _response!.fold((l) => logger.e(l.errorMessage(l)), (r) {
         _skills = r.data ?? [];
+        setState(ViewState.idle);
+      });
+    } catch (e) {
+      logger.e(e);
+      setState(ViewState.idle);
+    }
+  }
+
+  void fetchArtisansWorkHistory() async {
+    try {
+      setState(ViewState.busy);
+      final _response = await _useCase.workHistory();
+      _response!.fold((l) => logger.e(l.errorMessage(l)), (r) {
+        _workHistory = r.data ?? [];
         setState(ViewState.idle);
       });
     } catch (e) {

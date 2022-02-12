@@ -9,8 +9,10 @@ import 'package:artisan/core/helper/utils/date_picker.dart';
 import 'package:artisan/core/helper/utils/image_picker.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
+import 'package:artisan/views/onboarding/data/model/work_history_response/datum.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
@@ -68,10 +70,12 @@ class _CreateProfileState extends State<CreateProfile> {
   final _pickImage = ImagePickerHandler();
   File? _imageFile;
   List<String> _skills = [];
+  ProfileProvider? _profileProvider;
 
   @override
   void initState() {
-    Provider.of<ProfileProvider>(context, listen: false).fetchSkills();
+    _profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    _profileProvider?.fetchSkills();
     super.initState();
   }
 
@@ -483,35 +487,42 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   Widget _formFive() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextView(
-          text: 'Work Experence?',
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 5.h),
-        TextView(
-          text:
-              'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        SizedBox(height: 43.h),
-        Divider(),
-        ...[1, 2].map((_) => _experience()).toList(),
-        SizedBox(height: 43.h),
-        ButtonWidget(
-            buttonText: 'Add Experience',
-            buttonStyle: true,
-            primary: Colors.transparent,
-            color: Pallets.primary100,
-            onPressed: () =>
-                BottomSheets.showSheet(context, child: EmploymentSheet())),
-      ],
+    return Consumer<ProfileProvider>(
+      builder: (context, provider, child) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextView(
+              text: 'Work Experence?',
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(height: 5.h),
+            TextView(
+              text:
+                  'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(height: 43.h),
+            Divider(),
+            ...provider.getWorkHistory!
+                .map((history) => _experience(history))
+                .toList(),
+            SizedBox(height: 43.h),
+            ButtonWidget(
+                buttonText: 'Add Experience',
+                buttonStyle: true,
+                primary: Colors.transparent,
+                color: Pallets.primary100,
+                onPressed: () =>
+                    BottomSheets.showSheet(context, child: EmploymentSheet())),
+            SizedBox(height: 114.h),
+          ],
+        );
+      },
     );
   }
 
@@ -743,7 +754,7 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 
-  Column _experience() {
+  Column _experience(Datum? history) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -755,14 +766,16 @@ class _CreateProfileState extends State<CreateProfile> {
               children: [
                 SizedBox(height: 18.h),
                 TextView(
-                  text: 'Software Engineer | Eduwiki',
+                  text:
+                      '${history?.position ?? ''} | ${history?.company ?? ''}',
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                   textAlign: TextAlign.left,
                 ),
                 SizedBox(height: 8.h),
                 TextView(
-                  text: 'May 2020 - Present',
+                  text:
+                      '${TimeUtil.getMonthAndYear(history?.startedOn ?? '')} - ${_isStillThere(history?.currentlyHere) ? 'Present' : '${TimeUtil.getMonthAndYear(history?.endedOn ?? '')}'}',
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                   textAlign: TextAlign.left,
@@ -777,6 +790,11 @@ class _CreateProfileState extends State<CreateProfile> {
         Divider(),
       ],
     );
+  }
+
+  bool _isStillThere(int? d) {
+    if (d == 1) return true;
+    return false;
   }
 
   /// checks if a particular form is submitted
@@ -822,8 +840,18 @@ class _CreateProfileState extends State<CreateProfile> {
     )));
   }
 
-  void _submitFormFive() {}
-  void _submitFormSix() {}
+  void _submitFormFive() {
+    if (_profileProvider!.getWorkHistory!.isEmpty) {
+      WorkPlenty.error('You need to have atleast one working experience.');
+      return;
+    }
+    _increamentIndex();
+  }
+
+  void _submitFormSix() {
+    _increamentIndex();
+  }
+
   void _submitFormSeven() {}
   void _submitFormEight() {}
   void _submitFormNine() {}
