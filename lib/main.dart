@@ -1,5 +1,4 @@
 import 'package:artisan/core/helper/configs/providers.dart';
-import 'package:artisan/views/onboarding/presentation/intro/intro_screen.dart';
 import 'package:artisan/views/onboarding/presentation/profile/create_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

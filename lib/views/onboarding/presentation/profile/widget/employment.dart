@@ -1,5 +1,4 @@
 import 'package:artisan/core/di/injector.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/date_picker.dart';

@@ -10,8 +10,6 @@ import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'create_profile.dart';
-
 class SetUpProfile extends StatelessWidget {
   final String? args;
   const SetUpProfile(this.args, {Key? key}) : super(key: key);

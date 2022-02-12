@@ -170,7 +170,8 @@ class _CreateProfileState extends State<CreateProfile> {
           title: 'Profile looking good',
           message: 'Guess who just completed setting up is profile? You!',
           btnText: 'Continue', next: () {
-        PageRouter.gotoNamed(Routes.awaitingApproval, context, clearStack: true);
+        PageRouter.gotoNamed(Routes.awaitingApproval, context,
+            clearStack: true);
       });
       return;
     }
@@ -216,8 +217,6 @@ class _CreateProfileState extends State<CreateProfile> {
     if (_index == 9) return _formTen();
     return Container();
   }
-
-  String _skill = '';
 
   void _checkIfSelectedSkills(String value) {
     if (_skills.contains(value)) {

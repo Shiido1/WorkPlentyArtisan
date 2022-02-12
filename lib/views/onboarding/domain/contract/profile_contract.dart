@@ -10,7 +10,6 @@ import 'package:artisan/views/onboarding/data/model/skills_response/skills_respo
 import 'package:artisan/views/onboarding/data/model/work_history_response/work_history_response.dart';
 import 'package:artisan/views/onboarding/domain/entity/industry_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
-import 'package:artisan/views/onboarding/domain/usecases/auth_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ProfileContract {

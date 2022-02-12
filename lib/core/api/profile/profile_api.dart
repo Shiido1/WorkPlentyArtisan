@@ -1,5 +1,4 @@
 import 'package:artisan/core/entity/default_response.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
@@ -7,7 +6,6 @@ import 'package:artisan/views/onboarding/data/model/general_list_of_industry_res
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/skills_response.dart';
 import 'package:artisan/views/onboarding/data/model/work_history_response/work_history_response.dart';
-import 'package:artisan/views/onboarding/domain/entity/auth_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/industry_entity.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:dio/dio.dart';

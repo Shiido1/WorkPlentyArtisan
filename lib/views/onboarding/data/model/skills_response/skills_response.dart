@@ -1,6 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:artisan/core/entity/default_response.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'datum.dart';
