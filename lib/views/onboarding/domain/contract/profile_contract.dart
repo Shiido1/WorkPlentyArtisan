@@ -31,4 +31,6 @@ abstract class ProfileContract {
   Future<Either<Failure, DefaultResponse>> updateSkills(ProfileEntity entity);
   Future<Either<Failure, DefaultResponse>> updateExperienceLevel(
       ProfileEntity entity);
+  Future<Either<Failure, DefaultResponse>> updateEducation(
+      ProfileEntity entity);
 }

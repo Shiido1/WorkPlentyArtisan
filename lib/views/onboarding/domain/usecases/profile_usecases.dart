@@ -49,14 +49,20 @@ class ProfileUseCases extends UseCase<DefaultResponse, Params> {
     return await _repository.skills();
   }
 
-
   @override
-  Future<Either<Failure, DefaultResponse>>? updateSkills(Params p) async{
+  Future<Either<Failure, DefaultResponse>>? updateSkills(Params p) async {
     return await _repository.updateSkills(p.entity!);
   }
+
   @override
-  Future<Either<Failure, DefaultResponse>>? updateExperienceLevel(Params p) async{
+  Future<Either<Failure, DefaultResponse>>? updateExperienceLevel(
+      Params p) async {
     return await _repository.updateExperienceLevel(p.entity!);
+  }
+
+  @override
+  Future<Either<Failure, DefaultResponse>>? updateEducation(Params p) async {
+    return await _repository.updateEducation(p.entity!);
   }
 }
 

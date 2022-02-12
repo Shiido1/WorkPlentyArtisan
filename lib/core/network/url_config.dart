@@ -47,4 +47,5 @@ class UrlConfig {
   static const String artisanSkillUpdate = 'artisan/skills/update';
   static const String artisanExperienceUpdate =
       'artisan/profile/update-experience-level';
+  static const String artisanEducationUpdate = 'artisan/education/save';
 }

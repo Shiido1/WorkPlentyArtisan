@@ -124,11 +124,23 @@ class ProfileApi {
   }
 
   /// Update experience level
-  Future<DefaultResponse> updateExperience(ProfileEntity entity) async {
+  Future<DefaultResponse> updateExperienceLevel(ProfileEntity entity) async {
     try {
       final _response = await _networkService.call(
           UrlConfig.artisanExperienceUpdate, RequestMethod.post,
           data: entity.toExperience());
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Update education level
+  Future<DefaultResponse> updateEducation(ProfileEntity entity) async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.artisanEducationUpdate, RequestMethod.post,
+          data: entity.toEducation());
       return DefaultResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;

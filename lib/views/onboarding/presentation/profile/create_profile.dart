@@ -5,9 +5,11 @@ import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/routes/routes.dart';
+import 'package:artisan/core/helper/utils/date_picker.dart';
 import 'package:artisan/core/helper/utils/image_picker.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
@@ -56,6 +58,12 @@ class _CreateProfileState extends State<CreateProfile> {
   final TextEditingController _zipcodeController = TextEditingController();
   final TextEditingController _apartmentController = TextEditingController();
 
+  final TextEditingController _schoolController = TextEditingController();
+  final TextEditingController _fieldController = TextEditingController();
+  final TextEditingController _degreeController = TextEditingController();
+  final TextEditingController _fromDateController = TextEditingController();
+  final TextEditingController _toDateController = TextEditingController();
+
   final _bloc = ProfileBloc(inject());
   final _pickImage = ImagePickerHandler();
   File? _imageFile;
@@ -100,6 +108,7 @@ class _CreateProfileState extends State<CreateProfile> {
           if (state is ProfileFailed) {
             WorkPlenty.hideLoading(_loadingKey);
             WorkPlenty.error(state.message);
+            _increamentIndex();
           }
         },
         child: BodyWidget(
@@ -131,10 +140,10 @@ class _CreateProfileState extends State<CreateProfile> {
                 BtnWidget(
                   showBackButton: _index > 0,
                   btnText: _index != 9 ? 'Next' : "Complete",
-                  showSkip: false,
+                  showSkip: _index == 3,
                   callback: () => _whenFormIsField(),
                   goBack: () => _decreamentIndex(),
-                  skip: () {},
+                  skip: () => _increamentIndex(),
                 )
               ],
             ),
@@ -403,6 +412,8 @@ class _CreateProfileState extends State<CreateProfile> {
         SizedBox(height: 8.h),
         EditFormField(
           label: 'Ex: University of Ibadan',
+          validator: Validators.validateString(),
+          controller: _schoolController,
         ),
         SizedBox(height: 18.h),
         TextView(
@@ -412,7 +423,11 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex: Computer Engineering'),
+        EditFormField(
+          label: 'Ex: Computer Engineering',
+          validator: Validators.validateString(),
+          controller: _fieldController,
+        ),
         SizedBox(height: 18.h),
         TextView(
           text: 'Degree',
@@ -421,7 +436,11 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex. Bachelor\'s'),
+        EditFormField(
+          label: 'Ex. Bachelor\'s',
+          validator: Validators.validateString(),
+          controller: _degreeController,
+        ),
         SizedBox(height: 18.h),
         TextView(
           text: 'Dates Attended',
@@ -433,11 +452,31 @@ class _CreateProfileState extends State<CreateProfile> {
         EditFormField(
           label: 'From',
           suffixIcon: Icons.keyboard_arrow_down_sharp,
+          controller: _fromDateController,
+          validator: Validators.validateString(),
+          readOnly: true,
+          onTapped: () => pickDate(
+              context: context,
+              dateOptions: DateOptions.past,
+              onChange: (v) {
+                _fromDateController.text = v;
+                setState(() {});
+              }),
         ),
         SizedBox(height: 8.h),
         EditFormField(
-          label: 'To(expected graduation year)',
+          label: 'To (expected graduation year)',
           suffixIcon: Icons.keyboard_arrow_down_sharp,
+          controller: _toDateController,
+          validator: Validators.validateString(),
+          readOnly: true,
+          onTapped: () => pickDate(
+              context: context,
+              dateOptions: DateOptions.general,
+              onChange: (v) {
+                _toDateController.text = v;
+                setState(() {});
+              }),
         ),
       ],
     );
@@ -757,7 +796,7 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   void _submitFormOne() {
-    // _increamentIndex();
+    _increamentIndex();
   }
 
   void _submitFormTwo() {
@@ -773,7 +812,16 @@ class _CreateProfileState extends State<CreateProfile> {
         UpdateExperience(ProfileEntity(experienceLevel: _experienceIndex)));
   }
 
-  void _submitFormFour() {}
+  void _submitFormFour() {
+    _bloc.add(UpdateEducation(ProfileEntity(
+      school: _schoolController.text,
+      fieldOfStudy: _fieldController.text,
+      degree: _degreeController.text,
+      attendedFrom: _fromDateController.text,
+      attendedTo: _toDateController.text,
+    )));
+  }
+
   void _submitFormFive() {}
   void _submitFormSix() {}
   void _submitFormSeven() {}

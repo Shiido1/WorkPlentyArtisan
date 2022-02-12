@@ -20,6 +20,12 @@ class ProfileEntity extends DefaultResponse {
   final List<String>? skills;
   final int? experienceLevel;
 
+  final String? school;
+  final String? fieldOfStudy;
+  final String? degree;
+  final String? attendedFrom;
+  final String? attendedTo;
+
   ProfileEntity(
       {this.title,
       this.description,
@@ -28,6 +34,11 @@ class ProfileEntity extends DefaultResponse {
       this.country,
       this.lga,
       this.state,
+      this.school,
+      this.fieldOfStudy,
+      this.degree,
+      this.attendedFrom,
+      this.attendedTo,
       this.city,
       this.countryID,
       this.stateId,
@@ -67,4 +78,12 @@ class ProfileEntity extends DefaultResponse {
 
   Map<String, dynamic> toExperience() =>
       {'experience_level': '$experienceLevel'};
+
+  Map<String, dynamic> toEducation() => {
+        'school': school,
+        'field_of_study': fieldOfStudy,
+        'degree': degree,
+        'attended_from': attendedFrom,
+        'attended_to': attendedTo
+      };
 }

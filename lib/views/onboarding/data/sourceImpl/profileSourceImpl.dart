@@ -67,6 +67,11 @@ class ProfileSourceImpl implements ProfileSource {
 
   @override
   Future<DefaultResponse> updateExperienceLevel(ProfileEntity entity) async {
-    return await _api.updateExperience(entity);
+    return await _api.updateExperienceLevel(entity);
+  }
+
+  @override
+  Future<DefaultResponse> updateEducation(ProfileEntity entity) async {
+    return await _api.updateEducation(entity);
   }
 }

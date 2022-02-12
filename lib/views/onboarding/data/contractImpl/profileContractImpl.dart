@@ -128,4 +128,15 @@ class ProfileContractImpl implements ProfileContract {
       return Left(AppFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, DefaultResponse>> updateEducation(
+      ProfileEntity entity) async {
+    try {
+      final _response = await _impl.updateEducation(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
 }

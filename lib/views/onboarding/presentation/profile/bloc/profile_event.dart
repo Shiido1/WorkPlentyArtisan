@@ -36,3 +36,9 @@ class UpdateExperience extends ProfileEvent {
 
   const UpdateExperience(this.entity);
 }
+
+class UpdateEducation extends ProfileEvent {
+  final ProfileEntity entity;
+
+  const UpdateEducation(this.entity);
+}
