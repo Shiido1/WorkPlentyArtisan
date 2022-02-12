@@ -1,5 +1,6 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
+import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
 import 'package:artisan/views/onboarding/data/model/delete_industry_response/delete_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
@@ -37,4 +38,7 @@ abstract class ProfileContract {
   Future<Either<Failure, DefaultResponse>> updateWorkHistory(
       ProfileEntity entity);
   Future<Either<Failure, WorkHistoryResponse>> workHistory();
+  Future<Either<Failure, ConfigResponse>> configs();
+  Future<Either<Failure, DefaultResponse>> updateWorkAvailability(
+      ProfileEntity entity);
 }

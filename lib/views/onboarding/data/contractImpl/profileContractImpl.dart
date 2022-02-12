@@ -1,5 +1,6 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
+import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
 import 'package:artisan/views/onboarding/data/model/delete_industry_response/delete_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
@@ -153,9 +154,30 @@ class ProfileContractImpl implements ProfileContract {
   }
 
   @override
+  Future<Either<Failure, DefaultResponse>> updateWorkAvailability(
+      ProfileEntity entity) async {
+    try {
+      final _response = await _impl.updateWorkAvailability(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, WorkHistoryResponse>> workHistory() async {
     try {
       final _response = await _impl.workHistory();
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ConfigResponse>> configs() async {
+    try {
+      final _response = await _impl.configs();
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));

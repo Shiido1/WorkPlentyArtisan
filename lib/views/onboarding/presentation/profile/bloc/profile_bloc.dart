@@ -109,6 +109,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           emit(ProfileFailed(message: e.toString()));
         }
       }
+
+      /// Updates artisans work availability
+      if (event is UpdateAvailabilityRate) {
+        try {
+          emit(ProfileLoading());
+          final _response = await _useCase
+              .updateWorkAvailability(Params(entity: event.entity));
+          _response!.fold(
+              (l) => emit(ProfileFailed(message: l.errorMessage(l)!)),
+              (r) => emit(ProfileSuccess(response: r)));
+        } catch (e) {
+          emit(ProfileFailed(message: e.toString()));
+        }
+      }
     });
   }
 }

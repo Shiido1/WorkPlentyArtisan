@@ -18,6 +18,7 @@ import 'package:artisan/views/onboarding/presentation/profile/provider/profile_p
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/category.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/subcategory.dart';
+import 'package:artisan/views/onboarding/presentation/profile/widget/weekly_hour.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
@@ -48,7 +49,10 @@ class _CreateProfileState extends State<CreateProfile> {
   int _index = 0;
   final _loadingKey = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
-
+  final TextEditingController _weeklyController = TextEditingController();
+  final TextEditingController _homeServiceController = TextEditingController();
+  final TextEditingController _liveConsultancyController =
+      TextEditingController();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
@@ -144,7 +148,7 @@ class _CreateProfileState extends State<CreateProfile> {
                 BtnWidget(
                   showBackButton: _index > 0,
                   btnText: _index != 9 ? 'Next' : "Complete",
-                  showSkip: _index == 3,
+                  showSkip: _index == 3 || _index == 6,
                   callback: () => _whenFormIsField(),
                   goBack: () => _decreamentIndex(),
                   skip: () => _increamentIndex(),
@@ -582,7 +586,11 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(
-            label: '20-30 hours/week', suffixIcon: Icons.keyboard_arrow_down),
+          label: '20-30 hours/week',
+          controller: _weeklyController,
+          validator: Validators.validateInt(),
+          keyboardType: TextInputType.number,
+        ),
         SizedBox(height: 26.h),
         TextView(
           text: 'Rate Per Hour - Home Service',
@@ -591,7 +599,12 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex. NGN1000 / hour'),
+        EditFormField(
+          label: 'Ex. NGN1000 / hour',
+          controller: _homeServiceController,
+          validator: Validators.validateInt(),
+          keyboardType: TextInputType.number,
+        ),
         SizedBox(height: 18.h),
         TextView(
           text: 'Rate - Live Consultancy',
@@ -600,7 +613,12 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex. NGN1000 / 15 minutes'),
+        EditFormField(
+          label: 'Ex. NGN1000 / 15 minutes',
+          controller: _liveConsultancyController,
+          validator: Validators.validateInt(),
+          keyboardType: TextInputType.number,
+        ),
       ],
     );
   }
@@ -852,7 +870,13 @@ class _CreateProfileState extends State<CreateProfile> {
     _increamentIndex();
   }
 
-  void _submitFormSeven() {}
+  void _submitFormSeven() {
+    _bloc.add(UpdateAvailabilityRate(ProfileEntity(
+        weeklyHours: _weeklyController.text,
+        rateForHomeService: _homeServiceController.text,
+        rateForLiveService: _liveConsultancyController.text)));
+  }
+
   void _submitFormEight() {}
   void _submitFormNine() {}
   void _submitFormTen() {}

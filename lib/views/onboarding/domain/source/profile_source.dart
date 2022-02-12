@@ -1,4 +1,5 @@
 import 'package:artisan/core/entity/default_response.dart';
+import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
 import 'package:artisan/views/onboarding/data/model/delete_industry_response/delete_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
@@ -23,5 +24,7 @@ abstract class ProfileSource {
   Future<DefaultResponse> updateExperienceLevel(ProfileEntity entity);
   Future<DefaultResponse> updateEducation(ProfileEntity entity);
   Future<DefaultResponse> updateWorkHistory(ProfileEntity entity);
+  Future<DefaultResponse> updateWorkAvailability(ProfileEntity entity);
   Future<WorkHistoryResponse> workHistory();
+  Future<ConfigResponse> configs();
 }

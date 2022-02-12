@@ -85,4 +85,18 @@ class ProfileProvider extends BaseModel {
       setState(ViewState.idle);
     }
   }
+
+  void fetchConfigs() async {
+    try {
+      setState(ViewState.busy);
+      final _response = await _useCase.configs();
+      _response!.fold((l) => logger.e(l.errorMessage(l)), (r) {
+        logger.d(r.data?.toJson());
+        setState(ViewState.idle);
+      });
+    } catch (e) {
+      logger.e(e);
+      setState(ViewState.idle);
+    }
+  }
 }

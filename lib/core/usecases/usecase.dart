@@ -35,8 +35,10 @@ class UseCase<Type, Params> {
   Future<Either<Failure, Type>>? updateSkills(Params p) {}
   Future<Either<Failure, Type>>? updateExperienceLevel(Params p) {}
   Future<Either<Failure, Type>>? updateEducation(Params p) {}
+  Future<Either<Failure, Type>>? updateWorkAvailability(Params p) {}
   Future<Either<Failure, Type>>? updateWorkHistory(Params p) {}
   Future<Either<Failure, Type>>? workHistory() {}
+  Future<Either<Failure, Type>>? configs() {}
 }
 
 class NoParams extends Equatable {

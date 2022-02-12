@@ -50,4 +50,7 @@ class UrlConfig {
   static const String artisanEducationUpdate = 'artisan/education/save';
   static const String artisanWorkHistory = 'artisan/work-history/save';
   static const String artisanWorkHistoryList = 'artisan/work-history/list';
+  static const String configs = 'gig/config';
+  static const String updateAvailability =
+      'artisan/profile/update-availability';
 }

@@ -2,6 +2,7 @@ import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
+import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/industry_categories_response/industry_categories_response.dart';
 import 'package:artisan/views/onboarding/data/model/skills_response/skills_response.dart';
@@ -160,12 +161,34 @@ class ProfileApi {
     }
   }
 
+  /// Update work availability
+  Future<DefaultResponse> updateWorkAvailability(ProfileEntity entity) async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.updateAvailability, RequestMethod.post,
+          data: entity.toAvailability());
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   /// fetch artisans work history
   Future<WorkHistoryResponse> workHistory() async {
     try {
       final _response = await _networkService.call(
           UrlConfig.artisanWorkHistoryList, RequestMethod.get);
       return WorkHistoryResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<ConfigResponse> configs() async {
+    try {
+      final _response =
+          await _networkService.call(UrlConfig.configs, RequestMethod.get);
+      return ConfigResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }

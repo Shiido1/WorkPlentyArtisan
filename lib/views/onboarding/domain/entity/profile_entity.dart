@@ -32,34 +32,40 @@ class ProfileEntity extends DefaultResponse {
   final String? endedOn;
   final String? location;
 
-  ProfileEntity({
-    this.title,
-    this.description,
-    this.gender,
-    this.avatar,
-    this.country,
-    this.countryID,
-    this.stateId,
-    this.state,
-    this.lga,
-    this.city,
-    this.zipcode,
-    this.address,
-    this.appartment,
-    this.skills,
-    this.experienceLevel,
-    this.school,
-    this.fieldOfStudy,
-    this.degree,
-    this.attendedFrom,
-    this.attendedTo,
-    this.company,
-    this.position,
-    this.currentleHere,
-    this.startedOn,
-    this.endedOn,
-    this.location,
-  });
+  final String? weeklyHours;
+  final String? rateForHomeService;
+  final String? rateForLiveService;
+
+  ProfileEntity(
+      {this.title,
+      this.description,
+      this.gender,
+      this.avatar,
+      this.country,
+      this.countryID,
+      this.stateId,
+      this.state,
+      this.lga,
+      this.city,
+      this.zipcode,
+      this.address,
+      this.appartment,
+      this.skills,
+      this.experienceLevel,
+      this.school,
+      this.fieldOfStudy,
+      this.degree,
+      this.attendedFrom,
+      this.attendedTo,
+      this.company,
+      this.position,
+      this.currentleHere,
+      this.startedOn,
+      this.endedOn,
+      this.location,
+      this.weeklyHours,
+      this.rateForHomeService,
+      this.rateForLiveService});
 
   Map<String, dynamic> toMap() {
     return {
@@ -107,5 +113,10 @@ class ProfileEntity extends DefaultResponse {
         'started_on': startedOn,
         'ended_on': endedOn,
         'location': location
+      };
+  Map<String, dynamic> toAvailability() => {
+        'weekly_hours': weeklyHours,
+        'rate_for_home_service': rateForHomeService,
+        'rate_for_live_service': rateForLiveService
       };
 }
