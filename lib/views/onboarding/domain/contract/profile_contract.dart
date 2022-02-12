@@ -33,4 +33,6 @@ abstract class ProfileContract {
       ProfileEntity entity);
   Future<Either<Failure, DefaultResponse>> updateEducation(
       ProfileEntity entity);
+  Future<Either<Failure, DefaultResponse>> updateWorkHistory(
+      ProfileEntity entity);
 }

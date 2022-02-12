@@ -1,6 +1,5 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/usecases/usecase.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
@@ -63,6 +62,11 @@ class ProfileUseCases extends UseCase<DefaultResponse, Params> {
   @override
   Future<Either<Failure, DefaultResponse>>? updateEducation(Params p) async {
     return await _repository.updateEducation(p.entity!);
+  }
+
+  @override
+  Future<Either<Failure, DefaultResponse>>? updateWorkHistory(Params p) async {
+    return await _repository.updateWorkHistory(p.entity!);
   }
 }
 

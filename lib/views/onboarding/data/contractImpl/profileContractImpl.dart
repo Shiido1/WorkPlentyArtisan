@@ -139,4 +139,15 @@ class ProfileContractImpl implements ProfileContract {
       return Left(AppFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, DefaultResponse>> updateWorkHistory(
+      ProfileEntity entity) async {
+    try {
+      final _response = await _impl.updateWorkHistory(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
 }

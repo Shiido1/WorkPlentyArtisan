@@ -146,4 +146,16 @@ class ProfileApi {
       rethrow;
     }
   }
+
+  /// Update education level
+  Future<DefaultResponse> updateWorkHistory(ProfileEntity entity) async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.artisanWorkHistory, RequestMethod.post,
+          data: entity.toWorkHistory());
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

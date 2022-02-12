@@ -1,7 +1,8 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:artisan/core/entity/default_response.dart';
 import 'package:dio/dio.dart';
+
+import 'package:artisan/core/entity/default_response.dart';
 
 class ProfileEntity extends DefaultResponse {
   final String? title;
@@ -19,34 +20,46 @@ class ProfileEntity extends DefaultResponse {
   final String? appartment;
   final List<String>? skills;
   final int? experienceLevel;
-
   final String? school;
   final String? fieldOfStudy;
   final String? degree;
   final String? attendedFrom;
   final String? attendedTo;
+  final String? company;
+  final String? position;
+  final String? currentleHere;
+  final String? startedOn;
+  final String? endedOn;
+  final String? location;
 
-  ProfileEntity(
-      {this.title,
-      this.description,
-      this.gender,
-      this.avatar,
-      this.country,
-      this.lga,
-      this.state,
-      this.school,
-      this.fieldOfStudy,
-      this.degree,
-      this.attendedFrom,
-      this.attendedTo,
-      this.city,
-      this.countryID,
-      this.stateId,
-      this.zipcode,
-      this.address,
-      this.appartment,
-      this.experienceLevel,
-      this.skills});
+  ProfileEntity({
+    this.title,
+    this.description,
+    this.gender,
+    this.avatar,
+    this.country,
+    this.countryID,
+    this.stateId,
+    this.state,
+    this.lga,
+    this.city,
+    this.zipcode,
+    this.address,
+    this.appartment,
+    this.skills,
+    this.experienceLevel,
+    this.school,
+    this.fieldOfStudy,
+    this.degree,
+    this.attendedFrom,
+    this.attendedTo,
+    this.company,
+    this.position,
+    this.currentleHere,
+    this.startedOn,
+    this.endedOn,
+    this.location,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -85,5 +98,14 @@ class ProfileEntity extends DefaultResponse {
         'degree': degree,
         'attended_from': attendedFrom,
         'attended_to': attendedTo
+      };
+
+  Map<String, dynamic> toWorkHistory() => {
+        'company': school,
+        'position': fieldOfStudy,
+        'currently_here': degree,
+        'started_on': attendedFrom,
+        'ended_on': attendedTo,
+        'location': attendedTo
       };
 }

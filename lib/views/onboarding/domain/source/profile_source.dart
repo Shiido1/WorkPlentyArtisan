@@ -21,4 +21,5 @@ abstract class ProfileSource {
   Future<DefaultResponse> updateSkills(ProfileEntity entity);
   Future<DefaultResponse> updateExperienceLevel(ProfileEntity entity);
   Future<DefaultResponse> updateEducation(ProfileEntity entity);
+  Future<DefaultResponse> updateWorkHistory(ProfileEntity entity);
 }
