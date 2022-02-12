@@ -49,6 +49,7 @@ class _CreateProfileState extends State<CreateProfile> {
   double _progress = 10;
   int _index = 0;
   final _loadingKey = GlobalKey<FormState>();
+  final _dialogKey = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _weeklyController = TextEditingController();
   final TextEditingController _homeServiceController = TextEditingController();
@@ -117,7 +118,6 @@ class _CreateProfileState extends State<CreateProfile> {
           if (state is ProfileFailed) {
             WorkPlenty.hideLoading(_loadingKey);
             WorkPlenty.error(state.message);
-            _increamentIndex();
           }
         },
         child: BodyWidget(
@@ -165,12 +165,11 @@ class _CreateProfileState extends State<CreateProfile> {
 
   void _increamentIndex() {
     if (_index == 9) {
-      WorkPlenty.showSuccessDialog(context, _loadingKey,
+      WorkPlenty.showSuccessDialog(context, _dialogKey,
           image: AppImages.blowWhistle,
           title: 'Profile looking good',
           message: 'Guess who just completed setting up is profile? You!',
           btnText: 'Continue', next: () {
-        PageRouter.goBack(context);
         PageRouter.gotoNamed(Routes.board, context, clearStack: true);
       });
       return;
@@ -217,8 +216,6 @@ class _CreateProfileState extends State<CreateProfile> {
     if (_index == 9) return _formTen();
     return Container();
   }
-
-  String _skill = '';
 
   void _checkIfSelectedSkills(String value) {
     if (_skills.contains(value)) {
