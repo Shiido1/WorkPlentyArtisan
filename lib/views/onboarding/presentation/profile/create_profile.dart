@@ -24,6 +24,7 @@ import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/edit_form_widget.dart';
+import 'package:artisan/views/widgets/global_dialog.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
@@ -148,7 +149,7 @@ class _CreateProfileState extends State<CreateProfile> {
                 BtnWidget(
                   showBackButton: _index > 0,
                   btnText: _index != 9 ? 'Next' : "Complete",
-                  showSkip: _index == 3 || _index == 6,
+                  showSkip: _index == 3 || _index == 6 || _index == 7,
                   callback: () => _whenFormIsField(),
                   goBack: () => _decreamentIndex(),
                   skip: () => _increamentIndex(),
@@ -649,7 +650,11 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex: Web Developer & Designer'),
+        EditFormField(
+          label: 'Ex: Web Developer & Designer',
+          controller: _titleController,
+          validator: Validators.validateString(),
+        ),
         SizedBox(height: 26.h),
         TextView(
           text: 'Description',
@@ -659,9 +664,12 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 8.h),
         EditFormField(
-            height: 224.h,
-            label:
-                'Highlight your top skills, experience and interests. Lorem impsum lorem ipsum lorem ipsum'),
+          height: 224.h,
+          label:
+              'Highlight your top skills, experience and interests. Lorem impsum lorem ipsum lorem ipsum',
+          controller: _descriptionController,
+          validator: Validators.validateString(),
+        ),
         SizedBox(height: 26.h),
         TextView(
           text: 'Gender',
@@ -673,7 +681,20 @@ class _CreateProfileState extends State<CreateProfile> {
         EditFormField(
           label: '',
           suffixIcon: Icons.keyboard_arrow_down,
+          validator: Validators.validateString(),
+          controller: _genderController,
+          readOnly: true,
+          onTapped: () => globalDialog(
+              showRadioButton: false,
+              question: 'Gender',
+              context: context,
+              list: ['Male', "Female"],
+              picked: (v) {
+                _genderController.text = v;
+                setState(() {});
+              }),
         ),
+        SizedBox(height: 114.h),
       ],
     );
   }
@@ -877,7 +898,16 @@ class _CreateProfileState extends State<CreateProfile> {
         rateForLiveService: _liveConsultancyController.text)));
   }
 
-  void _submitFormEight() {}
-  void _submitFormNine() {}
+  void _submitFormEight() {
+    _bloc.add(BioProfileUpdate(ProfileEntity(
+        title: _titleController.text,
+        description: _descriptionController.text,
+        gender: _genderController.text)));
+  }
+
+  void _submitFormNine() {
+    logger.d('addasdad');
+  }
+
   void _submitFormTen() {}
 }
