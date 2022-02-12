@@ -1,6 +1,8 @@
 // ignore_for_file: unused_field
 
 import 'package:artisan/core/di/injector.dart';
+import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/views/onboarding/domain/entity/auth_entity.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
@@ -42,8 +44,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             }
             if (state is AuthblocSuccess) {
               WorkPlenty.hideLoading(_loadingKey);
-              // PageRouter.gotoNamed(Routes.forgotPassword, context,
-              //     args: _emailController.text);
+              PageRouter.gotoNamed(Routes.forgotPassword, context,
+                  args: _emailController.text);
             }
             if (state is AuthblocFailed) {
               WorkPlenty.hideLoading(_loadingKey);

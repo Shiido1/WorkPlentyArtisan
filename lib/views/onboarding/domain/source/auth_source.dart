@@ -8,4 +8,5 @@ abstract class AuthSource {
   Future<AuthResponse> forgotPassword(AuthEntity entity);
   Future<AuthResponse> verificationPinRequest();
   Future<AuthResponse> verificationPinConfirm(AuthEntity entity);
+  Future<AuthResponse> resetPassword(AuthEntity entity);
 }

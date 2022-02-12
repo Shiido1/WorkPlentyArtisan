@@ -1,5 +1,6 @@
 import 'package:artisan/views/board/board.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/email_verification.dart';
+import 'package:artisan/views/onboarding/presentation/authentication/reset_password.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/welcom_back.dart';
 import 'package:artisan/views/onboarding/presentation/profile/awaiting.dart';
 import 'package:artisan/views/onboarding/presentation/profile/create_profile.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String verifyPin = '/verifyPin';
   static const String profileSetup = '/profileSetup';
   static const String createProfile = '/procreateProfilefileSetup';
+  static const String forgotPassword = '/forgotPassword';
 
   static Map<String, Widget Function(BuildContext mainContext)> get getRoutes =>
       {
@@ -40,6 +42,10 @@ class Routes {
         },
         createProfile: (BuildContext context) {
           return CreateProfile();
+        },
+        forgotPassword: (BuildContext context) {
+          final args = ModalRoute.of(context)!.settings.arguments as String;
+          return ResetPasswordScreen(args);
         },
       };
 }

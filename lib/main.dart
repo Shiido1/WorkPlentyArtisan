@@ -1,5 +1,5 @@
 import 'package:artisan/core/helper/configs/providers.dart';
-import 'package:artisan/views/onboarding/presentation/profile/create_profile.dart';
+import 'package:artisan/views/onboarding/presentation/intro/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             darkTheme: darkThemeData(context),
             themeMode: ThemeMode.light,
             routes: Routes.getRoutes,
-            home: CreateProfile(),
+            home: IntroOneScreen(),
           ),
         ),
       ),

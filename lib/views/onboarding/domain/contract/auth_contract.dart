@@ -11,4 +11,5 @@ abstract class AuthContract {
   Future<Either<Failure, AuthResponse>> verificationPinRequest();
   Future<Either<Failure, AuthResponse>> verificationPinConfirm(
       AuthEntity entity);
+  Future<Either<Failure, AuthResponse>> resetPassword(AuthEntity entity);
 }

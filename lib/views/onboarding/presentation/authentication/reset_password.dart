@@ -76,8 +76,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 EditFormField(
                   label: 'PIN',
                   controller: _pinController,
-                  validator: Validators.validateInt(),
-                  keyboardType: TextInputType.number,
+                  validator: Validators.validateString(),
+                  keyboardType: TextInputType.text,
                 ),
                 SizedBox(height: 18.h),
                 EditFormField(
@@ -113,7 +113,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   void _proceed() {
-    // PageRouter.gotoWidget(WelcomeBackScreen(), context);
     if (_formKey.currentState!.validate()) {
       _bloc.add(ResetPasswordEvent(AuthEntity(
           email: widget.email,

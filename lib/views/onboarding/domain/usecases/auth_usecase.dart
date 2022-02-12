@@ -45,6 +45,12 @@ class AuthUsesCases extends UseCase<AuthEntity, Params> {
   }
 
   @override
+  Future<Either<Failure, AuthResponse>>? resetPasswordUseCase(
+      Params params) async {
+    return await _repository.resetPassword(params.entity!);
+  }
+
+  @override
   Future<Either<Failure, AuthEntity>> call(Params params) {
     throw UnimplementedError();
   }
