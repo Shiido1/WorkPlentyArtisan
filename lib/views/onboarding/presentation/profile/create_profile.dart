@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
+import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/date_picker.dart';
@@ -18,7 +18,6 @@ import 'package:artisan/views/onboarding/presentation/profile/provider/profile_p
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/category.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/subcategory.dart';
-import 'package:artisan/views/onboarding/presentation/profile/widget/weekly_hour.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
 import 'package:artisan/views/widgets/buttons.dart';
@@ -35,6 +34,7 @@ import 'package:provider/provider.dart';
 import 'bloc/profile_bloc.dart';
 import 'widget/employment.dart';
 import 'widget/industry.dart';
+import 'widget/profile_image.dart';
 import 'widget/skills.dart';
 import 'widget/skills_choice.dart';
 
@@ -149,7 +149,8 @@ class _CreateProfileState extends State<CreateProfile> {
                 BtnWidget(
                   showBackButton: _index > 0,
                   btnText: _index != 9 ? 'Next' : "Complete",
-                  showSkip: _index == 3 || _index == 6 || _index == 7,
+                  showSkip:
+                      _index == 3 || _index == 6 || _index == 7 || _index == 8,
                   callback: () => _whenFormIsField(),
                   goBack: () => _decreamentIndex(),
                   skip: () => _increamentIndex(),
@@ -719,16 +720,22 @@ class _CreateProfileState extends State<CreateProfile> {
         ),
         SizedBox(height: 43.h),
         Center(
-          child: ImageLoader(
-              width: 238.w, height: 238.h, path: AppImages.imagePlaceHolder),
+          child: ProfileImageWidget(
+            _imageFile,
+            onTap: () => _getImage(),
+          ),
         ),
         SizedBox(height: 43.h),
         ButtonWidget(
             buttonText: 'Add Profile Picture',
             buttonStyle: true,
+            width: Utils.getDeviceWidth(context),
             primary: Colors.transparent,
-            color: Pallets.primary100,
-            onPressed: () {}),
+            color: Pallets.grey300,
+            onPressed: () {
+              _bloc.add(AvatarProfileUpdate(ProfileEntity(
+                  avatar: _pickImage.multiPathFile(_imageFile!))));
+            }),
       ],
     );
   }
@@ -759,7 +766,12 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Nigeria', suffixIcon: Icons.keyboard_arrow_down),
+        EditFormField(
+          label: 'Nigeria',
+          suffixIcon: Icons.keyboard_arrow_down,
+          controller: _countryController,
+          validator: Validators.validateString(),
+        ),
         SizedBox(height: 18.h),
         TextView(
           text: 'Street Address',
@@ -768,9 +780,15 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex : 123 Street Close'),
+        EditFormField(
+            label: 'Ex : 123 Street Close',
+            controller: _addressController,
+            validator: Validators.validateString()),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Apartment/Suite'),
+        EditFormField(
+            label: 'Apartment/Suite',
+            controller: _apartmentController,
+            validator: Validators.validateString()),
         SizedBox(height: 18.h),
         TextView(
           text: 'City',
@@ -779,7 +797,10 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Search for your city'),
+        EditFormField(
+            label: 'Search for your city',
+            controller: _cityController,
+            validator: Validators.validateString()),
         SizedBox(height: 18.h),
         TextView(
           text: 'ZIP/Postal Code',
@@ -788,7 +809,11 @@ class _CreateProfileState extends State<CreateProfile> {
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 8.h),
-        EditFormField(label: 'Ex: 00000')
+        EditFormField(
+            label: 'Ex: 00000',
+            controller: _zipcodeController,
+            validator: Validators.validateString()),
+        SizedBox(height: 114.h),
       ],
     );
   }
@@ -906,8 +931,16 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   void _submitFormNine() {
-    logger.d('addasdad');
+    _increamentIndex();
   }
 
-  void _submitFormTen() {}
+  void _submitFormTen() {
+    _bloc.add(LocationProfileUpdate(ProfileEntity(
+        country: _countryController.text,
+        state: _stateController.text,
+        city: _cityController.text,
+        zipcode: _zipcodeController.text,
+        address: _addressController.text,
+        appartment: _apartmentController.text)));
+  }
 }

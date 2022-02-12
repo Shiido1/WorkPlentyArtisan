@@ -71,4 +71,5 @@ class AppImages {
   static String security = 'assets/svgs/security.svg';
   static String clock = 'assets/svgs/clock.svg';
   static String allDone = 'assets/svgs/all-done.svg';
+  static String image = 'assets/svgs/image.svg';
 }
