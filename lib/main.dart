@@ -1,4 +1,6 @@
+import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/helper/configs/providers.dart';
+import 'package:artisan/views/board/board.dart';
 import 'package:artisan/views/onboarding/presentation/intro/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,7 +37,9 @@ class MyApp extends StatelessWidget {
             darkTheme: darkThemeData(context),
             themeMode: ThemeMode.light,
             routes: Routes.getRoutes,
-            home: IntroOneScreen(),
+            home: SessionManager.instance.isLoggedIn
+                ? MainBoard()
+                : IntroOneScreen(),
           ),
         ),
       ),
