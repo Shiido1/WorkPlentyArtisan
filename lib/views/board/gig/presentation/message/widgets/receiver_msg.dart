@@ -1,5 +1,5 @@
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/message/model/dummy_chats.dart';
+import 'package:artisan/views/board/gig/presentation/message/model/dummy_chats.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

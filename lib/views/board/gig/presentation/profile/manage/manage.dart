@@ -1,13 +1,13 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
-import 'package:artisan/views/board/profile/manage/address_settings.dart';
-import 'package:artisan/views/board/profile/widget/clicks_one.dart';
-import 'package:artisan/views/board/profile/widget/profile_image_three.dart';
+import 'package:artisan/views/board/gig/presentation/profile/widget/clicks_one.dart';
+import 'package:artisan/views/board/gig/presentation/profile/widget/profile_image_three.dart';
 import 'package:artisan/views/widgets/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'account_settings.dart';
+import 'address_settings.dart';
 import 'connected_accounts.dart';
 import 'password_settings.dart';
 import 'payout_Settings.dart';

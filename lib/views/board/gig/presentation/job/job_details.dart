@@ -3,7 +3,6 @@ import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/job/job_details_copy.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/review_bg_card.dart';
@@ -12,6 +11,8 @@ import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'job_details_copy.dart';
 
 class JobDetails extends StatelessWidget {
   const JobDetails({Key? key}) : super(key: key);

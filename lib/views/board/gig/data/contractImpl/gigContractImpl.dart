@@ -1,3 +1,4 @@
+import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';
 import 'package:artisan/core/error/failures.dart';
 import 'package:artisan/views/board/gig/data/sourceImpl/gigSourceImpl.dart';
@@ -15,6 +16,16 @@ class GigContractImpl implements GigContract {
       GigEntity entity) async {
     try {
       final _response = await _impl.listOfGigs(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DefaultResponse>> saveGig(GigEntity entity) async {
+    try {
+      final _response = await _impl.saveGig(entity);
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));

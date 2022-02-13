@@ -1,7 +1,7 @@
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/images.dart';
-import 'package:artisan/views/board/message/widgets/chat_menu.dart';
-import 'package:artisan/views/board/message/widgets/receiver_msg.dart';
+import 'package:artisan/views/board/gig/presentation/message/widgets/chat_menu.dart';
+import 'package:artisan/views/board/gig/presentation/message/widgets/receiver_msg.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';

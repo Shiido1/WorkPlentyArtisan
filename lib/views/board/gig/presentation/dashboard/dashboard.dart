@@ -1,8 +1,8 @@
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
-import 'package:artisan/views/board/gig/presentation/provider/gig_provider.dart';
-import 'package:artisan/views/board/widget/card_widget.dart';
+import 'package:artisan/views/board/gig/presentation/stateManagers/provider/gig_provider.dart';
+import 'package:artisan/views/board/gig/presentation/widget/card_widget.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

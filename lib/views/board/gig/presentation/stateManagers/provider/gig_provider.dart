@@ -3,7 +3,7 @@ import 'package:artisan/core/viewmodels/base_model.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
 
-import '../../domain/usecase/gig_usecase.dart';
+import '../../../domain/usecase/gig_usecase.dart';
 
 class GigProvider extends BaseModel {
   final GigUseCases _useCase;

@@ -1,4 +1,4 @@
-import 'package:artisan/views/board/widget/card_widget.dart';
+import 'package:artisan/views/board/gig/presentation/widget/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

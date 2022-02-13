@@ -2,7 +2,7 @@ import 'package:artisan/core/bus/event_bus.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/widget/card_widget.dart';
+import 'package:artisan/views/board/gig/presentation/widget/card_widget.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/search_field.dart';
 import 'package:artisan/views/widgets/text_views.dart';
