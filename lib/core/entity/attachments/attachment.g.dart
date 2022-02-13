@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cover.dart';
+part of 'attachment.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Cover _$CoverFromJson(Map<String, dynamic> json) => Cover(
+Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       id: json['id'] as int?,
       name: json['name'] as String?,
       path: json['path'] as String?,
@@ -16,7 +16,8 @@ Cover _$CoverFromJson(Map<String, dynamic> json) => Cover(
       createdAt: json['created_at'] as String?,
     );
 
-Map<String, dynamic> _$CoverToJson(Cover instance) => <String, dynamic>{
+Map<String, dynamic> _$AttachmentToJson(Attachment instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'path': instance.path,

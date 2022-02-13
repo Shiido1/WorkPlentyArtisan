@@ -1,6 +1,8 @@
+import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/job/job_details.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/skills_widget.dart';
@@ -11,17 +13,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key}) : super(key: key);
+  final Datum? gig;
+  const CardWidget({this.gig, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    List<String> _skills = [
-      'UI',
-      'UX',
-      'Web Design',
-      'Figma',
-      'User Research',
-      'Style Guide'
-    ];
     return CupertinoButton(
       padding: EdgeInsets.zero,
       onPressed: () => PageRouter.gotoWidget(JobDetails(), context),
@@ -44,7 +39,7 @@ class CardWidget extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           TextView(
-                            text: 'UI Redesign for Web Application',
+                            text: gig?.title ?? '',
                             maxLines: 1,
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
@@ -60,8 +55,7 @@ class CardWidget extends StatelessWidget {
                           ),
                           SizedBox(height: 7.h),
                           TextView(
-                            text:
-                                '''The task is to design a modern web app for a cargo portal application. Our current design features need a more modern look and better user experience, screen listing''',
+                            text: gig?.description ?? '',
                             maxLines: 3,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -84,13 +78,14 @@ class CardWidget extends StatelessWidget {
                 SingleChildScrollView(
                   child: Row(
                     children: [
-                      _buildWidget(AppImages.credit_card, '₦150000'),
+                      _buildWidget(AppImages.credit_card,
+                          '${Utils.currency(gig?.totalBudget ?? 0)}'),
                       SizedBox(width: 20.w),
-                      _buildWidget(AppImages.hour_glass, '4 Weeks'),
+                      _buildWidget(AppImages.hour_glass, gig?.timeline ?? ''),
                       SizedBox(width: 20.w),
-                      _buildWidget(AppImages.bids, '16 Bids'),
+                      _buildWidget(AppImages.bids, ' Bids'),
                       SizedBox(width: 20.w),
-                      _buildWidget(AppImages.star, '4.0'),
+                      _buildWidget(AppImages.star, ''),
                     ],
                   ),
                 ),
@@ -99,7 +94,7 @@ class CardWidget extends StatelessWidget {
                   spacing: 5,
                   runSpacing: 10,
                   children:
-                      _skills.map((element) => SkillsWidget(element)).toList(),
+                      gig!.skills!.map((skill) => SkillsWidget(skill)).toList(),
                 ),
               ],
             ),

@@ -1,7 +1,11 @@
 import 'package:artisan/core/api/auth/auth_api.dart';
+import 'package:artisan/core/api/gig/gig_api.dart';
 import 'package:artisan/core/api/profile/profile_api.dart';
 import 'package:artisan/core/database/hive_database.dart';
 import 'package:artisan/core/network/network_service.dart';
+import 'package:artisan/views/board/gig/data/contractImpl/gigContractImpl.dart';
+import 'package:artisan/views/board/gig/data/sourceImpl/gigSourceImpl.dart';
+import 'package:artisan/views/board/gig/domain/usecase/gig_usecase.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/authContractImpl.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/authSourceImpl.dart';
@@ -52,6 +56,8 @@ void _initDataSources() {
       () => AuthSourceImpl(api: inject()));
   inject.registerLazySingleton<ProfileSourceImpl>(
       () => ProfileSourceImpl(api: inject()));
+  inject
+      .registerLazySingleton<GigSourceImpl>(() => GigSourceImpl(api: inject()));
 }
 
 /// Initialize data repositories implementations
@@ -60,6 +66,8 @@ void _initDataContracts() {
       () => AuthContractImpl(inject()));
   inject.registerLazySingleton<ProfileContractImpl>(
       () => ProfileContractImpl(inject()));
+  inject
+      .registerLazySingleton<GigContractImpl>(() => GigContractImpl(inject()));
 }
 
 /// Initialize services's here
@@ -70,6 +78,7 @@ void _initServices() {
       .registerLazySingleton<AuthApi>(() => AuthApi(networkService: inject()));
   inject.registerLazySingleton<ProfileApi>(
       () => ProfileApi(networkService: inject()));
+  inject.registerLazySingleton<GigApi>(() => GigApi(networkService: inject()));
 }
 
 /// Initialize usecases here
@@ -77,4 +86,5 @@ void _initializeUsecase() {
   inject.registerLazySingleton<AuthUsesCases>(() => AuthUsesCases(inject()));
   inject
       .registerLazySingleton<ProfileUseCases>(() => ProfileUseCases(inject()));
+  inject.registerLazySingleton<GigUseCases>(() => GigUseCases(inject()));
 }

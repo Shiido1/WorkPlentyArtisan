@@ -1,3 +1,4 @@
+import 'package:artisan/core/entity/skills/skill.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
@@ -124,7 +125,7 @@ class JobDetails extends StatelessWidget {
                     spacing: 5,
                     runSpacing: 10,
                     children: _skills
-                        .map((element) => SkillsWidget(element))
+                        .map((element) => SkillsWidget(Skill()))
                         .toList(),
                   ),
                   borderRadiusGeometry: BorderRadius.zero,

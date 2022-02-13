@@ -10,7 +10,7 @@ import 'package:artisan/views/board/widget/message_drawer.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard/dashboard.dart';
+import 'gig/presentation/dashboard/dashboard.dart';
 import 'message/contacts_chat.dart';
 import 'profile/profile.dart';
 import 'saved/saved.dart';

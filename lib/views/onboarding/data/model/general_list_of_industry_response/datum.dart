@@ -1,6 +1,5 @@
+import 'package:artisan/core/entity/cover/cover.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'cover.dart';
 
 part 'datum.g.dart';
 

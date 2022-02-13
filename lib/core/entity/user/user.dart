@@ -1,56 +1,44 @@
-import 'package:equatable/equatable.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class User extends Equatable {
-  final int? id;
-  final String? avatar;
-  final String? fname;
-  final dynamic mname;
-  final String? lname;
-  final String? email;
-  final String? phone;
-  final String? role;
+@JsonSerializable(explicitToJson: true, includeIfNull: true)
+@HiveType(typeId: 1)
+class User extends HiveObject {
+  @HiveField(0)
+  int? id;
+  @HiveField(1)
+  String? avatar;
+  @HiveField(2)
+  @JsonKey(name: 'first_name')
+  @HiveField(3)
+  String? firstName;
+  @JsonKey(name: 'last_name')
+  @HiveField(4)
+  String? lastName;
+  @HiveField(5)
+  String? email;
+  @HiveField(6)
+  String? phone;
+  @HiveField(7)
+  String? role;
   @JsonKey(name: 'created_at')
-  final String? createdAt;
-  @JsonKey(name: 'updated_at')
-  final String? updatedAt;
+  @HiveField(8)
+  String? createdAt;
 
-  const User({
+  User({
     this.id,
     this.avatar,
-    this.fname,
-    this.mname,
-    this.lname,
+    this.firstName,
+    this.lastName,
     this.email,
     this.phone,
     this.role,
     this.createdAt,
-    this.updatedAt,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
-
-  @override
-  bool get stringify => true;
-
-  @override
-  List<Object?> get props {
-    return [
-      id,
-      avatar,
-      fname,
-      mname,
-      lname,
-      email,
-      phone,
-      role,
-      createdAt,
-      updatedAt,
-    ];
-  }
 }

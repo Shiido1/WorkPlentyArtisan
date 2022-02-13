@@ -33,33 +33,16 @@ class Utils {
     ));
   }
 
-  /// format date
-  static String fomartDate(String date) {
-    DateTime _dt = DateTime.parse(date);
-    return DateFormat("dd MMM, yyyy").format(_dt);
-  }
-
-  /// format time
-  static String getTodaysDateTime() {
-    DateTime now = DateTime.now();
-    return DateFormat('dd MMMM yyyy - HH:MM a').format(now);
-  }
-
-  /// formart complete date
-  static String fomartCompleteDate(String date) {
-    DateTime _dt = DateTime.parse(date);
-    // return DateFormat('EEE, MMM d, ''yy').format(_dt);
-    return DateFormat('EEE d MMMM, yyyy').format(_dt);
-  }
-
-  /// formart age
-  static int getAge(String date) {
-    return DateTime.now().year - DateTime.parse(date).year;
-  }
-
   /// format currency
   static String formatCurrency(dynamic i) {
     return NumberFormat.simpleCurrency().format(i).replaceAll('.00', '');
+  }
+
+  /// format currency
+  static String currency(int amount) {
+    final _format =
+        NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'NGN');
+    return '${_format.currencySymbol}$amount';
   }
 
 //* getting local path
