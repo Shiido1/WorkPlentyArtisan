@@ -1,6 +1,5 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/usecases/usecase.dart';
 import 'package:artisan/views/board/gig/data/contractImpl/gigContractImpl.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';

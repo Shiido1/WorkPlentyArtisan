@@ -1,5 +1,4 @@
 import 'package:artisan/core/entity/default_response.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';
@@ -29,8 +28,7 @@ class GigApi {
     try {
       final _response = await _networkService.call(
           UrlConfig.savedGigSave, RequestMethod.post,
-          data: entity.savedGigsSave());
-      return DefaultResponse.fromJson(_response.data);
+          data: entity.savedGigsSave());      return DefaultResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }

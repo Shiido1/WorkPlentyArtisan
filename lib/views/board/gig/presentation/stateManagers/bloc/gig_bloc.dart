@@ -1,6 +1,5 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/usecase/gig_usecase.dart';
 import 'package:bloc/bloc.dart';
