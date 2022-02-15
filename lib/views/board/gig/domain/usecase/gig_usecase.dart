@@ -24,6 +24,12 @@ class GigUseCases extends UseCase<DefaultResponse, Params> {
       Params params) async {
     return await _repository.saveGig(params.entity!);
   }
+
+  @override
+  Future<Either<Failure, ListOfAvailableGigsResponse>>? listOfSavedGigs(
+      Params params) async {
+    return await _repository.listOfSavedGigs(params.entity!);
+  }
 }
 
 class Params extends Equatable {

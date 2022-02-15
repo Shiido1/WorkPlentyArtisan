@@ -2,6 +2,7 @@ import 'package:artisan/core/entity/attachments/attachment.dart';
 import 'package:artisan/core/entity/industry/industry.dart';
 import 'package:artisan/core/entity/skills/skill.dart';
 import 'package:artisan/core/entity/user/user.dart';
+import 'package:artisan/core/enums/gig_type.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -17,7 +18,7 @@ class Datum extends HiveObject {
   @HiveField(2)
   Industry? industry;
   @HiveField(3)
-  String? type;
+  GigType? type;
   @HiveField(4)
   String? title;
   @HiveField(5)

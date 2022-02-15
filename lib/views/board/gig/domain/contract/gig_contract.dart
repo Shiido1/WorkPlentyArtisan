@@ -8,4 +8,6 @@ abstract class GigContract {
   Future<Either<Failure, ListOfAvailableGigsResponse>> listOfGigs(
       GigEntity entity);
   Future<Either<Failure, DefaultResponse>> saveGig(GigEntity entity);
+  Future<Either<Failure, ListOfAvailableGigsResponse>> listOfSavedGigs(
+      GigEntity entity);
 }

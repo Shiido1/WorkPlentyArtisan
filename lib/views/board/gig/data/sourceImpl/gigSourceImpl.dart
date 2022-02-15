@@ -18,4 +18,9 @@ class GigSourceImpl implements GigSource {
   Future<DefaultResponse> saveGig(GigEntity entity) async {
     return await _api.saveGig(entity: entity);
   }
+
+  @override
+  Future<ListOfAvailableGigsResponse> listOfSavedGigs(GigEntity entity) async {
+    return await _api.listOfSavedGigs(entity: entity);
+  }
 }

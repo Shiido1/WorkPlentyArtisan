@@ -4,5 +4,6 @@ import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 
 abstract class GigSource {
   Future<ListOfAvailableGigsResponse> listOfGigs(GigEntity entity);
+  Future<ListOfAvailableGigsResponse> listOfSavedGigs(GigEntity entity);
   Future<DefaultResponse> saveGig(GigEntity entity);
 }

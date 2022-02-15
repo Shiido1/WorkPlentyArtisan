@@ -28,7 +28,20 @@ class GigApi {
     try {
       final _response = await _networkService.call(
           UrlConfig.savedGigSave, RequestMethod.post,
-          data: entity.savedGigsSave());      return DefaultResponse.fromJson(_response.data);
+          data: entity.savedGigsSave());
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// list of  gig
+  Future<ListOfAvailableGigsResponse> listOfSavedGigs(
+      {required GigEntity entity}) async {
+    try {
+      final _response =
+          await _networkService.call(UrlConfig.savedGig, RequestMethod.get);
+      return ListOfAvailableGigsResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }

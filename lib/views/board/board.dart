@@ -17,7 +17,6 @@ import 'gig/presentation/widget/custom_appbar.dart';
 import 'gig/presentation/widget/drawer_widget.dart';
 import 'gig/presentation/widget/message_drawer.dart';
 
-
 // ignore: must_be_immutable
 class MainBoard extends StatefulWidget {
   final int index;
