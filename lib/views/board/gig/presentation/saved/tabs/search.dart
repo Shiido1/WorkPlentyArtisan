@@ -2,12 +2,14 @@ import 'package:artisan/core/bus/event_bus.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
 import 'package:artisan/views/board/gig/presentation/widget/card_widget.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/search_field.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class SearchTab extends StatelessWidget {
   SearchTab({Key? key}) : super(key: key);
@@ -44,7 +46,29 @@ class SearchTab extends StatelessWidget {
                 textAlign: TextAlign.left,
               ))
             ]),
-            ...[1].map((_) => CardWidget()).toList()
+            FutureBuilder(
+              future: availableGigsDao!.getListenable(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    !snapshot.hasData) {
+                  return Container();
+                }
+                return ValueListenableBuilder(
+                  valueListenable: snapshot.data,
+                  builder: (_, Box<dynamic> value, __) {
+                    final _gigsList =
+                        availableGigsDao!.getConvertedData(value).toList();
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(height: 16.h),
+                        ..._gigsList.map((gig) => CardWidget(gig: gig)).toList()
+                      ],
+                    );
+                  },
+                );
+              },
+            )
           ],
         ),
       ),

@@ -16,58 +16,59 @@ class Dashboard extends StatelessWidget {
     Provider.of<GigProvider>(context, listen: false)
         .getListOfAvailableGigs(entity: GigEntity());
     return Scaffold(
-        body: FutureBuilder(
-      future: availableGigsDao!.getListenable(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting ||
-            !snapshot.hasData) {
-          return Container();
-        }
-        return ValueListenableBuilder(
-          valueListenable: snapshot.data,
-          builder: (_, Box<dynamic> value, __) {
-            final _gigsList =
-                availableGigsDao!.getConvertedData(value).toList();
-            return Padding(
-              padding: EdgeInsets.all(16.w),
-              child: ListView(
-                children: [
-                  SizedBox(height: 34.h),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextView(
-                            text: '${_gigsList.length} Jobs Found',
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Row(
-                        children: [
-                          TextView(
-                              text: 'Sort:',
+      body: FutureBuilder(
+        future: availableGigsDao!.getListenable(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              !snapshot.hasData) {
+            return Container();
+          }
+          return ValueListenableBuilder(
+            valueListenable: snapshot.data,
+            builder: (_, Box<dynamic> value, __) {
+              final _gigsList =
+                  availableGigsDao!.getConvertedData(value).toList();
+              return Padding(
+                padding: EdgeInsets.all(16.w),
+                child: ListView(
+                  children: [
+                    SizedBox(height: 34.h),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextView(
+                              text: '${_gigsList.length} Jobs Found',
                               maxLines: 1,
                               textAlign: TextAlign.left,
-                              fontWeight: FontWeight.w600),
-                          SizedBox(width: 5.w),
-                          TextView(
-                              text: 'Recent',
-                              maxLines: 1,
-                              color: Pallets.grey,
-                              textAlign: TextAlign.left,
-                              fontWeight: FontWeight.w600),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 16.h),
-                  ..._gigsList.map((gig) => CardWidget(gig: gig)).toList()
-                ],
-              ),
-            );
-          },
-        );
-      },
-    ));
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Row(
+                          children: [
+                            TextView(
+                                text: 'Sort:',
+                                maxLines: 1,
+                                textAlign: TextAlign.left,
+                                fontWeight: FontWeight.w600),
+                            SizedBox(width: 5.w),
+                            TextView(
+                                text: 'Recent',
+                                maxLines: 1,
+                                color: Pallets.grey,
+                                textAlign: TextAlign.left,
+                                fontWeight: FontWeight.w600),
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    ..._gigsList.map((gig) => CardWidget(gig: gig)).toList()
+                  ],
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }
