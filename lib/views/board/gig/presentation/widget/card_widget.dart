@@ -3,6 +3,7 @@ import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
@@ -57,7 +58,8 @@ class CardWidget extends StatelessWidget {
                             ),
                             SizedBox(height: 7.h),
                             TextView(
-                              text: 'Posted 17 minutes ago',
+                              text:
+                                  'Posted ${TimeUtil.convertToAgo(gig?.createdAt ?? '')}',
                               maxLines: 1,
                               fontWeight: FontWeight.w400,
                               fontSize: 10,

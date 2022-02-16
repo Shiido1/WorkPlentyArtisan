@@ -144,6 +144,36 @@ class TimeUtil {
     }
   }
 
+  /// Convert in time ago
+  static String convertToAgo(String date) {
+    final _convertedTimestamp = DateTime.parse(date);
+    Duration diff = DateTime.now().difference(_convertedTimestamp);
+
+    if (diff.inDays == 365) {
+      return 'a year ago';
+    } else if (diff.inDays > 365) {
+      return 'on ${DateFormat('dd/MM/yyyy').format(_convertedTimestamp)}';
+    } else if (diff.inDays == 1) {
+      return '${diff.inDays} day ago';
+    } else if (diff.inDays >= 1) {
+      return '${diff.inDays} days ago';
+    } else if (diff.inHours == 1) {
+      return '${diff.inHours} hour ago';
+    } else if (diff.inHours >= 1) {
+      return '${diff.inHours} hours ago';
+    } else if (diff.inMinutes == 1) {
+      return '${diff.inMinutes} minute ago';
+    } else if (diff.inMinutes >= 1) {
+      return '${diff.inMinutes} minutes ago';
+    } else if (diff.inSeconds == 1) {
+      return '${diff.inSeconds} second ago';
+    } else if (diff.inSeconds >= 1) {
+      return '${diff.inSeconds} seconds ago';
+    } else {
+      return 'just now';
+    }
+  }
+
   static String getMonthAndYear(String d) {
     List<String> _year = d.split('-');
     int _mYear = int.parse(_year[0]);
