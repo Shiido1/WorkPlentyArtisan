@@ -1,5 +1,5 @@
 import 'package:artisan/core/di/injector.dart';
-import 'package:artisan/views/board/gig/presentation/stateManagers/provider/gig_provider.dart';
+import 'package:artisan/views/board/presentation/stateManagers/provider/gig_provider.dart';
 import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';

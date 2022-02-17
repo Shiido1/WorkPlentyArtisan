@@ -1,6 +1,6 @@
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/views/board/gig/presentation/message/widgets/message_box.dart';
+import 'package:artisan/views/board/presentation/message/widgets/message_box.dart';
 import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';

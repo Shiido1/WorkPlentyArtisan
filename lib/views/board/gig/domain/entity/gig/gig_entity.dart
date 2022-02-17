@@ -2,10 +2,10 @@
 
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/enums/gig_type.dart';
-import 'package:artisan/views/board/gig/domain/entity/gig/milestone_entity.dart';
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
+
+import 'milestone_entity.dart';
 
 class GigEntity extends DefaultResponse {
   final String? id;

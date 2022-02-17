@@ -8,14 +8,14 @@ import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:flutter/material.dart';
 
-import 'gig/presentation/dashboard/dashboard.dart';
-import 'gig/presentation/message/contacts_chat.dart';
-import 'gig/presentation/profile/profile.dart';
-import 'gig/presentation/saved/saved.dart';
-import 'gig/presentation/saved/tabs/search.dart';
-import 'gig/presentation/widget/custom_appbar.dart';
-import 'gig/presentation/widget/drawer_widget.dart';
-import 'gig/presentation/widget/message_drawer.dart';
+import 'presentation/dashboard/dashboard.dart';
+import 'presentation/message/contacts_chat.dart';
+import 'presentation/profile/profile.dart';
+import 'presentation/saved/saved.dart';
+import 'presentation/saved/tabs/search.dart';
+import 'presentation/widget/custom_appbar.dart';
+import 'presentation/widget/drawer_widget.dart';
+import 'presentation/widget/message_drawer.dart';
 
 // ignore: must_be_immutable
 class MainBoard extends StatefulWidget {
