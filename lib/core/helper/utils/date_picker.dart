@@ -53,9 +53,9 @@ void _buildMaterialDatePicker({
   if (picked != null && picked != date) {
     if (showTime) {
       final _timer = await _selectTime(context);
-      date('${DateFormat('dd-MM-yyyy').format(picked)} $_timer');
+      date('${DateFormat('yyyy-MM-dd').format(picked)} $_timer');
     } else {
-      date(DateFormat('dd-MM-yyyy').format(picked));
+      date(DateFormat('yyyy-MM-dd').format(picked));
     }
   }
 }

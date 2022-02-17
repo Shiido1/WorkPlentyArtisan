@@ -42,4 +42,14 @@ class GigContractImpl implements GigContract {
       return Left(AppFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, DefaultResponse>> bidGig(GigEntity entity) async {
+    try {
+      final _response = await _impl.bidGig(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
 }

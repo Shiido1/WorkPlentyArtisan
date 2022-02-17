@@ -2,7 +2,10 @@
 
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/enums/gig_type.dart';
+import 'package:artisan/views/board/gig/domain/entity/gig/milestone_entity.dart';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:http/http.dart' as http;
 
 class GigEntity extends DefaultResponse {
   final String? id;
@@ -10,6 +13,7 @@ class GigEntity extends DefaultResponse {
   final GigType? type;
   final String? title;
   final String? privateMessage;
+  final String? coverMessage;
   final String? description;
   final String? timeline;
   final String? paymentType;
@@ -19,7 +23,9 @@ class GigEntity extends DefaultResponse {
   final String? totalBudget;
   final List<String>? skill;
   final List<MultipartFile>? attachments;
+  final List<http.MultipartFile>? attachments2;
   final List<String>? invited_artisan_ids;
+  final List<MilestoneEntity>? milestoneEntity;
 
   GigEntity(
       {this.privateMessage,
@@ -31,11 +37,14 @@ class GigEntity extends DefaultResponse {
       this.timeline,
       this.paymentType,
       this.isPublished,
+      this.coverMessage,
       this.experienceLevel,
       this.coverLetterRequired,
+      this.milestoneEntity,
       this.totalBudget,
       this.skill,
       this.attachments,
+      this.attachments2,
       this.invited_artisan_ids});
 
   @override
@@ -115,5 +124,15 @@ class GigEntity extends DefaultResponse {
 
   Map<String, dynamic> getDetailsOfGig() {
     return {'id': id};
+  }
+
+  Map<String, dynamic> submitBid() {
+    return {
+      'gig_id': id,
+      'payment_type': paymentType,
+      'cover_message': coverMessage,
+      'milestones': milestoneEntity?.map((e) => e.toMap()).toList(),
+      'attachments': attachments2
+    };
   }
 }

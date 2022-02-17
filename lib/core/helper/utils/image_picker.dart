@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -167,10 +168,22 @@ class ImagePickerHandler {
 
 
       /// Convert image to Multipath
-MultipartFile multiPathFile(File file){
+ MultipartFile multiPathFile(File file){
   return MultipartFile.fromBytes(file.readAsBytesSync(),
               filename: file.path.split("/").last,
               contentType:
                   MediaType("image", file.path.split("/").last));
 }
+
+
+      Future<FilePickerResult?> pickFile()async{
+        FilePickerResult? _result = await FilePicker.platform.pickFiles(
+          allowMultiple: true,
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'pdf', 'doc', 'png'],
+      );
+      return _result;
+    }
+
+
 }

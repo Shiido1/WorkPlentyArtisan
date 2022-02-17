@@ -11,3 +11,8 @@ class SaveGigEvent extends GigEvent {
   final GigEntity entity;
   SaveGigEvent(this.entity);
 }
+
+class BidGigEvent extends GigEvent {
+  final GigEntity entity;
+  BidGigEvent(this.entity);
+}

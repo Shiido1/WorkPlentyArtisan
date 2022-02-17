@@ -1,8 +1,10 @@
 import 'package:artisan/core/entity/default_response.dart';
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
+import 'package:dio/dio.dart';
 
 class GigApi {
   final NetworkService _networkService;
@@ -42,6 +44,19 @@ class GigApi {
       final _response =
           await _networkService.call(UrlConfig.savedGig, RequestMethod.get);
       return ListOfAvailableGigsResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// list of  gig
+  Future<DefaultResponse> submitBid({required GigEntity entity}) async {
+    logger.d(entity.submitBid());
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.submitBid, RequestMethod.upload,
+          formData: FormData.fromMap(entity.submitBid()));
+      return DefaultResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }

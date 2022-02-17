@@ -9,6 +9,7 @@ import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_respon
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/presentation/job/job_details.dart';
 import 'package:artisan/views/board/gig/presentation/stateManagers/bloc/gig_bloc.dart';
+import 'package:artisan/views/board/gig/presentation/stateManagers/provider/gig_provider.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:artisan/views/widgets/skills_widget.dart';
 import 'package:artisan/views/widgets/text_views.dart';
@@ -17,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 final _bloc = GigBloc(inject());
 
@@ -25,9 +27,13 @@ class CardWidget extends StatelessWidget {
   const CardWidget({this.gig, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final _gigProvider = Provider.of<GigProvider>(context, listen: false);
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: () => PageRouter.gotoWidget(JobDetails(), context),
+      onPressed: () {
+        _gigProvider.setGig(gig);
+        PageRouter.gotoWidget(JobDetails(), context);
+      },
       child: BlocListener<GigBloc, GigState>(
         bloc: _bloc,
         listener: (context, state) {},

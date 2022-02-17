@@ -33,6 +33,7 @@ class UrlConfig {
   static const String savedGig = 'saved-gigs/list';
   static const String savedGigSave = 'saved-gigs/save';
   static const String savedProfile = 'saved-profiles/save';
+  static const String submitBid = 'artisan/bids/create';
 
   static const String gigList = 'gig/list';
   static const String gigDetails = 'gig/details';

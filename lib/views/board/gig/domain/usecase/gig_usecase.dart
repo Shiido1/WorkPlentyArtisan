@@ -30,6 +30,11 @@ class GigUseCases extends UseCase<DefaultResponse, Params> {
       Params params) async {
     return await _repository.listOfSavedGigs(params.entity!);
   }
+
+  @override
+  Future<Either<Failure, DefaultResponse>>? bidGig(Params params) async {
+    return await _repository.bidGig(params.entity!);
+  }
 }
 
 class Params extends Equatable {

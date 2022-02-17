@@ -6,4 +6,5 @@ abstract class GigSource {
   Future<ListOfAvailableGigsResponse> listOfGigs(GigEntity entity);
   Future<ListOfAvailableGigsResponse> listOfSavedGigs(GigEntity entity);
   Future<DefaultResponse> saveGig(GigEntity entity);
+  Future<DefaultResponse> bidGig(GigEntity entity);
 }
