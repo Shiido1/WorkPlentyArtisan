@@ -1,5 +1,6 @@
 import 'package:artisan/core/api/profile/profile_api.dart';
 import 'package:artisan/core/entity/default_response.dart';
+import 'package:artisan/core/entity/user/user.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
 import 'package:artisan/views/onboarding/data/model/delete_industry_response/delete_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
@@ -95,5 +96,10 @@ class ProfileSourceImpl implements ProfileSource {
   @override
   Future<ConfigResponse> configs() async {
     return await _api.configs();
+  }
+
+  @override
+  Future<User> profileInfo() async {
+    return await _api.getUsersProfile();
   }
 }

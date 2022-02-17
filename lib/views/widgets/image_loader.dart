@@ -2,11 +2,14 @@
 
 import 'dart:io';
 
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/widgets/text_views.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: must_be_immutable
@@ -231,7 +234,13 @@ class CircularImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircularProfileAvatar(path!,
+    if (file != null) {
+      return CircleAvatar(
+        radius: radius,
+        backgroundImage: FileImage(file!),
+      );
+    }
+    return CircularProfileAvatar(path ?? '',
         radius: radius!,
         backgroundColor: Pallets.primary100,
         borderWidth: borderWidth!,
@@ -241,7 +250,14 @@ class CircularImage extends StatelessWidget {
         ),
         borderColor: borderColor != null ? borderColor! : Colors.transparent,
         elevation: elevation!,
-        errorWidget: (ctx, _, __) => Icon(Icons.error),
+        errorWidget: (ctx, _, __r) {
+          return CircleAvatar(
+              radius: radius,
+              child: TextView(
+                  text: initial ?? '', color: Pallets.white, fontSize: 34.sp));
+        },
+        placeHolder: (_, __) => TextView(
+            text: initial ?? '', color: Pallets.white, fontSize: 34.sp),
         onTap: onTap,
         showInitialTextAbovePicture: showInitialTextAbovePicture);
   }

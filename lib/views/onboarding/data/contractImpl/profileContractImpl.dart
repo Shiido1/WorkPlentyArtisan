@@ -1,3 +1,4 @@
+import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
@@ -22,6 +23,8 @@ class ProfileContractImpl implements ProfileContract {
   Future<Either<Failure, DefaultResponse>> profileAvatarUpdate(entity) async {
     try {
       final _response = await _impl.profileAvatarUpdate(entity);
+      final _user = await _impl.profileInfo();
+      SessionManager.instance.usersData = _user.toJson();
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));
@@ -32,6 +35,8 @@ class ProfileContractImpl implements ProfileContract {
   Future<Either<Failure, DefaultResponse>> profileBioUpdate(entity) async {
     try {
       final _response = await _impl.profileBioUpdate(entity);
+      final _user = await _impl.profileInfo();
+      SessionManager.instance.usersData = _user.toJson();
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));
@@ -42,6 +47,8 @@ class ProfileContractImpl implements ProfileContract {
   Future<Either<Failure, DefaultResponse>> profileLocationUpdate(entity) async {
     try {
       final _response = await _impl.profileLocationUpdate(entity);
+      final _user = await _impl.profileInfo();
+      SessionManager.instance.usersData = _user.toJson();
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));

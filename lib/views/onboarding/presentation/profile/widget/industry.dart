@@ -15,9 +15,9 @@ class IndustrySheet extends StatelessWidget {
   const IndustrySheet({required this.onTap, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Provider.of<ProfileProvider>(context, listen: false)
+    Provider.of<ProfileSetUpProvider>(context, listen: false)
         .fetchListOfIndustries();
-    return Consumer<ProfileProvider>(
+    return Consumer<ProfileSetUpProvider>(
       builder: (context, provider, child) {
         return Container(
             height: Utils.getDeviceHeight(context) * .6,

@@ -1,7 +1,7 @@
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
-import 'package:artisan/views/board/presentation/profile/widget/clicks_one.dart';
-import 'package:artisan/views/board/presentation/profile/widget/profile_image_three.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/widget/clicks_one.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/widget/profile_image_three.dart';
 import 'package:artisan/views/widgets/custom_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -49,7 +49,7 @@ class _EmploymentSheetState extends State<EmploymentSheet> {
           WorkPlenty.hideLoading(_loadingKey);
           WorkPlenty.success(
               state.response?.msg ?? 'Work history saved successfully!');
-          Provider.of<ProfileProvider>(context, listen: false)
+          Provider.of<ProfileSetUpProvider>(context, listen: false)
               .fetchArtisansWorkHistory();
           PageRouter.goBack(context);
         }

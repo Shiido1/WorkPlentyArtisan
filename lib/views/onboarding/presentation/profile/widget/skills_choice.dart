@@ -13,7 +13,7 @@ class SkillsChoice extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProfileProvider>(
+    return Consumer<ProfileSetUpProvider>(
       builder: (context, provider, child) {
         return Wrap(
           spacing: 18.w,

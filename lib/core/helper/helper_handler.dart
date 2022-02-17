@@ -38,6 +38,26 @@ class Utils {
     return NumberFormat.simpleCurrency().format(i).replaceAll('.00', '');
   }
 
+  /// get initials
+  static String getInitials(String value) {
+    List<String> _values = [];
+    try {
+      if (value.contains('')) {
+        _values = value.split(' ');
+        if (_values.length > 1 &&
+            _values[0].isNotEmpty &&
+            _values[1].isNotEmpty) {
+          return '${_values[0][0]}${_values[1][0]}'.toUpperCase();
+        } else {
+          return '${_values[0].substring(0, 2)}'.toUpperCase();
+        }
+      }
+      return value[0][0].toUpperCase();
+    } catch (e) {
+      return '';
+    }
+  }
+
   /// format currency
   static String currency(int amount) {
     final _format =

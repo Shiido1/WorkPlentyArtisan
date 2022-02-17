@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
@@ -7,6 +8,7 @@ import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'profileUpdate/bio_update.dart';
 import 'widget/clicks_two.dart';
 import 'widget/profile_image_two.dart';
 
@@ -36,14 +38,14 @@ class EditProfile extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         text:
                             '''Web Developer & Mobile Developer\nLorem ipsum dolor sit amet, consectetur adipiscing\nelit. Euismod eu eu erat nisl consectetur adipiscing.'''),
-                    onTap: () {}),
+                    onTap: () => PageRouter.gotoWidget(UpdateBio(), context)),
                 SizedBox(height: 30.h),
                 ClickTwo(
                     radius: 0,
                     padding:
                         EdgeInsets.symmetric(vertical: 17.h, horizontal: 23.w),
                     image: AppImages.edit_circle,
-                    text: 'Skils',
+                    text: 'Skills',
                     widget: Wrap(
                         runAlignment: WrapAlignment.spaceBetween,
                         spacing: 10,

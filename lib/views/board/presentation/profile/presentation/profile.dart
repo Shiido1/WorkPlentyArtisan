@@ -1,14 +1,18 @@
+import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
+import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/views/board/presentation/payout/payout.dart';
-import 'package:artisan/views/board/presentation/profile/request/requests.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/stateManagers/provider/profile_provider.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'bids/bids.dart';
 import 'edit_profile.dart';
 import 'manage/manage.dart';
+import 'request/requests.dart';
 import 'statistics/statistics.dart';
 import 'widget/clicks_one.dart';
 import 'widget/profile_image_one.dart';
@@ -17,6 +21,7 @@ class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Provider.of<ProfileProvider>(context, listen: false).getMyProfile();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -89,7 +94,11 @@ class Profile extends StatelessWidget {
                       image: AppImages.logout,
                       text: 'Logout',
                       trailing: true,
-                      onTap: () {})
+                      onTap: () async {
+                        await SessionManager.instance.logOut();
+                        PageRouter.gotoNamed(Routes.intro, context,
+                            clearStack: true);
+                      })
                 ],
               ),
             )

@@ -1,4 +1,6 @@
 import 'package:artisan/core/entity/default_response.dart';
+import 'package:artisan/core/entity/user/user.dart';
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
@@ -44,6 +46,16 @@ class ProfileApi {
           UrlConfig.profileAvatarUpdate, RequestMethod.upload,
           formData: FormData.fromMap(entity.toAvatar()));
       return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<User> getUsersProfile() async {
+    try {
+      final _response =
+          await _networkService.call(UrlConfig.check, RequestMethod.get);
+      return User.fromJson(_response.data['data']);
     } catch (e) {
       rethrow;
     }

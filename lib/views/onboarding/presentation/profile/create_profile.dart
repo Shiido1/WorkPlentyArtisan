@@ -76,11 +76,11 @@ class _CreateProfileState extends State<CreateProfile> {
   final _pickImage = ImagePickerHandler();
   File? _imageFile;
   List<String> _skills = [];
-  ProfileProvider? _profileProvider;
+  ProfileSetUpProvider? _profileProvider;
 
   @override
   void initState() {
-    _profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    _profileProvider = Provider.of<ProfileSetUpProvider>(context, listen: false);
     _profileProvider?.fetchSkills();
     super.initState();
   }
@@ -491,7 +491,7 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   Widget _formFive() {
-    return Consumer<ProfileProvider>(
+    return Consumer<ProfileSetUpProvider>(
       builder: (context, provider, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -904,7 +904,7 @@ class _CreateProfileState extends State<CreateProfile> {
 
   void _submitFormFive() {
     if (_profileProvider!.getWorkHistory!.isEmpty) {
-      WorkPlenty.error('You need to have atleast one working experience.');
+      WorkPlenty.error('You need to have at least one working experience.');
       return;
     }
     _increamentIndex();

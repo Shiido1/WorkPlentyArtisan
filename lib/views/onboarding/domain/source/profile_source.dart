@@ -1,4 +1,5 @@
 import 'package:artisan/core/entity/default_response.dart';
+import 'package:artisan/core/entity/user/user.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
 import 'package:artisan/views/onboarding/data/model/delete_industry_response/delete_industry_response.dart';
 import 'package:artisan/views/onboarding/data/model/general_list_of_industry_response/general_list_of_industry_response.dart';
@@ -27,4 +28,5 @@ abstract class ProfileSource {
   Future<DefaultResponse> updateWorkAvailability(ProfileEntity entity);
   Future<WorkHistoryResponse> workHistory();
   Future<ConfigResponse> configs();
+  Future<User> profileInfo();
 }

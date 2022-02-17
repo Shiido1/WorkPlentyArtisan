@@ -54,4 +54,5 @@ class UrlConfig {
   static const String configs = 'gig/config';
   static const String updateAvailability =
       'artisan/profile/update-availability';
+  static const String check = 'check';
 }

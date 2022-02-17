@@ -11,10 +11,10 @@ import 'package:artisan/views/onboarding/data/model/work_history_response/datum.
 
 import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
 
-class ProfileProvider extends BaseModel {
+class ProfileSetUpProvider extends BaseModel {
   final ProfileUseCases _useCase;
 
-  ProfileProvider(this._useCase);
+  ProfileSetUpProvider(this._useCase);
 
   List<Datum>? _data = [];
 

@@ -32,6 +32,7 @@ class HiveBoxes {
 
   static Future clearAllBox() async {
     await availableGigsDao!.clearDb();
+    await savedGigsDao!.clearDb();
   }
 
   static Future<Box<T>> openBox<T>(String boxName) async {

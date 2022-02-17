@@ -7,10 +7,12 @@ import 'package:artisan/core/helper/routes/routes.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'presentation/dashboard/dashboard.dart';
 import 'presentation/message/contacts_chat.dart';
-import 'presentation/profile/profile.dart';
+import 'presentation/profile/presentation/profile.dart';
+import 'presentation/profile/presentation/stateManagers/provider/profile_provider.dart';
 import 'presentation/saved/saved.dart';
 import 'presentation/saved/tabs/search.dart';
 import 'presentation/widget/custom_appbar.dart';
@@ -75,6 +77,8 @@ class _MainBoardState extends State<MainBoard> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ProfileProvider>(context, listen: false).getMyProfile();
+
     _body = [Dashboard(), Saved(), SearchTab(), Profile(), ContactChats()];
     _bodyTitle = ["Dashboard", "Saved", "Explore", "Profile", "Message"];
     return Scaffold(
