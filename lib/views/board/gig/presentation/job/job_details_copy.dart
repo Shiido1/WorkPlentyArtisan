@@ -71,6 +71,9 @@ class _JobDetailsCopyState extends State<JobDetailsCopy> {
               }
               if (state is GigSuccess) {
                 WorkPlenty.hideLoading(_loadingKey);
+              }
+              if (state is GigSubmitSuccess) {
+                WorkPlenty.hideLoading(_loadingKey);
                 WorkPlenty.showSuccessDialog(context, _loadingKey,
                     image: AppImages.blowWhistle,
                     title: 'Job Bid Submitted',
@@ -379,7 +382,11 @@ class _JobDetailsCopyState extends State<JobDetailsCopy> {
                       ),
                       btnText: 'Bid The Bid',
                       callback: () => _bidJob(),
-                      goBack: () => null,
+                      goBack: () {
+                        WorkPlenty.success('Saved successfully!');
+                        _bloc.add(SaveGigEvent(
+                            GigEntity(id: '${gigProvider.datum?.id}')));
+                      },
                     )
                   ],
                 );

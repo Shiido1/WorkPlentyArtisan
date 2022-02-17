@@ -30,7 +30,7 @@ class GigBloc extends Bloc<GigEvent, GigState> {
           emit(GigLoading());
           final _response = await _useCase.bidGig(Params(entity: event.entity));
           _response!.fold((l) => emit(GigFailed(l.errorMessage(l)!)),
-              (r) => emit(GigSuccess(r)));
+              (r) => emit(GigSubmitSuccess(r)));
         } catch (e) {}
       }
     });

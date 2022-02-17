@@ -18,6 +18,11 @@ class GigSuccess extends GigState {
   GigSuccess(this.response);
 }
 
+class GigSubmitSuccess extends GigState {
+  dynamic response;
+  GigSubmitSuccess(this.response);
+}
+
 class GigFailed extends GigState {
   final String errorMessage;
   GigFailed(this.errorMessage);
