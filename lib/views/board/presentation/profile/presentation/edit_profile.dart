@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'profileUpdate/bio_update.dart';
 import 'profileUpdate/education_update.dart';
+import 'profileUpdate/work_update.dart';
 import 'widget/clicks_two.dart';
 import 'widget/profile_image_two.dart';
 
@@ -98,7 +99,7 @@ class EditProfile extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         text:
                             '''WorkPlenty\nSoftware Engineer | 2021 - Till Date'''),
-                    onTap: () {}),
+                    onTap: () => PageRouter.gotoWidget(UpdateWork(), context)),
                 SizedBox(height: 30.h),
                 ClickTwo(
                     radius: 0,

@@ -10,6 +10,7 @@ class Providers {
     ChangeNotifierProvider<ProfileSetUpProvider>(
         create: (_) => ProfileSetUpProvider(inject())),
     ChangeNotifierProvider<GigProvider>(create: (_) => GigProvider(inject())),
-    ChangeNotifierProvider<ProfileProvider>(create: (_) => ProfileProvider()),
+    ChangeNotifierProvider<ProfileProvider>(
+        create: (_) => ProfileProvider(inject())),
   ];
 }

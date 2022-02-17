@@ -4,6 +4,7 @@ import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/date_picker.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/stateManagers/provider/profile_provider.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/presentation/profile/bloc/profile_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
@@ -49,7 +50,7 @@ class _EmploymentSheetState extends State<EmploymentSheet> {
           WorkPlenty.hideLoading(_loadingKey);
           WorkPlenty.success(
               state.response?.msg ?? 'Work history saved successfully!');
-          Provider.of<ProfileSetUpProvider>(context, listen: false)
+          Provider.of<ProfileProvider>(context, listen: false)
               .fetchArtisansWorkHistory();
           PageRouter.goBack(context);
         }

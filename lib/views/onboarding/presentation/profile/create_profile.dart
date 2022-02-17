@@ -12,6 +12,8 @@ import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/stateManagers/provider/profile_provider.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/widget/experience_widget.dart';
 import 'package:artisan/views/onboarding/data/model/work_history_response/datum.dart';
 import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
@@ -77,10 +79,13 @@ class _CreateProfileState extends State<CreateProfile> {
   File? _imageFile;
   List<String> _skills = [];
   ProfileSetUpProvider? _profileProvider;
+  ProfileProvider? _profile;
 
   @override
   void initState() {
-    _profileProvider = Provider.of<ProfileSetUpProvider>(context, listen: false);
+    _profileProvider =
+        Provider.of<ProfileSetUpProvider>(context, listen: false);
+    _profile = Provider.of<ProfileProvider>(context, listen: false);
     _profileProvider?.fetchSkills();
     super.initState();
   }
@@ -491,13 +496,13 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   Widget _formFive() {
-    return Consumer<ProfileSetUpProvider>(
+    return Consumer<ProfileProvider>(
       builder: (context, provider, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextView(
-              text: 'Work Experence?',
+              text: 'Work Experience?',
               fontWeight: FontWeight.bold,
               fontSize: 18,
               textAlign: TextAlign.left,
@@ -513,7 +518,7 @@ class _CreateProfileState extends State<CreateProfile> {
             SizedBox(height: 43.h),
             Divider(),
             ...provider.getWorkHistory!
-                .map((history) => _experience(history))
+                .map((history) => ExperienceWidget(history))
                 .toList(),
             SizedBox(height: 43.h),
             ButtonWidget(
@@ -816,49 +821,6 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 
-  Column _experience(Datum? history) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Expanded(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 18.h),
-                TextView(
-                  text:
-                      '${history?.position ?? ''} | ${history?.company ?? ''}',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  textAlign: TextAlign.left,
-                ),
-                SizedBox(height: 8.h),
-                TextView(
-                  text:
-                      '${TimeUtil.getMonthAndYear(history?.startedOn ?? '')} - ${_isStillThere(history?.currentlyHere) ? 'Present' : '${TimeUtil.getMonthAndYear(history?.endedOn ?? '')}'}',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  textAlign: TextAlign.left,
-                ),
-              ],
-            ),
-          ),
-          ImageLoader(path: AppImages.edit),
-          ImageLoader(path: AppImages.close),
-        ]),
-        SizedBox(height: 18.h),
-        Divider(),
-      ],
-    );
-  }
-
-  bool _isStillThere(int? d) {
-    if (d == 1) return true;
-    return false;
-  }
-
   /// checks if a particular form is submitted
   void _whenFormIsField() {
     if (_formKey.currentState!.validate()) {
@@ -903,7 +865,7 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   void _submitFormFive() {
-    if (_profileProvider!.getWorkHistory!.isEmpty) {
+    if (_profile!.getWorkHistory!.isEmpty) {
       WorkPlenty.error('You need to have at least one working experience.');
       return;
     }
