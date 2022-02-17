@@ -2,6 +2,7 @@ import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/profileUpdate/availability_update.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/profileUpdate/skills_update.dart';
 import 'package:artisan/views/review/review.dart';
 import 'package:artisan/views/widgets/star_rating.dart';
@@ -146,7 +147,8 @@ adipiscing elit euismod eu eu erat..... more'''),
                         fontWeight: FontWeight.w500,
                         text:
                             '''Home Service:  NGN3000/hr\nLive Consultancy:  NGN1500/5min'''),
-                    onTap: () {}),
+                    onTap: () =>
+                        PageRouter.gotoWidget(UpdateAvailability(), context)),
                 SizedBox(height: 30.h),
                 ClickTwo(
                     radius: 0,

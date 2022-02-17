@@ -124,6 +124,10 @@ class _UpdateSkillsState extends State<UpdateSkills> {
   }
 
   void _proceed() {
+    if (_skills.isEmpty) {
+      WorkPlenty.error('You need to select at least one skills');
+      return;
+    }
     _bloc.add(SkillsProfileUpdate(ProfileEntity(skills: _skills)));
   }
 

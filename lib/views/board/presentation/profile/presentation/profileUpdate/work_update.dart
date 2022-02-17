@@ -44,7 +44,7 @@ class _UpdateWorkState extends State<UpdateWork> {
           backgroundColor: Pallets.primary100,
           centerTitle: true,
           titleWidgte: TextView(
-              text: 'Update Profile Bio',
+              text: 'Update Working Experience',
               fontWeight: FontWeight.w700,
               fontSize: 22,
               color: Pallets.white,
