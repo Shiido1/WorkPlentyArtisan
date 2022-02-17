@@ -1,4 +1,5 @@
 import 'package:artisan/core/di/injector.dart';
+import 'package:artisan/core/helper/utils/date_picker.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/validators.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
@@ -16,31 +17,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class UpdateBio extends StatefulWidget {
-  const UpdateBio({Key? key}) : super(key: key);
+class UpdateProfileEducation extends StatefulWidget {
+  const UpdateProfileEducation({Key? key}) : super(key: key);
 
   @override
-  State<UpdateBio> createState() => _UpdateBioState();
+  State<UpdateProfileEducation> createState() => _UpdateProfileEducationState();
 }
 
-class _UpdateBioState extends State<UpdateBio> {
-  double _progress = 10;
-  int _index = 0;
+class _UpdateProfileEducationState extends State<UpdateProfileEducation> {
   final _loadingKey = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _schoolController = TextEditingController();
+  final TextEditingController _fieldController = TextEditingController();
+  final TextEditingController _degreeController = TextEditingController();
+  final TextEditingController _fromDateController = TextEditingController();
+  final TextEditingController _toDateController = TextEditingController();
 
   final _bloc = ProfileBloc(inject());
-  ProfileSetUpProvider? _profileProvider;
-
-  @override
-  void initState() {
-    _profileProvider =
-        Provider.of<ProfileSetUpProvider>(context, listen: false);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +43,7 @@ class _UpdateBioState extends State<UpdateBio> {
           backgroundColor: Pallets.primary100,
           centerTitle: true,
           titleWidgte: TextView(
-              text: 'Update Profile Bio',
+              text: 'Update Education Level',
               fontWeight: FontWeight.w700,
               fontSize: 22,
               color: Pallets.white,
@@ -64,7 +57,7 @@ class _UpdateBioState extends State<UpdateBio> {
           if (state is ProfileSuccess) {
             WorkPlenty.hideLoading(_loadingKey);
             WorkPlenty.success(
-                state.response?.msg ?? 'Bio Updated Successfully');
+                state.response?.msg ?? 'Education Updated Successfully');
           }
           if (state is ProfileFailed) {
             WorkPlenty.hideLoading(_loadingKey);
@@ -85,7 +78,7 @@ class _UpdateBioState extends State<UpdateBio> {
                     shrinkWrap: true,
                     children: [
                       TextView(
-                        text: 'Your Profile Bio?',
+                        text: 'Level of Education?',
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         textAlign: TextAlign.left,
@@ -93,71 +86,94 @@ class _UpdateBioState extends State<UpdateBio> {
                       SizedBox(height: 5.h),
                       TextView(
                         text:
-                            'Write a great profile bio, remember that’s what attracts your clients',
+                            'Add schools, courses you attended, areas of study, and degrees you attained',
                         fontWeight: FontWeight.w400,
                         fontSize: 18,
                         textAlign: TextAlign.left,
                       ),
                       SizedBox(height: 43.h),
                       TextView(
-                        text: 'Title',
+                        text: 'School',
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                         textAlign: TextAlign.left,
                       ),
                       SizedBox(height: 8.h),
                       EditFormField(
-                        label: 'Ex: Web Developer & Designer',
-                        controller: _titleController,
+                        label: 'Ex: University of Ibadan',
                         validator: Validators.validateString(),
+                        controller: _schoolController,
                       ),
-                      SizedBox(height: 26.h),
+                      SizedBox(height: 18.h),
                       TextView(
-                        text: 'Description',
+                        text: 'Field of Study',
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                         textAlign: TextAlign.left,
                       ),
                       SizedBox(height: 8.h),
                       EditFormField(
-                        height: 224.h,
-                        label:
-                            'Highlight your top skills, experience and interests. Lorem impsum lorem ipsum lorem ipsum',
-                        controller: _descriptionController,
+                        label: 'Ex: Computer Engineering',
                         validator: Validators.validateString(),
+                        controller: _fieldController,
                       ),
-                      SizedBox(height: 26.h),
+                      SizedBox(height: 18.h),
                       TextView(
-                        text: 'Gender',
+                        text: 'Degree',
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                         textAlign: TextAlign.left,
                       ),
                       SizedBox(height: 8.h),
                       EditFormField(
-                        label: '',
-                        suffixIcon: Icons.keyboard_arrow_down,
+                        label: 'Ex. Bachelor\'s',
                         validator: Validators.validateString(),
-                        controller: _genderController,
+                        controller: _degreeController,
+                      ),
+                      SizedBox(height: 18.h),
+                      TextView(
+                        text: 'Dates Attended',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        textAlign: TextAlign.left,
+                      ),
+                      SizedBox(height: 8.h),
+                      EditFormField(
+                        label: 'From',
+                        suffixIcon: Icons.keyboard_arrow_down_sharp,
+                        controller: _fromDateController,
+                        validator: Validators.validateString(),
                         readOnly: true,
-                        onTapped: () => globalDialog(
-                            showRadioButton: false,
-                            question: 'Gender',
+                        onTapped: () => pickDate(
                             context: context,
-                            list: ['Male', "Female"],
-                            picked: (v) {
-                              _genderController.text = v;
+                            dateOptions: DateOptions.past,
+                            onChange: (v) {
+                              _fromDateController.text = v;
                               setState(() {});
                             }),
                       ),
-                      SizedBox(height: 114.h)
+                      SizedBox(height: 8.h),
+                      EditFormField(
+                        label: 'To (expected graduation year)',
+                        suffixIcon: Icons.keyboard_arrow_down_sharp,
+                        controller: _toDateController,
+                        validator: Validators.validateString(),
+                        readOnly: true,
+                        onTapped: () => pickDate(
+                            context: context,
+                            dateOptions: DateOptions.general,
+                            onChange: (v) {
+                              _toDateController.text = v;
+                              setState(() {});
+                            }),
+                      ),
                     ],
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: ButtonWidget(
-                      buttonText: 'Update Profile Bio',
+                      buttonText: 'Update Education Level',
                       onPressed: () => _proceed()),
                 )
               ],
@@ -170,10 +186,13 @@ class _UpdateBioState extends State<UpdateBio> {
 
   void _proceed() {
     if (_formKey.currentState!.validate()) {
-      _bloc.add(BioProfileUpdate(ProfileEntity(
-          title: _titleController.text,
-          description: _descriptionController.text,
-          gender: _genderController.text)));
+      _bloc.add(UpdateEducation(ProfileEntity(
+        school: _schoolController.text,
+        fieldOfStudy: _fieldController.text,
+        degree: _degreeController.text,
+        attendedFrom: _fromDateController.text,
+        attendedTo: _toDateController.text,
+      )));
     }
   }
 }

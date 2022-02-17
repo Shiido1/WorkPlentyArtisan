@@ -2,6 +2,7 @@ import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/profileUpdate/skills_update.dart';
 import 'package:artisan/views/review/review.dart';
 import 'package:artisan/views/widgets/star_rating.dart';
 import 'package:artisan/views/widgets/text_views.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'profileUpdate/bio_update.dart';
+import 'profileUpdate/education_update.dart';
 import 'widget/clicks_two.dart';
 import 'widget/profile_image_two.dart';
 
@@ -64,7 +66,8 @@ class EditProfile extends StatelessWidget {
                                       color: Pallets.white),
                                 ))
                             .toList()),
-                    onTap: () {}),
+                    onTap: () =>
+                        PageRouter.gotoWidget(UpdateSkills(), context)),
                 SizedBox(height: 30.h),
                 ClickTwo(
                     radius: 0,
@@ -79,7 +82,8 @@ class EditProfile extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         text:
                             '''University of Ibadan\nIndustrial Mathematics | 2019 - Till Date'''),
-                    onTap: () {}),
+                    onTap: () => PageRouter.gotoWidget(
+                        UpdateProfileEducation(), context)),
                 SizedBox(height: 30.h),
                 ClickTwo(
                     radius: 0,
