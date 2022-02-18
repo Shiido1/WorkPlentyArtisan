@@ -1,6 +1,7 @@
 import 'package:artisan/core/api/auth/auth_api.dart';
 import 'package:artisan/core/api/gig/gig_api.dart';
 import 'package:artisan/core/api/profile/profile_api.dart';
+import 'package:artisan/core/api/review/review_api.dart';
 import 'package:artisan/core/database/hive_database.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/views/board/gig/data/contractImpl/gigContractImpl.dart';
@@ -14,6 +15,9 @@ import 'package:artisan/views/onboarding/domain/usecases/auth_usecase.dart';
 import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
 import 'package:artisan/views/onboarding/presentation/authentication/bloc/authbloc_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/profile/bloc/profile_bloc.dart';
+import 'package:artisan/views/review/data/contractImpl/reviewContractImpl.dart';
+import 'package:artisan/views/review/data/sourceImpl/reviewSourceImpl.dart';
+import 'package:artisan/views/review/domain/usecases/review_usecase.dart';
 import 'package:get_it/get_it.dart';
 import '../network/app_config.dart';
 import '../database/session_manager.dart';
@@ -58,6 +62,8 @@ void _initDataSources() {
       () => ProfileSourceImpl(api: inject()));
   inject
       .registerLazySingleton<GigSourceImpl>(() => GigSourceImpl(api: inject()));
+  inject.registerLazySingleton<ReviewSourceImpl>(
+      () => ReviewSourceImpl(api: inject()));
 }
 
 /// Initialize data repositories implementations
@@ -68,6 +74,8 @@ void _initDataContracts() {
       () => ProfileContractImpl(inject()));
   inject
       .registerLazySingleton<GigContractImpl>(() => GigContractImpl(inject()));
+  inject.registerLazySingleton<ReviewContractImpl>(
+      () => ReviewContractImpl(inject()));
 }
 
 /// Initialize services's here
@@ -79,6 +87,8 @@ void _initServices() {
   inject.registerLazySingleton<ProfileApi>(
       () => ProfileApi(networkService: inject()));
   inject.registerLazySingleton<GigApi>(() => GigApi(networkService: inject()));
+  inject.registerLazySingleton<ReviewApi>(
+      () => ReviewApi(networkService: inject()));
 }
 
 /// Initialize usecases here
@@ -87,4 +97,5 @@ void _initializeUsecase() {
   inject
       .registerLazySingleton<ProfileUseCases>(() => ProfileUseCases(inject()));
   inject.registerLazySingleton<GigUseCases>(() => GigUseCases(inject()));
+  inject.registerLazySingleton<ReviewUseCases>(() => ReviewUseCases(inject()));
 }

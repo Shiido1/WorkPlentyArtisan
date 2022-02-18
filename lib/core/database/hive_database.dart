@@ -1,5 +1,6 @@
 import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
 import 'package:artisan/views/board/gig/domain/source/local/saved_gigs_dao.dart';
+import 'package:artisan/views/review/domain/source/dao/review_dao.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -24,15 +25,18 @@ class HiveManager {
 class HiveBoxes {
   static const availableGigs = 'availableGigs';
   static const savedGigs = 'savedGigs';
+  static const reviews = 'reviews';
 
   static Future openAllBox() async {
     availableGigsDao = AvailableGigsDao();
     savedGigsDao = SavedGigsDao();
+    reviewDao = ReviewDao();
   }
 
   static Future clearAllBox() async {
     await availableGigsDao!.clearDb();
     await savedGigsDao!.clearDb();
+    await reviewDao!.clearDb();
   }
 
   static Future<Box<T>> openBox<T>(String boxName) async {

@@ -4,9 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'datum.g.dart';
 
-@JsonSerializable()
-@HiveType(typeId: 2)
-class Datum {
+@JsonSerializable(explicitToJson: true)
+@HiveType(typeId: 0)
+class Datum extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)

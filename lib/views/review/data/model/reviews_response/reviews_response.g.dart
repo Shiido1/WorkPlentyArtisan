@@ -20,7 +20,7 @@ Map<String, dynamic> _$ReviewsResponseToJson(ReviewsResponse instance) =>
     <String, dynamic>{
       'errorDebug': instance.errorDebug,
       'msg': instance.msg,
-      'data': instance.data,
+      'data': instance.data?.toJson(),
       'success': instance.success,
       'code': instance.code,
     };

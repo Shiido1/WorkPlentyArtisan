@@ -1,10 +1,12 @@
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/views/review/domain/entity/review_entity.dart';
 import 'package:artisan/views/review/domain/source/dao/review_dao.dart';
 import 'package:artisan/views/review/presentation/provider/review_provider.dart';
-import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/review_bg_card.dart';
+import 'package:artisan/views/widgets/default_appbar.dart';
 import 'package:artisan/views/widgets/star_rating.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,8 @@ class Review extends StatelessWidget {
               icon: Icon(Icons.clear))),
       body: ValueListenableBuilder(
         valueListenable: reviewDao!.getListenable()!,
-        builder: (BuildContext context, Box<dynamic> value, Widget? child) {
+        builder: (_, Box<dynamic> value, __) {
+          final _reviewList = reviewDao!.getConvertedData(value).toList();
           return ListView(
             children: [
               ReviewBgCard(Column(
@@ -56,9 +59,9 @@ class Review extends StatelessWidget {
                 ],
               )),
               SizedBox(height: 16.h),
-              ...[1, 1, 1]
+              ..._reviewList
                   .map(
-                    (_) => Container(
+                    (review) => Container(
                       margin: EdgeInsets.only(bottom: 20.h),
                       child: ReviewBgCard(
                         Column(
@@ -70,11 +73,12 @@ class Review extends StatelessWidget {
                                 Expanded(
                                   child: StarRating(
                                     starCount: 5,
-                                    rating: 4,
+                                    rating: review.rating?.toDouble() ?? 0,
                                   ),
                                 ),
                                 TextView(
-                                    text: '7 days ago',
+                                    text: TimeUtil.convertToAgo(
+                                        review.createdAt ?? ''),
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
                                     textAlign: TextAlign.right),
@@ -82,7 +86,8 @@ class Review extends StatelessWidget {
                             ),
                             SizedBox(height: 16.h),
                             TextView(
-                                text: 'Falimi Balogun',
+                                text:
+                                    '${review.reviewer?.firstName ?? ''} ${review.reviewer?.lastName ?? ''}',
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 textAlign: TextAlign.left),
@@ -94,8 +99,7 @@ class Review extends StatelessWidget {
                                 textAlign: TextAlign.left),
                             SizedBox(height: 16.h),
                             TextView(
-                                text:
-                                    'Lorem ipsum dolor sit amet, consectetur adipiscing Dignissim viverra morbi eget fames volutpat aliquam. Posuere odio a etiam maecenas vitae et.',
+                                text: review.comment ?? '',
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 color: Pallets.primary150,
@@ -108,6 +112,8 @@ class Review extends StatelessWidget {
                       ),
                     ),
                   )
+                  .toList()
+                  .reversed
                   .toList()
             ],
           );

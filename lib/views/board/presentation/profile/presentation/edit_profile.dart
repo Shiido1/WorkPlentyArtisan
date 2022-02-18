@@ -1,10 +1,9 @@
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/profileUpdate/availability_update.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/profileUpdate/skills_update.dart';
-import 'package:artisan/views/review/review.dart';
+import 'package:artisan/views/review/presentation/review.dart';
 import 'package:artisan/views/widgets/star_rating.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';

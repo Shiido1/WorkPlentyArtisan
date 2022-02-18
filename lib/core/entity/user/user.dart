@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true, includeIfNull: true)
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 class User extends HiveObject {
   @HiveField(0)
   int? id;

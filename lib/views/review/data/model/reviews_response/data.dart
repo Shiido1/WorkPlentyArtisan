@@ -7,12 +7,9 @@ import 'pagination_meta.dart';
 part 'data.g.dart';
 
 @JsonSerializable()
-@HiveType(typeId: 1)
 class Data {
-  @HiveField(0)
   @JsonKey(name: 'pagination_meta')
   PaginationMeta? paginationMeta;
-  @HiveField(1)
   List<Datum>? data;
 
   Data({this.paginationMeta, this.data});

@@ -19,7 +19,7 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
 
 Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'id': instance.id,
-      'reviewer': instance.reviewer,
+      'reviewer': instance.reviewer?.toJson(),
       'rating': instance.rating,
       'comment': instance.comment,
       'created_at': instance.createdAt,
