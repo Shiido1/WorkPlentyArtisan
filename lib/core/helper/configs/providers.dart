@@ -14,7 +14,8 @@ class Providers {
     ChangeNotifierProvider<GigProvider>(create: (_) => GigProvider(inject())),
     ChangeNotifierProvider<ProfileProvider>(
         create: (_) => ProfileProvider(inject())),
-    ChangeNotifierProvider<ReviewProvider>(create: (_) => ReviewProvider(inject())),
+    ChangeNotifierProvider<ReviewProvider>(
+        create: (_) => ReviewProvider(inject())),
     ChangeNotifierProvider<BidsProvider>(create: (_) => BidsProvider(inject())),
   ];
 }

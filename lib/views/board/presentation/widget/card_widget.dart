@@ -1,14 +1,12 @@
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/entity/skills/skill.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
-import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
-import 'package:artisan/views/board/presentation/job/job_details.dart';
 import 'package:artisan/views/board/presentation/stateManagers/bloc/gig_bloc.dart';
 import 'package:artisan/views/board/presentation/stateManagers/provider/gig_provider.dart';
 import 'package:artisan/views/widgets/image_loader.dart';

@@ -12,7 +12,8 @@ class BidsProvider extends BaseModel {
   void fetchBids({BidEntity? entity}) async {
     try {
       final _response = await _useCases.listOfBids(Params(entity: entity));
-      _response!.fold((l) => null, (r) => bidsDao!.saveBids(r.data?.data ?? []));
+      _response!
+          .fold((l) => null, (r) => bidsDao!.saveBids(r.data?.data ?? []));
     } catch (e) {}
   }
 }
