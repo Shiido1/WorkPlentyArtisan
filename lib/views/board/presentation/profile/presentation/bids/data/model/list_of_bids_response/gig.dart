@@ -2,15 +2,14 @@ import 'package:artisan/core/entity/attachments/attachment.dart';
 import 'package:artisan/core/entity/industry/industry.dart';
 import 'package:artisan/core/entity/skills/skill.dart';
 import 'package:artisan/core/entity/user/user.dart';
-import 'package:artisan/core/enums/gig_type.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'datum.g.dart';
+part 'gig.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: true)
 @HiveType(typeId: 0)
-class Datum extends HiveObject {
+class Gig extends HiveObject {
   @HiveField(0)
   int? id;
   @HiveField(1)
@@ -18,60 +17,58 @@ class Datum extends HiveObject {
   @HiveField(2)
   Industry? industry;
   @HiveField(3)
-  GigType? type;
+  String? type;
   @HiveField(4)
   String? title;
   @HiveField(5)
   String? description;
   @HiveField(6)
   @JsonKey(name: 'experience_level')
-  @HiveField(7)
   int? experienceLevel;
-  @HiveField(8)
+  @HiveField(7)
   @JsonKey(name: 'cover_letter_required')
-  @HiveField(9)
   int? coverLetterRequired;
-  @HiveField(10)
+  @HiveField(8)
   @JsonKey(name: 'service_date')
-  @HiveField(11)
   dynamic serviceDate;
-  @HiveField(12)
+  @HiveField(9)
   @JsonKey(name: 'service_time')
   dynamic serviceTime;
-  @HiveField(13)
+  @HiveField(10)
   @JsonKey(name: 'service_address')
   dynamic serviceAddress;
-  @HiveField(14)
+  @HiveField(11)
   @JsonKey(name: 'service_duration')
   dynamic serviceDuration;
+  @HiveField(12)
   String? timeline;
-  @HiveField(15)
+  @HiveField(13)
   @JsonKey(name: 'hourly_budget')
   dynamic hourlyBudget;
-  @HiveField(16)
+  @HiveField(14)
   @JsonKey(name: 'total_budget')
   int? totalBudget;
-  @HiveField(17)
+  @HiveField(15)
   @JsonKey(name: 'consultancy_rate')
   dynamic consultancyRate;
-  @HiveField(18)
+  @HiveField(16)
   @JsonKey(name: 'payment_type')
   String? paymentType;
-  @HiveField(19)
+  @HiveField(17)
   List<Skill>? skills = [];
-  @HiveField(20)
+  @HiveField(18)
   List<Attachment>? attachments;
-  @HiveField(21)
+  @HiveField(19)
   @JsonKey(name: 'is_published')
   int? isPublished;
-  @HiveField(22)
+  @HiveField(20)
   @JsonKey(name: 'created_at')
   String? createdAt;
-  @HiveField(23)
+  @HiveField(21)
   @JsonKey(name: 'updated_at')
   String? updatedAt;
 
-  Datum({
+  Gig({
     this.id,
     this.user,
     this.industry,
@@ -96,7 +93,7 @@ class Datum extends HiveObject {
     this.updatedAt,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
+  factory Gig.fromJson(Map<String, dynamic> json) => _$GigFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DatumToJson(this);
+  Map<String, dynamic> toJson() => _$GigToJson(this);
 }

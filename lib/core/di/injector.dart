@@ -1,4 +1,5 @@
 import 'package:artisan/core/api/auth/auth_api.dart';
+import 'package:artisan/core/api/bid/bid_api.dart';
 import 'package:artisan/core/api/gig/gig_api.dart';
 import 'package:artisan/core/api/profile/profile_api.dart';
 import 'package:artisan/core/api/review/review_api.dart';
@@ -7,6 +8,9 @@ import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/views/board/gig/data/contractImpl/gigContractImpl.dart';
 import 'package:artisan/views/board/gig/data/sourceImpl/gigSourceImpl.dart';
 import 'package:artisan/views/board/gig/domain/usecase/gig_usecase.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/bids/data/contractImpl/bidContractImpl.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/bids/data/sourceImpl/bidSourceImpl.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/bids/domain/usecase/bid_usecase.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/authContractImpl.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.dart';
 import 'package:artisan/views/onboarding/data/sourceImpl/authSourceImpl.dart';
@@ -62,8 +66,8 @@ void _initDataSources() {
       () => ProfileSourceImpl(api: inject()));
   inject
       .registerLazySingleton<GigSourceImpl>(() => GigSourceImpl(api: inject()));
-  inject.registerLazySingleton<ReviewSourceImpl>(
-      () => ReviewSourceImpl(api: inject()));
+  inject.registerLazySingleton<ReviewSourceImpl>(() => ReviewSourceImpl(api: inject()));
+  inject.registerLazySingleton<BidSourceImpl>(() => BidSourceImpl(api: inject()));
 }
 
 /// Initialize data repositories implementations
@@ -74,8 +78,8 @@ void _initDataContracts() {
       () => ProfileContractImpl(inject()));
   inject
       .registerLazySingleton<GigContractImpl>(() => GigContractImpl(inject()));
-  inject.registerLazySingleton<ReviewContractImpl>(
-      () => ReviewContractImpl(inject()));
+  inject.registerLazySingleton<ReviewContractImpl>(() => ReviewContractImpl(inject()));
+  inject.registerLazySingleton<BidContractImpl>(() => BidContractImpl(inject()));
 }
 
 /// Initialize services's here
@@ -87,8 +91,8 @@ void _initServices() {
   inject.registerLazySingleton<ProfileApi>(
       () => ProfileApi(networkService: inject()));
   inject.registerLazySingleton<GigApi>(() => GigApi(networkService: inject()));
-  inject.registerLazySingleton<ReviewApi>(
-      () => ReviewApi(networkService: inject()));
+  inject.registerLazySingleton<ReviewApi>(() => ReviewApi(networkService: inject()));
+  inject.registerLazySingleton<BidApi>(() => BidApi(networkService: inject()));
 }
 
 /// Initialize usecases here
@@ -98,4 +102,5 @@ void _initializeUsecase() {
       .registerLazySingleton<ProfileUseCases>(() => ProfileUseCases(inject()));
   inject.registerLazySingleton<GigUseCases>(() => GigUseCases(inject()));
   inject.registerLazySingleton<ReviewUseCases>(() => ReviewUseCases(inject()));
+  inject.registerLazySingleton<BidUseCases>(() => BidUseCases(inject()));
 }

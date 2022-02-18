@@ -62,7 +62,10 @@ class SearchTab extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(height: 16.h),
-                        ..._gigsList.map((gig) => CardWidget(gig: gig)).toList()
+                        ..._gigsList
+                            .map((gig) =>
+                                CardWidget(gig: gig, skills: gig.skills))
+                            .toList()
                       ],
                     );
                   },

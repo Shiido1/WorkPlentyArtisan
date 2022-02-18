@@ -26,7 +26,8 @@ class Bids extends StatelessWidget {
         body: TabBarView(
           children: [
             BidTab(),
-            InterviewTab(),
+            Container()
+            // InterviewTab(),
           ],
         ),
       ),

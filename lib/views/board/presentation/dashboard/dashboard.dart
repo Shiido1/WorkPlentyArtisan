@@ -1,6 +1,8 @@
+import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
+import 'package:artisan/views/board/presentation/job/job_details.dart';
 import 'package:artisan/views/board/presentation/stateManagers/provider/gig_provider.dart';
 import 'package:artisan/views/board/presentation/widget/card_widget.dart';
 import 'package:artisan/views/widgets/text_views.dart';
@@ -13,8 +15,8 @@ class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Provider.of<GigProvider>(context, listen: false)
-        .getListOfAvailableGigs(entity: GigEntity());
+    final _provider = Provider.of<GigProvider>(context, listen: false);
+    _provider.getListOfAvailableGigs(entity: GigEntity());
     return Scaffold(
       body: FutureBuilder(
         future: availableGigsDao!.getListenable(),
@@ -61,7 +63,16 @@ class Dashboard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 16.h),
-                    ..._gigsList.map((gig) => CardWidget(gig: gig)).toList()
+                    ..._gigsList
+                        .map((gig) => CardWidget(
+                              gig: gig,
+                              skills: gig.skills,
+                              onPressed: () {
+                                _provider.setGig(gig);
+                                PageRouter.gotoWidget(JobDetails(), context);
+                              },
+                            ))
+                        .toList()
                   ],
                 ),
               );

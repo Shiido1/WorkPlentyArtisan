@@ -1,4 +1,5 @@
 import 'package:artisan/core/di/injector.dart';
+import 'package:artisan/core/entity/skills/skill.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
@@ -24,16 +25,16 @@ final _bloc = GigBloc(inject());
 
 class CardWidget extends StatelessWidget {
   final Datum? gig;
-  const CardWidget({this.gig, Key? key}) : super(key: key);
+  final List<Skill>? skills;
+  final Function()? onPressed;
+  const CardWidget({this.onPressed, this.gig, this.skills, Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _gigProvider = Provider.of<GigProvider>(context, listen: false);
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: () {
-        _gigProvider.setGig(gig);
-        PageRouter.gotoWidget(JobDetails(), context);
-      },
+      onPressed: onPressed,
       child: BlocListener<GigBloc, GigState>(
         bloc: _bloc,
         listener: (context, state) {},
@@ -118,9 +119,8 @@ class CardWidget extends StatelessWidget {
                   Wrap(
                     spacing: 5,
                     runSpacing: 10,
-                    children: gig!.skills!
-                        .map((skill) => SkillsWidget(skill))
-                        .toList(),
+                    children:
+                        skills!.map((skill) => SkillsWidget(skill)).toList(),
                   ),
                 ],
               ),

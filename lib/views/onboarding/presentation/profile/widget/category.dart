@@ -15,7 +15,8 @@ class CategorySheet extends StatelessWidget {
   const CategorySheet({required this.onTap, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Provider.of<ProfileSetUpProvider>(context, listen: false).fetchCategoryOfGigs();
+    Provider.of<ProfileSetUpProvider>(context, listen: false)
+        .fetchCategoryOfGigs();
     return Consumer<ProfileSetUpProvider>(
       builder: (context, provider, child) {
         return Container(

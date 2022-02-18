@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import 'bids/bids.dart';
+import 'bids/presentation/bids.dart';
 import 'edit_profile.dart';
 import 'manage/manage.dart';
 import 'request/requests.dart';
