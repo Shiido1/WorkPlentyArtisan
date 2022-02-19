@@ -16,6 +16,11 @@ class RequestUseCase extends UseCase<DefaultResponse, Params> {
   Future<Either<Failure, RequestResponse>>? requests(Params p) async {
     return await _repository.requests(p.entity!);
   }
+
+  @override
+  Future<Either<Failure, DefaultResponse>>? requestsReply(Params p) async {
+    return await _repository.replyToRequest(p.entity!);
+  }
 }
 
 class Params extends Equatable {

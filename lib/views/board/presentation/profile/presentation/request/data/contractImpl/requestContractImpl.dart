@@ -1,7 +1,9 @@
+import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/request/data/model/request_response/request_response.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/request/data/sourceImpl/requestSourceImpl.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/request/domain/contract/request_contract.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/request/domain/entity/request_entity.dart';
 import 'package:dartz/dartz.dart';
 
 class RequestContractImpl implements RequestContract {
@@ -13,6 +15,17 @@ class RequestContractImpl implements RequestContract {
   Future<Either<Failure, RequestResponse>> requests(entity) async {
     try {
       final _response = await _impl.requests(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DefaultResponse>> replyToRequest(
+      RequestEntity entity) async {
+    try {
+      final _response = await _impl.requestsReply(entity);
       return Right(_response);
     } catch (e) {
       return Left(AppFailure(e.toString()));

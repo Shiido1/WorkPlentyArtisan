@@ -40,6 +40,8 @@ class UrlConfig {
   static const String gigCategory = 'gig/categories';
   static const String gigSkill = 'gig/skills';
   static const String artisanRequest = 'artisan/requests/list';
+  static const String artisanRequestAcceptOrDecline =
+      'artisan/requests/accept-or-decline';
 
   static const String generalIndustryList = 'industry/fetch';
   static const String reviewList = 'review/list';

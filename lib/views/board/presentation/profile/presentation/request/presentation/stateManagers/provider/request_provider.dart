@@ -15,7 +15,6 @@ class RequestProvider extends BaseModel {
       setState(ViewState.busy, triggerListener: false);
       final _response = await _useCase.requests(Params(entity: entity));
       _response!.fold((l) => logger.e(l.errorMessage(l)), (r) {
-        logger.d(r.data?.data ?? []);
         requestDao!.saveRequests(r.data?.data ?? []);
         setState(ViewState.idle);
       });
