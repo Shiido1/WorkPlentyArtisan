@@ -1,16 +1,15 @@
 import 'package:artisan/core/entity/attachments/attachment.dart';
+import 'package:artisan/core/entity/gig/gig.dart';
 import 'package:artisan/core/entity/user/user.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart' as gig;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'gig.dart';
 
 part 'datum.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 0)
-class Datum extends gig.Datum{
+class Datum {
   @HiveField(0)
   int? id;
   @HiveField(1)

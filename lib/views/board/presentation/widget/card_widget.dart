@@ -5,8 +5,10 @@ import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
+import 'package:artisan/views/board/presentation/profile/presentation/bids/data/model/list_of_bids_response/datum.dart'
+    as bid;
+import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/presentation/stateManagers/bloc/gig_bloc.dart';
 import 'package:artisan/views/board/presentation/stateManagers/provider/gig_provider.dart';
 import 'package:artisan/views/widgets/image_loader.dart';
@@ -22,7 +24,7 @@ import 'package:provider/provider.dart';
 final _bloc = GigBloc(inject());
 
 class CardWidget extends StatelessWidget {
-  final Datum? gig;
+  final dynamic gig;
   final List<Skill>? skills;
   final Function()? onPressed;
   const CardWidget({this.onPressed, this.gig, this.skills, Key? key})

@@ -42,6 +42,7 @@ class UseCase<Type, Params> {
   Future<Either<Failure, Type>>? workHistory() {}
   Future<Either<Failure, Type>>? configs() {}
   Future<Either<Failure, Type>>? listOfBids(Params p) {}
+  Future<Either<Failure, Type>>? requests(Params p) {}
 }
 
 class NoParams extends Equatable {
