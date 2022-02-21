@@ -19,7 +19,12 @@ class SavedTab extends StatelessWidget {
       child: ListView(
         children: [
           SizedBox(height: 16.h),
-          ...gigs.map((gig) => CardWidget(gig: gig)).toList()
+          ...gigs
+              .map((gig) => CardWidget(
+                    gig: gig,
+                    skills: gig.skills,
+                  ))
+              .toList()
         ],
       ),
     );
