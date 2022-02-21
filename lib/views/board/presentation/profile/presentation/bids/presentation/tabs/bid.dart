@@ -1,6 +1,3 @@
-import 'package:artisan/core/helper/configs/instances.dart';
-import 'package:artisan/core/helper/routes/navigation.dart';
-import 'package:artisan/views/board/presentation/job/job_details.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/bids/domain/entity/bid/bid_entity.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/bids/domain/source/local/bid_dao.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/bids/presentation/stateManagers/provider/bids_provider.dart';

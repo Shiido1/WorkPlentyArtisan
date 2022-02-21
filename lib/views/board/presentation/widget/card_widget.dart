@@ -24,7 +24,7 @@ import 'package:provider/provider.dart';
 final _bloc = GigBloc(inject());
 
 class CardWidget extends StatelessWidget {
-  final dynamic gig;
+  final Datum? gig;
   final List<Skill>? skills;
   final Function()? onPressed;
   const CardWidget({this.onPressed, this.gig, this.skills, Key? key})
