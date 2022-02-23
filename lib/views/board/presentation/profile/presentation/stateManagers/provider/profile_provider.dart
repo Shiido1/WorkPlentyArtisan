@@ -3,9 +3,8 @@ import 'package:artisan/core/entity/user/user.dart';
 import 'package:artisan/core/enums/viewstate.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/viewmodels/base_model.dart';
-import 'package:artisan/views/onboarding/data/model/auth_response/auth_response.dart';
-import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
 import 'package:artisan/views/onboarding/data/model/work_history_response/datum.dart';
+import 'package:artisan/views/onboarding/domain/usecases/profile_usecases.dart';
 
 class ProfileProvider extends BaseModel {
   User? _user;

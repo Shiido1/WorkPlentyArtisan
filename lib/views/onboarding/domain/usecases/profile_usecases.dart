@@ -1,6 +1,5 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/usecases/usecase.dart';
 import 'package:artisan/views/onboarding/data/contractImpl/profileContractImpl.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';
@@ -60,6 +59,12 @@ class ProfileUseCases extends UseCase<DefaultResponse, Params> {
   Future<Either<Failure, DefaultResponse>>? updateExperienceLevel(
       Params p) async {
     return await _repository.updateExperienceLevel(p.entity!);
+  }
+
+  @override
+  Future<Either<Failure, DefaultResponse>>? removeArtisanWorkHistory(
+      int p) async {
+    return await _repository.removeArtisanWorkHistory(p);
   }
 
   @override

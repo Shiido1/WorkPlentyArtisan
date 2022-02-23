@@ -8,7 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExperienceWidget extends StatelessWidget {
   final Datum? history;
-  const ExperienceWidget(this.history, {Key? key}) : super(key: key);
+  final Function()? edit;
+  final Function()? delete;
+  const ExperienceWidget(this.history, {this.edit, this.delete, Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,8 +45,8 @@ class ExperienceWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              ImageLoader(path: AppImages.edit),
-              ImageLoader(path: AppImages.close),
+              ImageLoader(path: AppImages.edit, onTap: edit),
+              ImageLoader(path: AppImages.close, onTap: delete),
             ]),
             SizedBox(height: 18.h),
             Divider(),

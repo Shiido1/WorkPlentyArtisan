@@ -170,6 +170,18 @@ class ProfileApi {
     }
   }
 
+  /// Remove work history level
+  Future<DefaultResponse> removeArtisanWorkHistory(int entity) async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.removeArtisanWorkHistory, RequestMethod.post,
+          data: {'id': entity});
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   /// Update work availability
   Future<DefaultResponse> updateWorkAvailability(ProfileEntity entity) async {
     try {

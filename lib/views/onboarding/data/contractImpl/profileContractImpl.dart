@@ -201,4 +201,15 @@ class ProfileContractImpl implements ProfileContract {
       return Left(AppFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, DefaultResponse>> removeArtisanWorkHistory(
+      int entity) async {
+    try {
+      final _response = await _impl.removeArtisanWorkHistory(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
 }

@@ -36,6 +36,7 @@ abstract class ProfileContract {
       ProfileEntity entity);
   Future<Either<Failure, DefaultResponse>> updateWorkHistory(
       ProfileEntity entity);
+  Future<Either<Failure, DefaultResponse>> removeArtisanWorkHistory(int entity);
   Future<Either<Failure, WorkHistoryResponse>> workHistory();
   Future<Either<Failure, ConfigResponse>> configs();
   Future<Either<Failure, DefaultResponse>> updateWorkAvailability(

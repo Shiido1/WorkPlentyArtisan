@@ -104,8 +104,12 @@ class ProfileSourceImpl implements ProfileSource {
   }
 
   @override
-  Future<DefaultResponse> updateLanguage(ProfileEntity entity)async {
+  Future<DefaultResponse> updateLanguage(ProfileEntity entity) async {
     return await _api.updateLanguage(entity);
+  }
 
+  @override
+  Future<DefaultResponse> removeArtisanWorkHistory(int entity) async {
+    return await _api.removeArtisanWorkHistory(entity);
   }
 }

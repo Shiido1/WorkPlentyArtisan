@@ -55,6 +55,12 @@ class UpdateAvailabilityRate extends ProfileEvent {
   const UpdateAvailabilityRate(this.entity);
 }
 
+class RemoveWorkExperience extends ProfileEvent {
+  final int id;
+
+  const RemoveWorkExperience(this.id);
+}
+
 class UpdatePreferredLanguage extends ProfileEvent {
   final ProfileEntity entity;
 

@@ -56,6 +56,7 @@ class UrlConfig {
       'artisan/profile/update-experience-level';
   static const String artisanEducationUpdate = 'artisan/education/save';
   static const String artisanWorkHistory = 'artisan/work-history/save';
+  static const String removeArtisanWorkHistory = 'artisan/work-history/delete';
   static const String artisanWorkHistoryList = 'artisan/work-history/list';
   static const String configs = 'gig/config';
   static const String updateAvailability =

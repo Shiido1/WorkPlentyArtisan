@@ -4,6 +4,7 @@ import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/stateManagers/provider/profile_provider.dart';
 import 'package:artisan/views/board/presentation/profile/presentation/widget/experience_widget.dart';
+import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/presentation/profile/bloc/profile_bloc.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/employment.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
@@ -44,7 +45,7 @@ class _UpdateWorkState extends State<UpdateWork> {
           backgroundColor: Pallets.primary100,
           centerTitle: true,
           titleWidgte: TextView(
-              text: 'Update Working Experience',
+              text: 'Working Experience',
               fontWeight: FontWeight.w700,
               fontSize: 22,
               color: Pallets.white,
@@ -83,20 +84,24 @@ class _UpdateWorkState extends State<UpdateWork> {
                       text:
                           'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
                       fontWeight: FontWeight.w400,
-                      fontSize: 18,
+                      fontSize: 16,
+                      color: Pallets.mildGrey,
                       textAlign: TextAlign.left,
                     ),
                     SizedBox(height: 43.h),
                     Divider(),
                     ...provider.getWorkHistory!
-                        .map((history) => ExperienceWidget(history))
-                        .toList()
-                        .reversed
+                        .map((history) =>
+                            ExperienceWidget(history, edit: () {}, delete: () {
+                              _bloc.add(RemoveWorkExperience(history.id!));
+                              provider.getWorkHistory?.remove(history);
+                              setState(() {});
+                            }))
                         .toList(),
                     SizedBox(height: 43.h),
                     ButtonWidget(
                         width: Utils.getDeviceWidth(context),
-                        buttonText: 'Update Working Experience',
+                        buttonText: 'Add Working Experience',
                         onPressed: () => BottomSheets.showSheet(context,
                             child: EmploymentSheet())),
                     SizedBox(height: 114.h),

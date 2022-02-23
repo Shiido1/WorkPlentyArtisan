@@ -82,6 +82,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         }
       }
 
+      /// Remove artisans experience
+      if (event is RemoveWorkExperience) {
+        try {
+          emit(ProfileLoading());
+          final _response = await _useCase.removeArtisanWorkHistory(event.id);
+          _response!.fold(
+              (l) => emit(ProfileFailed(message: l.errorMessage(l)!)),
+              (r) => emit(ProfileSuccess(response: r)));
+        } catch (e) {
+          emit(ProfileFailed(message: e.toString()));
+        }
+      }
+
       /// Updates artisans education
       if (event is UpdateEducation) {
         try {

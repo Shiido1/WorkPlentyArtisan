@@ -525,7 +525,8 @@ class _CreateProfileState extends State<CreateProfile> {
               text:
                   'Build your credibility  by showcasing projects/jobs you’ve worked on, and completed',
               fontWeight: FontWeight.w400,
-              fontSize: 18,
+              fontSize: 16,
+              color: Pallets.mildGrey,
               textAlign: TextAlign.left,
             ),
             SizedBox(height: 43.h),
