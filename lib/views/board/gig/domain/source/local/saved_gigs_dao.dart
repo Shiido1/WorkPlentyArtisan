@@ -22,10 +22,10 @@ class SavedGigsDao {
   Future<Box<Map>> openBox() => HiveBoxes.openBox<Map>(HiveBoxes.savedGigs);
 
   Future<void> listOfSavedGigs(List<Datum>? data) async {
-    if (data!.isNotEmpty) await _box?.clear();
+    await _box?.clear();
 
     final map = Map<String, Map>.fromIterable(
-      data,
+      data!,
       key: (g) => (g as Datum).id.toString(),
       value: (g) => (g as Datum).toJson(),
     );

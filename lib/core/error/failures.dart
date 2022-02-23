@@ -8,6 +8,7 @@ abstract class Failure extends Equatable {
     if (e is AppFailure) {
       return e.message;
     }
+    return null;
   }
 }
 

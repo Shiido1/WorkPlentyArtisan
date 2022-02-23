@@ -122,6 +122,10 @@ class GigEntity extends DefaultResponse {
     return {'gig_id': id};
   }
 
+  Map<String, dynamic> removeGigsSave() {
+    return {'gig_id': id};
+  }
+
   Map<String, dynamic> getDetailsOfGig() {
     return {'id': id};
   }

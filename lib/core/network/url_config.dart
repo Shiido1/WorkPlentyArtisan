@@ -33,6 +33,7 @@ class UrlConfig {
   static const String chatList = 'chat/list';
   static const String savedGig = 'saved-gigs/list';
   static const String savedGigSave = 'saved-gigs/save';
+  static const String removeGigSave = 'saved-gigs/delete';
   static const String savedProfile = 'saved-profiles/save';
   static const String submitBid = 'artisan/bids/create';
 

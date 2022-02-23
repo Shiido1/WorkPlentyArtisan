@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/presentation/widget/card_widget.dart';
@@ -23,6 +24,7 @@ class SavedTab extends StatelessWidget {
               .map((gig) => CardWidget(
                     gig: gig,
                     skills: gig.skills,
+                    toRemoveGig: true,
                   ))
               .toList()
         ],

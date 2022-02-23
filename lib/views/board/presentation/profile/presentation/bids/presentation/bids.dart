@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'tabs/bid.dart';
-import 'tabs/interview.dart';
 
 class Bids extends StatelessWidget {
   const Bids({Key? key}) : super(key: key);

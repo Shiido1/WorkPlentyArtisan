@@ -1,6 +1,5 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/entity/user/user.dart';
-import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
 import 'package:artisan/views/onboarding/data/model/config_response/config_response.dart';

@@ -26,6 +26,12 @@ class GigUseCases extends UseCase<DefaultResponse, Params> {
   }
 
   @override
+  Future<Either<Failure, DefaultResponse>>? removeClientsGig(
+      Params params) async {
+    return await _repository.removeGig(params.entity!);
+  }
+
+  @override
   Future<Either<Failure, ListOfAvailableGigsResponse>>? listOfSavedGigs(
       Params params) async {
     return await _repository.listOfSavedGigs(params.entity!);

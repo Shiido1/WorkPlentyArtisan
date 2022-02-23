@@ -24,6 +24,17 @@ class GigBloc extends Bloc<GigEvent, GigState> {
         } catch (e) {}
       }
 
+      /// REMOVE GIGS
+      if (event is RemoveGigEvent) {
+        try {
+          emit(GigLoading());
+          final _response =
+              await _useCase.removeClientsGig(Params(entity: event.entity));
+          _response!.fold((l) => emit(GigFailed(l.errorMessage(l)!)),
+              (r) => emit(GigSuccess(r)));
+        } catch (e) {}
+      }
+
       /// BID GIGS
       if (event is BidGigEvent) {
         try {

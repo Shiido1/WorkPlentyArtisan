@@ -37,6 +37,18 @@ class GigApi {
     }
   }
 
+  /// Remove a gig
+  Future<DefaultResponse> removeGig({required GigEntity entity}) async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.removeGigSave, RequestMethod.post,
+          data: entity.removeGigsSave());
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   /// list of  gig
   Future<ListOfAvailableGigsResponse> listOfSavedGigs(
       {required GigEntity entity}) async {

@@ -31,6 +31,15 @@ class GigContractImpl implements GigContract {
       return Left(AppFailure(e.toString()));
     }
   }
+  @override
+  Future<Either<Failure, DefaultResponse>> removeGig(GigEntity entity) async {
+    try {
+      final _response = await _impl.removeGig(entity);
+      return Right(_response);
+    } catch (e) {
+      return Left(AppFailure(e.toString()));
+    }
+  }
 
   @override
   Future<Either<Failure, ListOfAvailableGigsResponse>> listOfSavedGigs(
