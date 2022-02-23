@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../../../../core/entity/datum/datum.dart';
+import '../../../../../../core/helper/utils/time_helper.dart';
 
 SavedGigsDao? savedGigsDao;
 
@@ -35,9 +36,14 @@ class SavedGigsDao {
 
   List<Datum> getConvertedData(Box box) {
     Map<String, dynamic> raw = Map<String, dynamic>.from(box.toMap());
-    return raw.values
+    final _rawValues = raw.values
         .map((e) => Datum.fromJson(json.decode(json.encode(e))))
         .toList();
+
+    _rawValues.sort(((a, b) => TimeUtil.rawTimeFormat(a.createdAt ?? '')
+        .compareTo(TimeUtil.rawTimeFormat(b.createdAt ?? ''))));
+
+    return _rawValues.toList().reversed.toList();
   }
 
   Future<ValueListenable<Box>?> getListenable({List<String>? keys}) async {

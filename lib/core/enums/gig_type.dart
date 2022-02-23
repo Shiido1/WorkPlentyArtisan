@@ -1,6 +1,6 @@
 enum GigType { FREELANCE, HOME, LIVE, UNKNOWN }
 
-String? returnGigType(GigType? type) {
+String? fromGigType(GigType? type) {
   switch (type) {
     case GigType.FREELANCE:
       return 'FREELANCE';
@@ -13,7 +13,7 @@ String? returnGigType(GigType? type) {
   }
 }
 
-GigType? formatGigType(String? type) {
+GigType? toGigType(String? type) {
   switch (type) {
     case 'FREELANCE':
       return GigType.FREELANCE;

@@ -17,7 +17,7 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       industry: json['industry'] == null
           ? null
           : Industry.fromJson(json['industry'] as Map<String, dynamic>),
-      type: json['type'] as String?,
+      type: $enumDecodeNullable(_$GigTypeEnumMap, json['type']),
       title: json['title'] as String?,
       description: json['description'] as String?,
       experienceLevel: json['experience_level'] as int?,
@@ -57,7 +57,7 @@ Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'user': instance.user?.toJson(),
       'profile': instance.profile?.toJson(),
       'industry': instance.industry?.toJson(),
-      'type': instance.type,
+      'type': _$GigTypeEnumMap[instance.type],
       'title': instance.title,
       'description': instance.description,
       'experience_level': instance.experienceLevel,
@@ -83,3 +83,10 @@ Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'updated_at': instance.updatedAt,
       'gig': instance.gig?.toJson(),
     };
+
+const _$GigTypeEnumMap = {
+  GigType.FREELANCE: 'FREELANCE',
+  GigType.HOME: 'HOME',
+  GigType.LIVE: 'LIVE',
+  GigType.UNKNOWN: 'UNKNOWN',
+};

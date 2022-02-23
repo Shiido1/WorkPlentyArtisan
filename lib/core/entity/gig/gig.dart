@@ -5,6 +5,8 @@ import 'package:artisan/core/entity/user/user.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../enums/gig_type.dart';
+
 part 'gig.g.dart';
 
 @JsonSerializable(explicitToJson: true, includeIfNull: true)
@@ -17,7 +19,7 @@ class Gig extends HiveObject {
   @HiveField(2)
   Industry? industry;
   @HiveField(3)
-  String? type;
+  GigType? type;
   @HiveField(4)
   String? title;
   @HiveField(5)

@@ -1,4 +1,5 @@
 import 'package:artisan/core/enums/gig_type.dart';
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/source/local/saved_gigs_dao.dart';

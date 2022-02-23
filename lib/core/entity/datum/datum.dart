@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../../../../../core/entity/industry/industry.dart';
 import '../../../../../../core/entity/profile/profile.dart';
 import '../../../../../../core/entity/user/user.dart';
+import '../../enums/gig_type.dart';
 import '../attachments/attachment.dart';
 import '../gig/gig.dart';
 import '../milestone/milestone.dart';
@@ -23,7 +24,7 @@ class Datum {
   @HiveField(3)
   Industry? industry;
   @HiveField(4)
-  String? type;
+  GigType? type;
   @HiveField(5)
   String? title;
   @HiveField(6)
