@@ -9,7 +9,13 @@ import 'package:artisan/views/widgets/search_field.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../../core/enums/viewstate.dart';
+import '../../../gig/domain/entity/gig/gig_entity.dart';
+import '../../stateManagers/provider/gig_provider.dart';
 
 class SearchTab extends StatelessWidget {
   SearchTab({Key? key}) : super(key: key);
@@ -53,20 +59,31 @@ class SearchTab extends StatelessWidget {
                     !snapshot.hasData) {
                   return Container();
                 }
+
+                Provider.of<GigProvider>(context, listen: false)
+                    .getListOfAvailableGigs(entity: GigEntity());
+
                 return ValueListenableBuilder(
                   valueListenable: snapshot.data,
                   builder: (_, Box<dynamic> value, __) {
                     final _gigsList =
                         availableGigsDao!.getConvertedData(value).toList();
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(height: 16.h),
-                        ..._gigsList
-                            .map((gig) =>
-                                CardWidget(gig: gig, skills: gig.skills))
-                            .toList()
-                      ],
+                    return Consumer<GigProvider>(
+                      builder: (context, gig, child) {
+                        if (gig.state == ViewState.busy) {
+                          return SpinKitCircle(color: Pallets.blue, size: 50.0);
+                        }
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(height: 16.h),
+                            ..._gigsList
+                                .map((gig) =>
+                                    CardWidget(gig: gig, skills: gig.skills))
+                                .toList()
+                          ],
+                        );
+                      },
                     );
                   },
                 );

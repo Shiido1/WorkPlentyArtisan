@@ -7,9 +7,11 @@ import 'package:artisan/views/board/presentation/widget/custom_appbar.dart';
 import 'package:artisan/views/widgets/text_views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/enums/viewstate.dart';
 import 'tabs/saved_tab.dart';
 
 class Saved extends StatelessWidget {
@@ -17,8 +19,6 @@ class Saved extends StatelessWidget {
   const Saved({this.widget, Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Provider.of<GigProvider>(context, listen: false)
-        .getAllSavedGigs(entity: GigEntity());
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -56,28 +56,41 @@ class Saved extends StatelessWidget {
           builder: (_, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting ||
                 !snapshot.hasData) {
-              return Container();
+              return SpinKitCircle(color: Pallets.blue, size: 50.0);
             }
+
+            Provider.of<GigProvider>(context, listen: false)
+                .getAllSavedGigs(entity: GigEntity());
+
             return ValueListenableBuilder(
               valueListenable: snapshot.data,
               builder: (_, Box<dynamic> value, __) {
                 final _list = savedGigsDao!.getConvertedData(value).toList();
-                return TabBarView(
-                  children: [
-                    SavedTab(
-                        gigs: _list
-                            .where(
-                                (element) => element.type == GigType.FREELANCE)
-                            .toList()),
-                    SavedTab(
-                        gigs: _list
-                            .where((element) => element.type == GigType.HOME)
-                            .toList()),
-                    SavedTab(
-                        gigs: _list
-                            .where((element) => element.type == GigType.LIVE)
-                            .toList()),
-                  ],
+                return Consumer<GigProvider>(
+                  builder: (context, gig, child) {
+                    if (gig.state == ViewState.busy) {
+                      return SpinKitCircle(color: Pallets.blue, size: 50.0);
+                    }
+                    return TabBarView(
+                      children: [
+                        SavedTab(
+                            gigs: _list
+                                .where((element) =>
+                                    element.type == GigType.FREELANCE)
+                                .toList()),
+                        SavedTab(
+                            gigs: _list
+                                .where(
+                                    (element) => element.type == GigType.HOME)
+                                .toList()),
+                        SavedTab(
+                            gigs: _list
+                                .where(
+                                    (element) => element.type == GigType.LIVE)
+                                .toList()),
+                      ],
+                    );
+                  },
                 );
               },
             );
