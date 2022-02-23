@@ -26,6 +26,7 @@ abstract class ProfileSource {
   Future<DefaultResponse> updateEducation(ProfileEntity entity);
   Future<DefaultResponse> updateWorkHistory(ProfileEntity entity);
   Future<DefaultResponse> updateWorkAvailability(ProfileEntity entity);
+  Future<DefaultResponse> updateLanguage(ProfileEntity entity);
   Future<WorkHistoryResponse> workHistory();
   Future<ConfigResponse> configs();
   Future<User> profileInfo();

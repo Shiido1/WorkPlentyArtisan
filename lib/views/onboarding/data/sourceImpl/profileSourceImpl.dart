@@ -102,4 +102,10 @@ class ProfileSourceImpl implements ProfileSource {
   Future<User> profileInfo() async {
     return await _api.getUsersProfile();
   }
+
+  @override
+  Future<DefaultResponse> updateLanguage(ProfileEntity entity)async {
+    return await _api.updateLanguage(entity);
+
+  }
 }

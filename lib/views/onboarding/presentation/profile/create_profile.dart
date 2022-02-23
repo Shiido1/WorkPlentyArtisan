@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:artisan/core/database/session_manager.dart';
 import 'package:artisan/core/di/injector.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/helper_handler.dart';
@@ -19,6 +20,7 @@ import 'package:artisan/views/onboarding/domain/entity/profile_entity.dart';
 import 'package:artisan/views/onboarding/presentation/profile/provider/profile_provider.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/button_widget.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/category.dart';
+import 'package:artisan/views/onboarding/presentation/profile/widget/language.dart';
 import 'package:artisan/views/onboarding/presentation/profile/widget/subcategory.dart';
 import 'package:artisan/views/widgets/body_widget.dart';
 import 'package:artisan/views/widgets/bottom_sheet.dart';
@@ -53,6 +55,8 @@ class _CreateProfileState extends State<CreateProfile> {
   final _loadingKey = GlobalKey<FormState>();
   final _dialogKey = GlobalKey<FormState>();
   final _formKey = GlobalKey<FormState>();
+  Languages? _languages = Languages.getLanguages().first;
+
   final TextEditingController _weeklyController = TextEditingController();
   final TextEditingController _homeServiceController = TextEditingController();
   final TextEditingController _liveConsultancyController =
@@ -73,6 +77,7 @@ class _CreateProfileState extends State<CreateProfile> {
   final TextEditingController _degreeController = TextEditingController();
   final TextEditingController _fromDateController = TextEditingController();
   final TextEditingController _toDateController = TextEditingController();
+  TextEditingController? _languageController;
 
   final _bloc = ProfileBloc(inject());
   final _pickImage = ImagePickerHandler();
@@ -86,8 +91,16 @@ class _CreateProfileState extends State<CreateProfile> {
     _profileProvider =
         Provider.of<ProfileSetUpProvider>(context, listen: false);
     _profile = Provider.of<ProfileProvider>(context, listen: false);
+    _initializeController();
     _profileProvider?.fetchSkills();
     super.initState();
+  }
+
+  void _initializeController() {
+    _languageController = TextEditingController(
+        text:
+            '${_languages?.language ?? ''} - ${_languages?.proficiency ?? ''}');
+    setState(() {});
   }
 
   @override
@@ -155,7 +168,7 @@ class _CreateProfileState extends State<CreateProfile> {
                   showBackButton: _index > 0,
                   btnText: _index != 9 ? 'Next' : "Complete",
                   showSkip:
-                      _index == 3 || _index == 6 || _index == 7 || _index == 8,
+                      _index == 3 || _index == 5 || _index == 7 || _index == 8,
                   callback: () => _whenFormIsField(),
                   goBack: () => _decreamentIndex(),
                   skip: () => _increamentIndex(),
@@ -548,18 +561,35 @@ class _CreateProfileState extends State<CreateProfile> {
         SizedBox(height: 5.h),
         TextView(
           text:
-              'Language you are proefficient with, meaning can have conversation with',
+              'Language you are proficient with, meaning can have conversation with',
           fontWeight: FontWeight.w400,
           fontSize: 18,
+          color: Pallets.mildGrey100,
           textAlign: TextAlign.left,
         ),
         SizedBox(height: 43.h),
         Divider(),
-        EditFormField(label: 'English - Fluent'),
+        EditFormField(
+          label: 'English - Fluent',
+          controller: _languageController,
+          readOnly: true,
+        ),
         SizedBox(height: 8.h),
         EditFormField(
           label: 'Add Language',
+          hint: 'Add Language',
           suffixIcon: Icons.keyboard_arrow_down,
+          readOnly: true,
+          onTapped: () {
+            BottomSheets.showSheet(context, child: LanguageSheet(
+              languageCallback: (l) {
+                _languages = l;
+                _languageController?.text =
+                    '${_languages?.language ?? ''} - ${_languages?.proficiency ?? ''}';
+                setState(() {});
+              },
+            ));
+          },
         ),
       ],
     );
@@ -843,7 +873,7 @@ class _CreateProfileState extends State<CreateProfile> {
 
   void _submitFormTwo() {
     if (_skills.isEmpty) {
-      WorkPlenty.error('You need to have atlease one skill');
+      WorkPlenty.error('You need to have at least one skill');
       return;
     }
     _bloc.add(SkillsProfileUpdate(ProfileEntity(skills: _skills)));
@@ -865,15 +895,12 @@ class _CreateProfileState extends State<CreateProfile> {
   }
 
   void _submitFormFive() {
-    if (_profile!.getWorkHistory!.isEmpty) {
-      WorkPlenty.error('You need to have at least one working experience.');
-      return;
-    }
     _increamentIndex();
   }
 
   void _submitFormSix() {
-    _increamentIndex();
+    _bloc.add(UpdatePreferredLanguage(ProfileEntity(
+        language: _languages?.language, proficiency: _languages?.proficiency)));
   }
 
   void _submitFormSeven() {

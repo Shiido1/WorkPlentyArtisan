@@ -23,6 +23,7 @@ class UrlConfig {
   static const String profileBioUpdate = 'artisan/profile/update-bio';
   static const String profileLocationUpdate = 'artisan/profile/update-location';
   static const String profileAvatarUpdate = 'artisan/profile/update-avatar';
+  static const String updateLanguage = 'artisan/languages/save';
 
   static const String saveGig = 'client/gig/save';
   static const String removeAttachment = 'client/attachments/remove';

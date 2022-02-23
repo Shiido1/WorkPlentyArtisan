@@ -6,6 +6,9 @@ import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_respon
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../../../../../../core/entity/industry/industry.dart';
+import '../../../../../../../../../core/enums/gig_type.dart';
+
 part 'datum.g.dart';
 
 @JsonSerializable(explicitToJson: true)

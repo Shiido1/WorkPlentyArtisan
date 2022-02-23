@@ -123,6 +123,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           emit(ProfileFailed(message: e.toString()));
         }
       }
+
+      /// Updates artisans preferred language
+      if (event is UpdatePreferredLanguage) {
+        try {
+          emit(ProfileLoading());
+          final _response =
+              await _useCase.updateLanguage(Params(entity: event.entity));
+          _response!.fold(
+              (l) => emit(ProfileFailed(message: l.errorMessage(l)!)),
+              (r) => emit(ProfileSuccess(response: r)));
+        } catch (e) {
+          emit(ProfileFailed(message: e.toString()));
+        }
+      }
     });
   }
 }

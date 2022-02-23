@@ -39,6 +39,7 @@ class UseCase<Type, Params> {
   Future<Either<Failure, Type>>? updateEducation(Params p) {}
   Future<Either<Failure, Type>>? updateWorkAvailability(Params p) {}
   Future<Either<Failure, Type>>? updateWorkHistory(Params p) {}
+  Future<Either<Failure, Type>>? updateLanguage(Params p) {}
   Future<Either<Failure, Type>>? workHistory() {}
   Future<Either<Failure, Type>>? configs() {}
   Future<Either<Failure, Type>>? listOfBids(Params p) {}

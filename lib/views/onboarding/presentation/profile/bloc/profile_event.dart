@@ -54,3 +54,9 @@ class UpdateAvailabilityRate extends ProfileEvent {
 
   const UpdateAvailabilityRate(this.entity);
 }
+
+class UpdatePreferredLanguage extends ProfileEvent {
+  final ProfileEntity entity;
+
+  const UpdatePreferredLanguage(this.entity);
+}

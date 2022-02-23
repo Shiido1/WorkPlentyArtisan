@@ -35,6 +35,8 @@ class ProfileEntity extends DefaultResponse {
   final String? weeklyHours;
   final String? rateForHomeService;
   final String? rateForLiveService;
+  final String? language;
+  final String? proficiency;
 
   ProfileEntity(
       {this.title,
@@ -65,7 +67,9 @@ class ProfileEntity extends DefaultResponse {
       this.location,
       this.weeklyHours,
       this.rateForHomeService,
-      this.rateForLiveService});
+      this.rateForLiveService,
+      this.language,
+      this.proficiency});
 
   Map<String, dynamic> toMap() {
     return {
@@ -114,9 +118,15 @@ class ProfileEntity extends DefaultResponse {
         'ended_on': endedOn,
         'location': location
       };
+
   Map<String, dynamic> toAvailability() => {
         'weekly_hours': weeklyHours,
         'rate_for_home_service': rateForHomeService,
         'rate_for_live_service': rateForLiveService
+      };
+
+  Map<String, dynamic> toLanguage() => {
+        'language': language,
+        'proficiency': proficiency,
       };
 }

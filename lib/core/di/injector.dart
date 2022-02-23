@@ -72,8 +72,10 @@ void _initDataSources() {
       .registerLazySingleton<GigSourceImpl>(() => GigSourceImpl(api: inject()));
   inject.registerLazySingleton<ReviewSourceImpl>(
       () => ReviewSourceImpl(api: inject()));
-  inject.registerLazySingleton<BidSourceImpl>(() => BidSourceImpl(api: inject()));
-  inject.registerLazySingleton<RequestSourceImpl>(() => RequestSourceImpl(api: inject()));
+  inject
+      .registerLazySingleton<BidSourceImpl>(() => BidSourceImpl(api: inject()));
+  inject.registerLazySingleton<RequestSourceImpl>(
+      () => RequestSourceImpl(api: inject()));
 }
 
 /// Initialize data repositories implementations
@@ -86,8 +88,10 @@ void _initDataContracts() {
       .registerLazySingleton<GigContractImpl>(() => GigContractImpl(inject()));
   inject.registerLazySingleton<ReviewContractImpl>(
       () => ReviewContractImpl(inject()));
-  inject.registerLazySingleton<BidContractImpl>(() => BidContractImpl(inject()));
-  inject.registerLazySingleton<RequestContractImpl>(() => RequestContractImpl(inject()));
+  inject
+      .registerLazySingleton<BidContractImpl>(() => BidContractImpl(inject()));
+  inject.registerLazySingleton<RequestContractImpl>(
+      () => RequestContractImpl(inject()));
 }
 
 /// Initialize services's here
@@ -102,7 +106,8 @@ void _initServices() {
   inject.registerLazySingleton<ReviewApi>(
       () => ReviewApi(networkService: inject()));
   inject.registerLazySingleton<BidApi>(() => BidApi(networkService: inject()));
-  inject.registerLazySingleton<RequestApi>(() => RequestApi(networkService: inject()));
+  inject.registerLazySingleton<RequestApi>(
+      () => RequestApi(networkService: inject()));
 }
 
 /// Initialize usecases here

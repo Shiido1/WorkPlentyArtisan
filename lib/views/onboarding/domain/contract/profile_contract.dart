@@ -40,4 +40,5 @@ abstract class ProfileContract {
   Future<Either<Failure, ConfigResponse>> configs();
   Future<Either<Failure, DefaultResponse>> updateWorkAvailability(
       ProfileEntity entity);
+  Future<Either<Failure, DefaultResponse>> updateLanguage(ProfileEntity entity);
 }

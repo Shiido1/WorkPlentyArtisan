@@ -183,6 +183,18 @@ class ProfileApi {
     }
   }
 
+  /// Update preferred language
+  Future<DefaultResponse> updateLanguage(ProfileEntity entity) async {
+    try {
+      final _response = await _networkService.call(
+          UrlConfig.updateLanguage, RequestMethod.post,
+          data: entity.toLanguage());
+      return DefaultResponse.fromJson(_response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   /// fetch artisans work history
   Future<WorkHistoryResponse> workHistory() async {
     try {
