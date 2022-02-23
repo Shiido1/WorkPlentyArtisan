@@ -1,7 +1,6 @@
 import 'package:artisan/core/enums/viewstate.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
-import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
 import 'package:artisan/views/board/presentation/job/job_details.dart';

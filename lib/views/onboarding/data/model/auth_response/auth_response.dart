@@ -5,8 +5,8 @@ import 'data.dart';
 
 part 'auth_response.g.dart';
 
-@JsonSerializable()
-class AuthResponse  extends AuthEntity{
+@JsonSerializable(explicitToJson: true)
+class AuthResponse extends AuthEntity {
   String? msg;
   Data? data;
   bool? success;

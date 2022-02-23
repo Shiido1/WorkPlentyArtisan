@@ -1,10 +1,11 @@
 import 'package:artisan/core/entity/default_response.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 
+import '../../../data/model/gigs_response/gigs_response.dart';
+
 abstract class GigSource {
-  Future<ListOfAvailableGigsResponse> listOfGigs(GigEntity entity);
-  Future<ListOfAvailableGigsResponse> listOfSavedGigs(GigEntity entity);
+  Future<GigsResponse> listOfGigs(GigEntity entity);
+  Future<GigsResponse> listOfSavedGigs(GigEntity entity);
   Future<DefaultResponse> saveGig(GigEntity entity);
   Future<DefaultResponse> removeGig(GigEntity entity);
   Future<DefaultResponse> bidGig(GigEntity entity);

@@ -26,9 +26,9 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'cover_letter': instance.coverLetter,
-      'experience_level': instance.experienceLevel,
-      'timeline': instance.timeline,
-      'payment_type': instance.paymentType,
-      'type': instance.type,
+      'cover_letter': instance.coverLetter?.toJson(),
+      'experience_level': instance.experienceLevel?.toJson(),
+      'timeline': instance.timeline?.toJson(),
+      'payment_type': instance.paymentType?.toJson(),
+      'type': instance.type?.toJson(),
     };

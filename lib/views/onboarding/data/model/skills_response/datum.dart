@@ -5,7 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'datum.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Datum extends DefaultResponse {
   final int? id;
   final String? name;

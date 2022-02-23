@@ -1,11 +1,11 @@
-import 'package:artisan/views/board/presentation/profile/presentation/bids/data/model/list_of_bids_response/datum.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'pagination_meta.dart';
+import '../datum/datum.dart';
+import '../pagination/pagination_meta.dart';
 
 part 'data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Data {
   @JsonKey(name: 'pagination_meta')
   PaginationMeta? paginationMeta;

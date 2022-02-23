@@ -1,11 +1,11 @@
 import 'package:artisan/core/entity/default_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'data.dart';
+import '../../../../../../../../../core/entity/data/data.dart';
 
 part 'request_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class RequestResponse extends DefaultResponse {
   String? msg;
   Data? data;

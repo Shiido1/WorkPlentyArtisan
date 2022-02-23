@@ -1,10 +1,11 @@
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/viewmodels/base_model.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/gig/domain/source/local/gig_dao.dart';
 import 'package:artisan/views/board/gig/domain/source/local/saved_gigs_dao.dart';
 import 'package:artisan/views/board/gig/domain/usecase/gig_usecase.dart';
+
+import '../../../../../core/entity/datum/datum.dart';
 
 class GigProvider extends BaseModel {
   final GigUseCases _useCase;

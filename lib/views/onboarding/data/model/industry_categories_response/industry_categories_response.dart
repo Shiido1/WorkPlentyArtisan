@@ -7,7 +7,7 @@ import 'data.dart';
 
 part 'industry_categories_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class IndustryCategoriesResponse extends DefaultResponse {
   String? msg;
   Data? data;

@@ -2,10 +2,10 @@ import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/error/failures.dart';
 import 'package:artisan/core/usecases/usecase.dart';
 import 'package:artisan/views/board/gig/data/contractImpl/gigContractImpl.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../data/model/gigs_response/gigs_response.dart';
 import '../entity/gig/gig_entity.dart';
 
 class GigUseCases extends UseCase<DefaultResponse, Params> {
@@ -14,7 +14,7 @@ class GigUseCases extends UseCase<DefaultResponse, Params> {
   GigUseCases(this._repository);
 
   @override
-  Future<Either<Failure, ListOfAvailableGigsResponse>>? getListOfAvailableGigs(
+  Future<Either<Failure, GigsResponse>>? getListOfAvailableGigs(
       Params params) async {
     return await _repository.listOfGigs(params.entity!);
   }
@@ -32,8 +32,7 @@ class GigUseCases extends UseCase<DefaultResponse, Params> {
   }
 
   @override
-  Future<Either<Failure, ListOfAvailableGigsResponse>>? listOfSavedGigs(
-      Params params) async {
+  Future<Either<Failure, GigsResponse>>? listOfSavedGigs(Params params) async {
     return await _repository.listOfSavedGigs(params.entity!);
   }
 

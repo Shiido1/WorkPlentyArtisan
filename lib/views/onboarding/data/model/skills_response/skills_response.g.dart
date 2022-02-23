@@ -20,7 +20,7 @@ Map<String, dynamic> _$SkillsResponseToJson(SkillsResponse instance) =>
     <String, dynamic>{
       'errorDebug': instance.errorDebug,
       'msg': instance.msg,
-      'data': instance.data,
+      'data': instance.data?.map((e) => e.toJson()).toList(),
       'success': instance.success,
       'code': instance.code,
     };

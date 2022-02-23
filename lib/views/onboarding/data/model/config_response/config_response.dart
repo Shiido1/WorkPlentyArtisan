@@ -7,7 +7,7 @@ import 'data.dart';
 
 part 'config_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class ConfigResponse extends DefaultResponse {
   String? msg;
   Data? data;

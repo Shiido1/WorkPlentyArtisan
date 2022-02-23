@@ -20,6 +20,6 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'token': instance.token,
       'token_type': instance.tokenType,
-      'user': instance.user,
-      'profile': instance.profile,
+      'user': instance.user?.toJson(),
+      'profile': instance.profile?.toJson(),
     };

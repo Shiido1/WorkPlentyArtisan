@@ -4,7 +4,7 @@ import 'option.dart';
 
 part 'payment_type.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class PaymentType {
   String? label;
   List<Option>? option;

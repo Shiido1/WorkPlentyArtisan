@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'cover.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-@HiveType(typeId: 1)
+@HiveType(typeId: 0)
 class Cover extends HiveObject {
   @HiveField(0)
   int? id;
@@ -18,9 +18,10 @@ class Cover extends HiveObject {
   String? size;
   @HiveField(5)
   @JsonKey(name: 'formatted_size')
+  @HiveField(6)
   String? formattedSize;
-  @HiveField(5)
   @JsonKey(name: 'created_at')
+  @HiveField(7)
   String? createdAt;
 
   Cover({

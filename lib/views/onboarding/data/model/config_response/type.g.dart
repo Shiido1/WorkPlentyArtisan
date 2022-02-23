@@ -15,5 +15,5 @@ Type _$TypeFromJson(Map<String, dynamic> json) => Type(
 
 Map<String, dynamic> _$TypeToJson(Type instance) => <String, dynamic>{
       'label': instance.label,
-      'option': instance.option,
+      'option': instance.option?.map((e) => e.toJson()).toList(),
     };

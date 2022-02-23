@@ -16,5 +16,5 @@ CoverLetter _$CoverLetterFromJson(Map<String, dynamic> json) => CoverLetter(
 Map<String, dynamic> _$CoverLetterToJson(CoverLetter instance) =>
     <String, dynamic>{
       'label': instance.label,
-      'option': instance.option,
+      'option': instance.option?.map((e) => e.toJson()).toList(),
     };

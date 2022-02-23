@@ -8,7 +8,7 @@ import 'type.dart';
 
 part 'data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Data {
   @JsonKey(name: 'cover_letter')
   CoverLetter? coverLetter;

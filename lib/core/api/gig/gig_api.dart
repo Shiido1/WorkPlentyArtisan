@@ -2,9 +2,10 @@ import 'package:artisan/core/entity/default_response.dart';
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/network/network_service.dart';
 import 'package:artisan/core/network/url_config.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/list_of_available_gigs_response.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:dio/dio.dart';
+
+import '../../../views/board/gig/data/model/gigs_response/gigs_response.dart';
 
 class GigApi {
   final NetworkService _networkService;
@@ -13,13 +14,13 @@ class GigApi {
       : _networkService = networkService;
 
   /// Return a list of available lists
-  Future<ListOfAvailableGigsResponse> getListOfAvailableGigs(
+  Future<GigsResponse> getListOfAvailableGigs(
       {required GigEntity entity}) async {
     try {
       final _response = await _networkService.call(
           UrlConfig.gigList, RequestMethod.get,
           queryParams: entity.availableListQuery());
-      return ListOfAvailableGigsResponse.fromJson(_response.data);
+      return GigsResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }
@@ -50,12 +51,11 @@ class GigApi {
   }
 
   /// list of  gig
-  Future<ListOfAvailableGigsResponse> listOfSavedGigs(
-      {required GigEntity entity}) async {
+  Future<GigsResponse> listOfSavedGigs({required GigEntity entity}) async {
     try {
       final _response =
           await _networkService.call(UrlConfig.savedGig, RequestMethod.get);
-      return ListOfAvailableGigsResponse.fromJson(_response.data);
+      return GigsResponse.fromJson(_response.data);
     } catch (e) {
       rethrow;
     }

@@ -17,6 +17,6 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'pagination_meta': instance.paginationMeta,
-      'data': instance.data,
+      'pagination_meta': instance.paginationMeta?.toJson(),
+      'data': instance.data?.map((e) => e.toJson()).toList(),
     };

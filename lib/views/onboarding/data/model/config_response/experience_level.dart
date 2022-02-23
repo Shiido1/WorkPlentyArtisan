@@ -4,7 +4,7 @@ import 'option.dart';
 
 part 'experience_level.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class ExperienceLevel {
   String? label;
   List<Option>? option;

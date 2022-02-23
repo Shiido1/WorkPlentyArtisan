@@ -15,5 +15,5 @@ Timeline _$TimelineFromJson(Map<String, dynamic> json) => Timeline(
 
 Map<String, dynamic> _$TimelineToJson(Timeline instance) => <String, dynamic>{
       'label': instance.label,
-      'option': instance.option,
+      'option': instance.option?.map((e) => e.toJson()).toList(),
     };

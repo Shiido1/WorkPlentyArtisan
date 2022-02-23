@@ -4,7 +4,7 @@ import 'option.dart';
 
 part 'timeline.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Timeline {
   String? label;
   List<Option>? option;

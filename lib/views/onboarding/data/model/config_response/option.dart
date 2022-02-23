@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'option.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Option {
   String? key;
   String? title;

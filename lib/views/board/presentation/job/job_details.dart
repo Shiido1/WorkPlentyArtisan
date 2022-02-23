@@ -3,6 +3,7 @@ import 'package:artisan/core/helper/helper_handler.dart';
 import 'package:artisan/core/helper/routes/navigation.dart';
 import 'package:artisan/core/helper/utils/images.dart';
 import 'package:artisan/core/helper/utils/pallets.dart';
+import 'package:artisan/core/helper/utils/time_helper.dart';
 import 'package:artisan/core/helper/utils/workplenty_dialog.dart';
 import 'package:artisan/views/board/gig/domain/entity/gig/gig_entity.dart';
 import 'package:artisan/views/board/presentation/stateManagers/bloc/gig_bloc.dart';
@@ -94,7 +95,8 @@ class JobDetails extends StatelessWidget {
                                       SvgPicture.asset(AppImages.bids),
                                       SizedBox(width: 5.h),
                                       TextView(
-                                        text: 'Bids',
+                                        text:
+                                            '${gigProvider.datum?.bids ?? 0} Bids',
                                         fontWeight: FontWeight.w400,
                                         textAlign: TextAlign.left,
                                       ),
@@ -118,7 +120,8 @@ class JobDetails extends StatelessWidget {
                                       SvgPicture.asset(AppImages.star),
                                       SizedBox(width: 5.h),
                                       TextView(
-                                        text: '',
+                                        text:
+                                            '${gigProvider.datum?.avgRating ?? 0}',
                                         fontWeight: FontWeight.w400,
                                         textAlign: TextAlign.left,
                                       ),
@@ -155,7 +158,8 @@ class JobDetails extends StatelessWidget {
                                   SizedBox(width: 4.w),
                                   Expanded(
                                     child: TextView(
-                                      text: 'ui design project document.pdf',
+                                      text:
+                                          '${gigProvider.datum?.attachments?.length} file(s)',
                                       fontWeight: FontWeight.w400,
                                       color: Pallets.grey,
                                       textAlign: TextAlign.left,
@@ -185,13 +189,17 @@ class JobDetails extends StatelessWidget {
                                       ),
                                     ]),
                                 SizedBox(height: 23.h),
-                                _titleAndValueWidget('Bid', '0 Bids'),
+                                _titleAndValueWidget(
+                                    'Bid', '${gigProvider.datum?.bids} Bids'),
+                                SizedBox(height: 16.h),
+                                _titleAndValueWidget('Interviewing',
+                                    '${gigProvider.datum?.interviewing}  Interviews'),
                                 SizedBox(height: 16.h),
                                 _titleAndValueWidget(
-                                    'Interviewing', '0 Interviews'),
-                                SizedBox(height: 16.h),
-                                _titleAndValueWidget(
-                                    'Date Created', '21/09/2021'),
+                                    'Date Created',
+                                    TimeUtil.formatDayMonthYear(
+                                        gigProvider.datum?.createdAt ?? '',
+                                        char: '/')),
                               ],
                             ),
                             borderRadiusGeometry: BorderRadius.zero,
@@ -224,12 +232,14 @@ class JobDetails extends StatelessWidget {
                                   ],
                                 ),
                                 SizedBox(height: 16.h),
-                                _titleAndValueWidget(
-                                    'Location', 'Abuja, Nigeria'),
+                                _titleAndValueWidget('Location',
+                                    '${gigProvider.datum?.profile?.city ?? ''} ${gigProvider.datum?.profile?.country ?? ''}'),
                                 SizedBox(height: 16.h),
-                                _titleAndValueWidget('Job Posted', '221'),
+                                _titleAndValueWidget('Job Posted',
+                                    '${gigProvider.datum?.profile?.jobPosted ?? 0}'),
                                 SizedBox(height: 16.h),
-                                _titleAndValueWidget('Rating', '4.8',
+                                _titleAndValueWidget('Rating',
+                                    '${gigProvider.datum?.profile?.avgRating ?? 0}',
                                     iconData: Icons.star),
                                 SizedBox(
                                     height:

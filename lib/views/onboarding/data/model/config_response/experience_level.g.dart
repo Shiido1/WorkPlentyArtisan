@@ -17,5 +17,5 @@ ExperienceLevel _$ExperienceLevelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ExperienceLevelToJson(ExperienceLevel instance) =>
     <String, dynamic>{
       'label': instance.label,
-      'option': instance.option,
+      'option': instance.option?.map((e) => e.toJson()).toList(),
     };

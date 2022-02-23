@@ -4,9 +4,10 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:artisan/core/database/hive_database.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import '../../../../../../core/entity/datum/datum.dart';
 
 SavedGigsDao? savedGigsDao;
 

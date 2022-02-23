@@ -1,14 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'list_of_available_gigs_response.dart';
+part of 'gigs_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ListOfAvailableGigsResponse _$ListOfAvailableGigsResponseFromJson(
-        Map<String, dynamic> json) =>
-    ListOfAvailableGigsResponse(
+GigsResponse _$GigsResponseFromJson(Map<String, dynamic> json) => GigsResponse(
       msg: json['msg'] as String?,
       data: json['data'] == null
           ? null
@@ -17,8 +15,7 @@ ListOfAvailableGigsResponse _$ListOfAvailableGigsResponseFromJson(
       code: json['code'] as int?,
     )..errorDebug = json['errorDebug'];
 
-Map<String, dynamic> _$ListOfAvailableGigsResponseToJson(
-        ListOfAvailableGigsResponse instance) =>
+Map<String, dynamic> _$GigsResponseToJson(GigsResponse instance) =>
     <String, dynamic>{
       'errorDebug': instance.errorDebug,
       'msg': instance.msg,

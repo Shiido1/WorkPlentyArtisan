@@ -7,7 +7,7 @@ import 'datum.dart';
 
 part 'skills_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class SkillsResponse extends DefaultResponse {
   final String? msg;
   final List<Datum>? data;

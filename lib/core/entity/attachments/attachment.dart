@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'attachment.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-@HiveType(typeId: 3)
+@HiveType(typeId: 0)
 class Attachment extends HiveObject {
   @HiveField(0)
   int? id;

@@ -16,5 +16,5 @@ PaymentType _$PaymentTypeFromJson(Map<String, dynamic> json) => PaymentType(
 Map<String, dynamic> _$PaymentTypeToJson(PaymentType instance) =>
     <String, dynamic>{
       'label': instance.label,
-      'option': instance.option,
+      'option': instance.option?.map((e) => e.toJson()).toList(),
     };

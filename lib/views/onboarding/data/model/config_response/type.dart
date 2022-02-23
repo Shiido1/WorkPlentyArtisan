@@ -4,7 +4,7 @@ import 'option.dart';
 
 part 'type.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Type {
   String? label;
   List<Option>? option;

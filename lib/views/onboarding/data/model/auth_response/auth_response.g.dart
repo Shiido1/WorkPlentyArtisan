@@ -19,7 +19,7 @@ Map<String, dynamic> _$AuthResponseToJson(AuthResponse instance) =>
     <String, dynamic>{
       'errorDebug': instance.errorDebug,
       'msg': instance.msg,
-      'data': instance.data,
+      'data': instance.data?.toJson(),
       'success': instance.success,
       'code': instance.code,
     };

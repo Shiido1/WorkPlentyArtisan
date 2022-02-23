@@ -1,23 +1,24 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../cover/cover.dart';
+
 part 'industry.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-@HiveType(typeId: 2)
+@HiveType(typeId: 0)
 class Industry extends HiveObject {
   @HiveField(0)
   int? id;
-  @JsonKey(name: 'category_id')
   @HiveField(1)
-  dynamic categoryId;
-  @HiveField(2)
   String? name;
-  @JsonKey(name: 'created_at')
+  @HiveField(2)
+  Cover? cover;
+  @JsonKey(name: 'category_id')
   @HiveField(3)
-  dynamic createdAt;
+  dynamic categoryId;
 
-  Industry({this.id, this.categoryId, this.name, this.createdAt});
+  Industry({this.id, this.name, this.cover, this.categoryId});
 
   factory Industry.fromJson(Map<String, dynamic> json) {
     return _$IndustryFromJson(json);

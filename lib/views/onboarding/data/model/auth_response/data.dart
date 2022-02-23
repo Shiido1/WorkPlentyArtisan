@@ -3,10 +3,9 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../../../../core/entity/profile/profile.dart';
 import '../../../../../core/entity/user/user.dart';
 
-
 part 'data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Data {
   String? token;
   @JsonKey(name: 'token_type')

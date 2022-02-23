@@ -1,10 +1,11 @@
 import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:artisan/core/helper/utils/images.dart';
-import 'package:artisan/views/board/gig/data/model/list_of_available_gigs_response/datum.dart';
 import 'package:artisan/views/board/presentation/widget/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../../../../core/entity/datum/datum.dart';
 
 class SavedTab extends StatelessWidget {
   final List<Datum> gigs;

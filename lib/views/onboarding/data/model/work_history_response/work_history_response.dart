@@ -7,7 +7,7 @@ import 'datum.dart';
 
 part 'work_history_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class WorkHistoryResponse extends DefaultResponse {
   String? msg;
   List<Datum>? data;

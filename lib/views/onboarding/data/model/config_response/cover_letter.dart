@@ -4,7 +4,7 @@ import 'option.dart';
 
 part 'cover_letter.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class CoverLetter {
   String? label;
   List<Option>? option;

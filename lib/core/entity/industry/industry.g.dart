@@ -8,14 +8,16 @@ part of 'industry.dart';
 
 Industry _$IndustryFromJson(Map<String, dynamic> json) => Industry(
       id: json['id'] as int?,
-      categoryId: json['category_id'],
       name: json['name'] as String?,
-      createdAt: json['created_at'],
+      cover: json['cover'] == null
+          ? null
+          : Cover.fromJson(json['cover'] as Map<String, dynamic>),
+      categoryId: json['category_id'],
     );
 
 Map<String, dynamic> _$IndustryToJson(Industry instance) => <String, dynamic>{
       'id': instance.id,
-      'category_id': instance.categoryId,
       'name': instance.name,
-      'created_at': instance.createdAt,
+      'cover': instance.cover?.toJson(),
+      'category_id': instance.categoryId,
     };

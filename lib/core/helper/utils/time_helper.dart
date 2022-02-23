@@ -1,3 +1,4 @@
+import 'package:artisan/core/helper/configs/instances.dart';
 import 'package:intl/intl.dart';
 
 class TimeUtil {
@@ -25,6 +26,18 @@ class TimeUtil {
     }
   }
 
+  static String formatDayMonthYear(String? date, {String? char = ''}) {
+    try {
+      if (date!.isEmpty) return '';
+      DateTime _dt = DateTime.parse(date);
+      String _formatDate = DateFormat("dd${char}MM${char}yyyy").format(_dt);
+
+      return _formatDate;
+    } catch (_) {
+      return '';
+    }
+  }
+
   static String formatDate2(String? date) {
     try {
       if (date!.isEmpty) return '';
@@ -45,6 +58,18 @@ class TimeUtil {
       return DateFormat("hh:mm a").format(dateTime.toLocal());
     } catch (_) {
       return '';
+    }
+  }
+
+  static DateTime rawTimeFormat(String? date) {
+    try {
+      if (date!.isEmpty) return DateTime.now();
+      var _newStr = date.substring(0, 10) + ' ' + date.substring(11, 23);
+      DateTime _dt = DateTime.parse(_newStr);
+      return _dt.toLocal();
+    } catch (e) {
+      logger.e(e);
+      return DateTime.now();
     }
   }
 
@@ -76,37 +101,6 @@ class TimeUtil {
     } catch (e) {
       return '';
     }
-  }
-
-  static String lastTimeMessage(String? dateString) {
-    if (dateString == null) return '';
-    var _dt = DateFormat("yyyy-MM-dd HH:mm").parse(dateString, true);
-    final _formattedTime = DateFormat("HH:mm a").format(_dt.toLocal());
-    final _presentDate = DateTime.now();
-    final _difference = _presentDate.difference(_dt.toLocal());
-
-    var _formatDateDT = DateFormat("yyyy-MM-dd").parse(dateString, true);
-
-    final _yearDateList = _formatDateDT.toLocal().toString().split(' ');
-    final _yearDate = _yearDateList[0];
-
-    final _splttedYear = _yearDate.split('-');
-    int _year = int.parse(_splttedYear[0]);
-    int _month = int.parse(_splttedYear[2]);
-    int _day = int.parse(_splttedYear[1]);
-
-    if (_difference.inDays > 1) {
-      return '$_day/$_month/$_year';
-    }
-
-    if (_difference.inDays == 0) {
-      return _formattedTime;
-    }
-
-    if (_difference.inDays == 1) {
-      return 'Yesterday';
-    }
-    return '';
   }
 
   static String timeAgoSinceDate(String dateString,

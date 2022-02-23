@@ -18,6 +18,6 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
 Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'cover': instance.cover,
+      'cover': instance.cover?.toJson(),
       'category_id': instance.categoryId,
     };

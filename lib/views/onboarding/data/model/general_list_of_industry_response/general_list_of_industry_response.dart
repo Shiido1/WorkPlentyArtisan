@@ -5,7 +5,7 @@ import 'datum.dart';
 
 part 'general_list_of_industry_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 // ignore: must_be_immutable
 class GeneralListOfIndustryResponse extends DefaultResponse {
   String? msg;

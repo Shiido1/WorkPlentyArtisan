@@ -5,7 +5,7 @@ import 'pagination_meta.dart';
 
 part 'data.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Data {
   @JsonKey(name: 'pagination_meta')
   PaginationMeta? paginationMeta;

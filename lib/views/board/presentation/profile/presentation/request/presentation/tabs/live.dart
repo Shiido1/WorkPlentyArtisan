@@ -121,71 +121,71 @@ class LiveTab extends StatelessWidget {
                                         ],
                                       ),
                                       SizedBox(height: 18.h),
-                                      e.status == "pending"
-                                          ? TextView(
-                                              text: 'Session was accepted',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12,
-                                              textAlign: TextAlign.left,
-                                              textOverflow:
-                                                  TextOverflow.ellipsis,
-                                            )
-                                          : Row(
-                                              children: [
-                                                Expanded(
-                                                    child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16.w,
-                                                      vertical: 8.h),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.r),
-                                                      border: Border.all(
-                                                          color: Pallets
-                                                              .primary100)),
-                                                  child: TextView(
-                                                    text: 'Decline',
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 12,
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                )),
-                                                Spacer(),
-                                                Expanded(
-                                                    child: GestureDetector(
-                                                  onTap: () {
-                                                    _bloc.add(
-                                                        AcceptOrDeclineEvent(
-                                                            entity: RequestEntity(
-                                                                requestID: e.id,
-                                                                action:
-                                                                    'ACCEPT')));
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 16.w,
-                                                            vertical: 8.h),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.r),
-                                                        color:
-                                                            Pallets.primary100),
-                                                    child: TextView(
-                                                      text: 'Accept',
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 12,
-                                                      color: Pallets.white,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                  ),
-                                                ))
-                                              ],
-                                            )
+                                      // e.status == "pending"
+                                      //     ? TextView(
+                                      //         text: 'Session was accepted',
+                                      //         fontWeight: FontWeight.w400,
+                                      //         fontSize: 12,
+                                      //         textAlign: TextAlign.left,
+                                      //         textOverflow:
+                                      //             TextOverflow.ellipsis,
+                                      //       )
+                                      //     : Row(
+                                      //         children: [
+                                      //           Expanded(
+                                      //               child: Container(
+                                      //             padding: EdgeInsets.symmetric(
+                                      //                 horizontal: 16.w,
+                                      //                 vertical: 8.h),
+                                      //             decoration: BoxDecoration(
+                                      //                 borderRadius:
+                                      //                     BorderRadius.circular(
+                                      //                         5.r),
+                                      //                 border: Border.all(
+                                      //                     color: Pallets
+                                      //                         .primary100)),
+                                      //             child: TextView(
+                                      //               text: 'Decline',
+                                      //               fontWeight: FontWeight.w700,
+                                      //               fontSize: 12,
+                                      //               textAlign: TextAlign.center,
+                                      //             ),
+                                      //           )),
+                                      //           Spacer(),
+                                      //           Expanded(
+                                      //               child: GestureDetector(
+                                      //             onTap: () {
+                                      //               _bloc.add(
+                                      //                   AcceptOrDeclineEvent(
+                                      //                       entity: RequestEntity(
+                                      //                           requestID: e.id,
+                                      //                           action:
+                                      //                               'ACCEPT')));
+                                      //             },
+                                      //             child: Container(
+                                      //               padding:
+                                      //                   EdgeInsets.symmetric(
+                                      //                       horizontal: 16.w,
+                                      //                       vertical: 8.h),
+                                      //               decoration: BoxDecoration(
+                                      //                   borderRadius:
+                                      //                       BorderRadius
+                                      //                           .circular(5.r),
+                                      //                   color:
+                                      //                       Pallets.primary100),
+                                      //               child: TextView(
+                                      //                 text: 'Accept',
+                                      //                 fontWeight:
+                                      //                     FontWeight.w700,
+                                      //                 fontSize: 12,
+                                      //                 color: Pallets.white,
+                                      //                 textAlign:
+                                      //                     TextAlign.center,
+                                      //               ),
+                                      //             ),
+                                      //           ))
+                                      //         ],
+                                      //       )
                                     ],
                                   ))
                                 ],

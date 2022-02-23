@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'pagination_meta.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class PaginationMeta {
   @JsonKey(name: 'current_page')
   int? currentPage;
